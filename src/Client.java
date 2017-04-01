@@ -2,18 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class LoginGUI extends JFrame
+public class Client extends JFrame implements Runnable
 {
     private JRadioButton passenger ;
     private JRadioButton admin;
-
     private JButton signIn;
     private JButton signUp;
-
     private JTextField idField;
     private JTextField passwordField;
 
-    private LoginGUI()
+    private String id = null;
+    private String password = null;
+
+    public Client()
     {
         setTitle("Login Window");
         setSize(265, 175);
@@ -37,10 +38,6 @@ public class LoginGUI extends JFrame
         buttonGroup.add(admin);
         buttonGroup.add(passenger);
 
-        ButtonListener listener = new ButtonListener();
-        signIn.addActionListener(listener);
-        signUp.addActionListener(listener);
-
         JPanel top = new JPanel(new FlowLayout());
         top.add(admin);
         top.add(passenger);
@@ -61,6 +58,29 @@ public class LoginGUI extends JFrame
         bot.add(signIn);
         bot.add(signUp);
 
+        //button listener class for the main login screen
+        class ButtonListener implements ActionListener
+        {
+            public void actionPerformed(ActionEvent action)
+            {
+                if(action.getSource() == signIn)
+                {
+                    if(checkInputs(idField.getText().trim(), passwordField.getText().trim()))
+                    {
+
+                    }
+                }
+                else if(action.getSource() == signUp)
+                {
+                    addClient();
+                }
+            }
+        }
+
+        ButtonListener listener = new ButtonListener();
+        signIn.addActionListener(listener);
+        signUp.addActionListener(listener);
+
         Container container = getContentPane();
         container.add("North", top);
         container.add("Center", mid);
@@ -79,24 +99,21 @@ public class LoginGUI extends JFrame
         });
     }
 
-    class ButtonListener implements ActionListener
+    @Override
+    public void run()
     {
-        public void actionPerformed(ActionEvent action)
-        {
-            if(action.getSource() == signIn)
-            {
-                if(checkInputs(idField.getText().trim(), passwordField.getText().trim()))
-                {
-
-                }
-            }
-            else if(action.getSource() == signUp)
-            {
-                SignUpGUI signup = new SignUpGUI();
-            }
-        }
+        Client client = new Client();
     }
 
+    //check if the user id and password is correct
+    private Boolean checkUserExists(String id, String password)
+    {
+
+        return null;
+    }
+
+    //checks if the id and password fields is empty
+    //error message shown if fields are empty
     private Boolean checkInputs(String id, String password)
     {
         String error = "";
@@ -114,5 +131,11 @@ public class LoginGUI extends JFrame
         }
     }
 
-    public static void main(String[] args) { LoginGUI client = new LoginGUI();    }
+    private void addClient()
+    {
+        SignUpGUI signup = new SignUpGUI();
+
+    }
+
+    public static void main(String[] args) { Client client = new Client();    }
 }
