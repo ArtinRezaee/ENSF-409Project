@@ -32,13 +32,13 @@ public class SignUpGUI extends JFrame
         JPanel main3 = new JPanel(new FlowLayout());
         JPanel main4 = new JPanel(new FlowLayout());
 
-        main1.add(new JLabel("First Name:  "));
+        main1.add(new JLabel("First Name"));
         main1.add(first);
-        main2.add(new JLabel("Last Name:  "));
+        main2.add(new JLabel("Last Name"));
         main2.add(last);
-        main3.add(new JLabel("E-mail:          "));
+        main3.add(new JLabel("E-mail        "));
         main3.add(email);
-        main4.add(new JLabel("Password:  "));
+        main4.add(new JLabel("Password "));
         main4.add(password);
 
         main.add(main1);
@@ -75,10 +75,52 @@ public class SignUpGUI extends JFrame
         {
             if(action.getSource() == confirm)
             {
+                if(checkInputs(first.getText().trim(), last.getText().trim(), email.getText().trim(), password.getText().trim()))
+                {
 
-
+                }
             }
         }
     }
 
+    private Boolean checkInputs(String first, String last, String email, String password)
+    {
+        String error = "";
+        if(first.length() > 20 || first.length() < 1)
+        {
+            if(first.length() > 20)
+                error += "Your first name cannot be more than 20 characters.\n";
+
+            else
+                error += "Your first name cannot be empty.\n";
+        }
+        if(last.length() > 20 || last.length() < 1)
+        {
+            if(last.length() > 20)
+                error += "Your last name cannot be more than 20 characters.\n";
+            else
+                error += "Your last name cannot be empty.\n";
+        }
+        if(email.length() > 50 || email.length() < 1)
+        {
+            if(email.length() > 50)
+                error += "Your e-mail address cannot be more than 50 characters.\n";
+            else
+                error += "Your e-mail address cannot be empty.\n";
+        }
+        if(!email.contains(".com") || !email.contains("@"))
+            error += "Your e-mail address needs to be in this format: abc@def.com\n";
+        if(password.length() < 1)
+        {
+            error += "Your password cannot be empty.\n";
+        }
+
+        if(error.equals(""))
+            return true;
+        else
+        {
+            JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+            return false;
+        }
+    }
 }

@@ -13,10 +13,10 @@ public class LoginGUI extends JFrame
     private JTextField idField;
     private JTextField passwordField;
 
-    public LoginGUI()
+    private LoginGUI()
     {
         setTitle("Login Window");
-        setSize(275, 175);
+        setSize(265, 175);
         setLayout(new BorderLayout());
 
         idField = new JTextField(10);
@@ -48,10 +48,10 @@ public class LoginGUI extends JFrame
         JPanel mid = new JPanel(new GridLayout(2, 1));
 
         JPanel mid1 = new JPanel(new FlowLayout());
-        mid1.add(new JLabel("User Name: "));
+        mid1.add(new JLabel("User Name"));
         mid1.add(idField);
         JPanel mid2 = new JPanel(new FlowLayout());
-        mid2.add(new JLabel("Password:   "));
+        mid2.add(new JLabel("Password "));
         mid2.add(passwordField);
 
         mid.add(mid1);
@@ -67,13 +67,14 @@ public class LoginGUI extends JFrame
         container.add("South", bot);
 
         setVisible(true);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(WindowEvent e)
             {
                 JFrame frame = (JFrame)e.getSource();
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION)
-                    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    System.exit(0);
             }
         });
     }
@@ -84,13 +85,32 @@ public class LoginGUI extends JFrame
         {
             if(action.getSource() == signIn)
             {
+                if(checkInputs(idField.getText().trim(), passwordField.getText().trim()))
+                {
 
-
+                }
             }
             else if(action.getSource() == signUp)
             {
                 SignUpGUI signup = new SignUpGUI();
             }
+        }
+    }
+
+    private Boolean checkInputs(String id, String password)
+    {
+        String error = "";
+        if(id.length() < 1)
+            error += "Your user name cannot be empty.\n";
+        if(password.length() < 1)
+            error += "Your password cannot be empty.\n";
+
+        if(error.equals(""))
+            return true;
+        else
+        {
+            JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+            return false;
         }
     }
 
