@@ -1,6 +1,9 @@
+import sun.security.krb5.internal.Ticket;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Client extends JFrame implements Runnable
 {
@@ -137,5 +140,53 @@ public class Client extends JFrame implements Runnable
 
     }
 
+    /** Member functions and objects of class FLightCatalogue and Ticket**/
+    protected FlightCatalogue catalogue;
+    protected ArrayList<Ticket> ticket = new ArrayList<>();
+    protected String type;
+
+    /** second constructor **/
+    public Client(ArrayList<Ticket> ticket, FlightCatalogue catalogue, String type) {
+        this.ticket = ticket;
+        this.catalogue = catalogue;
+        this.type = type;
+    }
+
+    /** Methods for clas Client **/
+    protected void CreateGUI() {
+        //TODO
+    }
+    protected void login() {
+        //TODO
+    }
+    protected void book(){
+        //TODO
+    }
+
+    /* Not sure if we even need all this search methods????
+    protected void search(){
+
+    }
+    protected void search(String source){
+
+    }
+    protected void search(String dest){
+
+    }
+    protected void search(int id){
+
+    }
+    protected void search(String date){
+
+    }
+    */
+
+    protected void search(String source, String dest, String date, int id){
+        //TODO
+    }
+    protected void refresh(){
+        //TODO
+    }
     public static void main(String[] args) { Client client = new Client();    }
-}
+    }
+
