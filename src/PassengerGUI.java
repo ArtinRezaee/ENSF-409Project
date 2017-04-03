@@ -23,6 +23,9 @@ public class PassengerGUI
         group.add(sourceSearch);
         group.add(dateSearch);
 
+
+        JLabel label = new JLabel();
+
     }
 
     public static void main(String[] args){ PassengerGUI pass = new PassengerGUI(); }
