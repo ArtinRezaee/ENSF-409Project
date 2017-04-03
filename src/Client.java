@@ -1,39 +1,61 @@
-import sun.security.krb5.internal.Ticket;
+/**
+ * Created by satyaki on 2017-03-31.
+ */
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.net.Socket;
+import java.io.*;
 
-public class Client extends JFrame implements Runnable
+public class Client implements Runnable
 {
-    private JRadioButton passenger ;
-    private JRadioButton admin;
-    private JButton signIn;
-    private JButton signUp;
-    private JTextField idField;
-    private JTextField passwordField;
+    private Socket socket;
+    private BufferedReader socketIn;
+    private PrintWriter socketOut;
 
-    private String id = null;
-    private String password = null;
+    private String id;
+    private String password;
+    private String type;
+    protected FlightCatalogue catalogue;
+    protected ArrayList<Flight> flights;
 
-    public Client()
+    public Client(String server, int port)
     {
-        setTitle("Login Window");
-        setSize(265, 175);
-        setLayout(new BorderLayout());
+        /*try
+        {
+            socket = new Socket(server, port);
+            socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            socketOut = new PrintWriter((socket.getOutputStream()), true);
+            makeLoginGUI();
+        }catch(IOException err1)
+        {
+            System.err.println(err1.getMessage());
+            err1.printStackTrace();
+        }*/
+        makeLoginGUI();
+    }
 
-        idField = new JTextField(10);
-        passwordField = new JTextField(10);
+    //creates the Login GUI
+    private void makeLoginGUI()
+    {
+        JFrame loginFrame = new JFrame();
+        loginFrame.setTitle("Login");
+        loginFrame.setSize(350, 200);
+        loginFrame.setLayout(new BorderLayout());
 
-        signIn = new JButton("Log In");
+        JTextField idField = new JTextField(15);
+        JTextField passwordField = new JTextField(15);
+
+        JButton signIn = new JButton("Log In");
         signIn.setFont(new Font("Calibri", Font.BOLD, 15));
-        signUp = new JButton("Sign Up");
+        JButton signUp = new JButton("Sign Up");
         signUp.setFont(new Font("Calibri", Font.BOLD, 15));
 
-        admin = new JRadioButton("Admin");
+        JRadioButton admin = new JRadioButton("Admin");
         admin.setFont(new Font("Calibri", Font.BOLD, 15));
-        passenger = new JRadioButton("Passenger");
+        JRadioButton passenger = new JRadioButton("Passenger");
         passenger.setFont(new Font("Calibri", Font.BOLD, 15));
         passenger.setSelected(true);
 
@@ -61,43 +83,166 @@ public class Client extends JFrame implements Runnable
         bot.add(signIn);
         bot.add(signUp);
 
-        //button listener class for the main login screen
-        class ButtonListener implements ActionListener
+        //button listener class for the login screen
+        class loginListener implements ActionListener
         {
             public void actionPerformed(ActionEvent action)
             {
                 if(action.getSource() == signIn)
                 {
-                    if(checkInputs(idField.getText().trim(), passwordField.getText().trim()))
-                    {
 
-                    }
                 }
                 else if(action.getSource() == signUp)
                 {
-                    addClient();
+                    signUpClient();
                 }
             }
         }
 
-        ButtonListener listener = new ButtonListener();
-        signIn.addActionListener(listener);
-        signUp.addActionListener(listener);
+        loginListener loginListener = new loginListener();
+        signIn.addActionListener(loginListener);
+        signUp.addActionListener(loginListener);
 
-        Container container = getContentPane();
+        Container container = loginFrame.getContentPane();
         container.add("North", top);
         container.add("Center", mid);
         container.add("South", bot);
 
-        setVisible(true);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
+        loginFrame.setVisible(true);
+        loginFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        loginFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(WindowEvent e)
             {
                 JFrame frame = (JFrame)e.getSource();
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION)
+                {
                     System.exit(0);
+                    /*try{
+                        socketIn.close();
+                        socketOut.close();
+                        socket.close();
+                    }catch(IOException err2)
+                    {
+                        System.out.println(err2.getMessage());
+                        err2.printStackTrace();
+                    }
+                    System.exit(0);
+                    */
+                }
+
+            }
+        });
+    }
+
+    //creates the Sign-Up GUI
+    private void signUpClient()
+    {
+        JFrame signUpFrame = new JFrame();
+        signUpFrame.setSize(350, 300);
+        signUpFrame.setTitle("Sign-Up");
+        signUpFrame.setLayout(new BorderLayout());
+
+        JButton confirm = new JButton("Confirm");
+        confirm.setFont(new Font("Calibri", Font.BOLD, 15));
+
+        JTextField first = new JTextField(15);
+        JTextField last = new JTextField(15);
+        JTextField email = new JTextField(15);
+        JTextField passField = new JTextField(15);
+
+        JPanel main = new JPanel(new GridLayout(4, 1));
+        JPanel main1 = new JPanel(new FlowLayout());
+        JPanel main2 = new JPanel(new FlowLayout());
+        JPanel main3 = new JPanel(new FlowLayout());
+        JPanel main4 = new JPanel(new FlowLayout());
+
+        main1.add(new JLabel("First Name"));
+        main1.add(first);
+        main2.add(new JLabel("Last Name"));
+        main2.add(last);
+        main3.add(new JLabel("E-mail        "));
+        main3.add(email);
+        main4.add(new JLabel("Password "));
+        main4.add(passField);
+
+        main.add(main1);
+        main.add(main2);
+        main.add(main3);
+        main.add(main4);
+
+        JPanel bot = new JPanel(new FlowLayout());
+        bot.add(confirm);
+
+        //button listener for Sign-Up GUI
+        class signUpListener implements ActionListener
+        {
+            public void actionPerformed(ActionEvent action)
+            {
+                if(action.getSource() == confirm)
+                {
+                    String error = "";
+                    if(first.getText().trim().length() > 20 || first.getText().trim().length() < 1)
+                    {
+                        if(first.getText().trim().length() > 20)
+                            error += "Your first name cannot be more than 20 characters.\n";
+
+                        else
+                            error += "Your first name cannot be empty.\n";
+                    }
+                    if(last.getText().trim().length() > 20 || last.getText().trim().length() < 1)
+                    {
+                        if(last.getText().trim().length() > 20)
+                            error += "Your last name cannot be more than 20 characters.\n";
+                        else
+                            error += "Your last name cannot be empty.\n";
+                    }
+                    if(email.getText().trim().length() > 50 || email.getText().trim().length() < 1)
+                    {
+                        if(email.getText().trim().length() > 50)
+                            error += "Your e-mail address cannot be more than 50 characters.\n";
+                        else
+                            error += "Your e-mail address cannot be empty.\n";
+                    }
+                    if(!email.getText().trim().contains(".com") || !email.getText().trim().contains("@"))
+                        error += "Your e-mail address needs to be in this format: abc@def.com\n";
+                    if(passField.getText().trim().length() < 1)
+                    {
+                        error += "Your password cannot be empty.\n";
+                    }
+
+                    if(error.equals(""))
+                    {
+
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+                    }
+
+                }
+            }
+        }
+
+        signUpListener signUpListener = new signUpListener();
+        confirm.addActionListener(signUpListener);
+
+        JLabel top = new JLabel("Sign-Up Form", SwingConstants.CENTER);
+        top.setFont(new Font("Calibri", Font.BOLD, 20));
+        Container container = signUpFrame.getContentPane();
+        container.add("North", top);
+        container.add("Center", main);
+        container.add("South", bot);
+
+        signUpFrame.setVisible(true);
+        signUpFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        signUpFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(WindowEvent e)
+            {
+                JFrame frame = (JFrame)e.getSource();
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you don't want to sign up?", "Exit Sign-Up", JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                    signUpFrame.dispose();
             }
         });
     }
@@ -105,60 +250,13 @@ public class Client extends JFrame implements Runnable
     @Override
     public void run()
     {
-        Client client = new Client();
-    }
-
-    //check if the user id and password is correct
-    private Boolean checkUserExists(String id, String password)
-    {
-
-        return null;
-    }
-
-    //checks if the id and password fields is empty
-    //error message shown if fields are empty
-    private Boolean checkInputs(String id, String password)
-    {
-        String error = "";
-        if(id.length() < 1)
-            error += "Your user name cannot be empty.\n";
-        if(password.length() < 1)
-            error += "Your password cannot be empty.\n";
-
-        if(error.equals(""))
-            return true;
-        else
-        {
-            JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
-            return false;
-        }
-    }
-
-    private void addClient()
-    {
-        SignUpGUI signup = new SignUpGUI();
 
     }
 
-    /** Member functions and objects of class FLightCatalogue and Ticket**/
-    protected FlightCatalogue catalogue;
-    protected ArrayList<Ticket> ticket = new ArrayList<>();
-    protected String type;
-
-    /** second constructor **/
-    public Client(ArrayList<Ticket> ticket, FlightCatalogue catalogue, String type) {
-        this.ticket = ticket;
-        this.catalogue = catalogue;
-        this.type = type;
-    }
-
-    /** Methods for clas Client **/
-    protected void CreateGUI() {
-        //TODO
-    }
     protected void login() {
         //TODO
     }
+
     protected void book(){
         //TODO
     }
@@ -178,8 +276,7 @@ public class Client extends JFrame implements Runnable
     }
     protected void search(String date){
 
-    }
-    */
+    }*/
 
     protected void search(String source, String dest, String date, int id){
         //TODO
@@ -187,6 +284,7 @@ public class Client extends JFrame implements Runnable
     protected void refresh(){
         //TODO
     }
-    public static void main(String[] args) { Client client = new Client();    }
-    }
+
+    public static void main(String[] args) { Client client = new Client("localhost", 3309);    }
+}
 

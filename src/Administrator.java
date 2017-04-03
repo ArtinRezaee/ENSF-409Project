@@ -1,9 +1,9 @@
 /**
  * Created by crist on 2017-04-01.
  */
-public class Administrator extends Client{
+/*public class Administrator extends Client{
 
-    /** overriding super functions of parent class Client **/
+    // overriding super functions of parent class Client
     // TODO: to change them accordingly or add more to override
     @Override
     protected void login() {
@@ -20,7 +20,7 @@ public class Administrator extends Client{
         super.search(source, dest, date, id);
     }
 
-    /** methods for class Administrator **/
+    // methods for class Administrator
     public void delete () {
         //TODO
     }
@@ -32,4 +32,4 @@ public class Administrator extends Client{
     public void addFlightGroup() {
         //TODO
     }
-}
+}*/

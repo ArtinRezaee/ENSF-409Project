@@ -1,9 +1,13 @@
+/**
+ * Created by satyaki on 2017-03-31.
+ */
 import javax.swing.*;
 
-public class PassengerGUI extends JFrame
+public class PassengerGUI
 {
     private JTextField destination;
-    private JTextField souce;
+    private JTextField source;
     private JTextField date;
+
 
 }

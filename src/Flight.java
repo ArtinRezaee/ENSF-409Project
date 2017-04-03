@@ -1,29 +1,30 @@
 /**
  * Created by crist on 2017-04-01.
  */
-public class Flight {
-
-
+public class Flight
+{
     /** Member functions of class Flight **/
     private int flightNumber;
     private String source;
     private String destination;
     private String date;
+    private String time;
+    private String duration;
     private int totalSeats;
     private int availableSeats;
-    private String duration;
     private double price;
 
     /** Constructor **/
-    public Flight(int flightNumber, String source, String destination, String date,
-                  int totalSeats, int availableSeats, String duration, double price) {
+    public Flight(int flightNumber, String source, String destination, String date, String time,
+                  String duration, int totalSeats, int availableSeats, double price) {
         this.flightNumber = flightNumber;
         this.source = source;
         this.destination = destination;
         this.date = date;
+        this.time = time;
+        this.duration = duration;
         this.totalSeats = totalSeats;
         this.availableSeats = availableSeats;
-        this.duration = duration;
         this.price = price;
     }
 }
