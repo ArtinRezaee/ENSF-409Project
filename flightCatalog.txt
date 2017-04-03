@@ -1,0 +1,11 @@
+515211;Sao Paulo Brazil;Nairobi Kenya;00:50;14:50;77;77;1259.00;2017-04-01
+699809;Tokyo Japan;Hanoi Vietnam;05:40;04:40;50;50;590.00;2017-07-01
+960434;Kolkata India;Ahmedabad India;06:40;02:35;74;74;102.00;2017-01-29
+176806;Berlin Germany;Tianjin China;07:20;16:35;65;65;1116.00;2017-02-23
+406353;Shenyang China;Moscow Russia;08:00;11:55;79;79;1398.00;2017-03-16
+421668;Singapore Singapore;Chennai India;11:00;04:10;53;53;218.00;2017-04-01
+835143;Moscow Russia;Johannesburg South Africa;11:20;14:30;70;70;1087.00;2017-04-06
+335936;Delhi India;Madrid Spain;15:30;10:55;99;99;1110.00;2017-04-20
+80956;Dhaka Bangladesh;Riyadh Saudi Arabia;17:20;05:40;66;66;882.00;2017-05-26
+626390;Hong Kong China;Dhaka Bangladesh;17:30;03:45;81;81;521.00;2017-06-05
+789345;Berlin Germany;Cape Town South Africa;22:50;13:50;92;92;1086.00;2017-06-21
