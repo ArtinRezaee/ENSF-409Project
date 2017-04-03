@@ -1,13 +1,29 @@
-/**
- * Created by satyaki on 2017-03-31.
- */
+// Created by satyaki on 2017-04-03
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class PassengerGUI
 {
-    private JTextField destination;
-    private JTextField source;
-    private JTextField date;
+    public PassengerGUI()
+    {
+        JFrame passengerFrame = new JFrame();
+        passengerFrame.setTitle("Access: Passenger");
+        passengerFrame.setLayout(new BorderLayout());
 
+        JTextField searchField = new JTextField(10);
+        JRadioButton dateSearch = new JRadioButton("Date");
+        JRadioButton sourceSearch = new JRadioButton("Source");
+        JRadioButton destSearch = new JRadioButton("Destination");
+        sourceSearch.setEnabled(true);
 
+        ButtonGroup group = new ButtonGroup();
+        group.add(destSearch);
+        group.add(sourceSearch);
+        group.add(dateSearch);
+
+    }
+
+    public static void main(String[] args){ PassengerGUI pass = new PassengerGUI(); }
 }

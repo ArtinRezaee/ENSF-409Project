@@ -1,6 +1,5 @@
-/**
- * Created by crist on 2017-04-01.
- */
+// Created by crist on 2017-04-01
+
 import java.util.ArrayList;
 
 public class FlightCatalogue

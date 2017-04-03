@@ -1,6 +1,5 @@
-/**
- * Created by crist on 2017-04-01.
- */
+// Created by crist on 2017-04-01
+
 public class Booking {
 
     /** object of class Flight **/

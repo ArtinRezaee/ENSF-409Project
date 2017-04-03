@@ -1,6 +1,4 @@
-/**
- * Created by satyaki on 2017-03-31.
- */
+// Created by satyaki on 2017-03-31
 
 import javax.swing.*;
 import java.awt.*;

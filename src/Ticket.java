@@ -1,8 +1,7 @@
-/**
- * Created by crist on 2017-04-01.
- */
-public class Ticket {
+// Created by crist on 2017-04-01
 
+public class Ticket
+{
     /** object of class Booking **/
     private Booking booking;
 
