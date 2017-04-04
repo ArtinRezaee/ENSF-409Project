@@ -19,7 +19,7 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409dbs?autoReconnect=true&useSSL=false", "root", "1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,40 +113,40 @@ public class DatabaseConnector
 		return result;
 	}
 
-	//method to add user to database - table clients
-	public void addUser(String f, String l, String e, String p, String t)
-	{
-		try{
-			String query = "INSERT INTO client (Email, FirstName, LastName, Password, Type) VALUES (?,?,?,?,?)";
-			pStat = connection.prepareStatement(query);
-			pStat.setString(1, e);
-			pStat.setString(2, f);
-			pStat.setString(3, l);
-			pStat.setString(4, p);
-			pStat.setString(5, t);
-			pStat.executeUpdate();
-		}catch(SQLException err)
-		{	err.printStackTrace(); }
-	}
+//	//method to add user to database - table clients
+//	public void addUser(String f, String l, String e, String p, String t)
+//	{
+//		try{
+//			String query = "INSERT INTO client (Email, FirstName, LastName, Password, Type) VALUES (?,?,?,?,?)";
+//			pStat = connection.prepareStatement(query);
+//			pStat.setString(1, e);
+//			pStat.setString(2, f);
+//			pStat.setString(3, l);
+//			pStat.setString(4, p);
+//			pStat.setString(5, t);
+//			pStat.executeUpdate();
+//		}catch(SQLException err)
+//		{	err.printStackTrace(); }
+//	}
 
-	public Boolean searchUser(String id, String pass, String type)
-	{
-		int i = 0;
-		try{
-			String query = "SELECT * FROM client WHERE Email = ? AND Password = ? AND Type = ?";
-			pStat = connection.prepareStatement(query);
-			pStat.setString(1, id);
-			pStat.setString(2, pass);
-			pStat.setString(3, type);
-			result = pStat.executeQuery();
-
-			while(result.next())
-				i++;
-		}catch(SQLException err)
-		{	err.printStackTrace(); }
-
-		return (i == 1);
-	}
+//	public Boolean userExists(String id, String pass, String type)
+//	{
+//		int i = 0;
+//		try{
+//			String query = "SELECT * FROM client WHERE Email = ? AND Password = ? AND Type = ?";
+//			pStat = connection.prepareStatement(query);
+//			pStat.setString(1, id);
+//			pStat.setString(2, pass);
+//			pStat.setString(3, type);
+//			result = pStat.executeQuery();
+//
+//			while(result.next())
+//				i++;
+//		}catch(SQLException err)
+//		{	err.printStackTrace(); }
+//
+//		return (i == 1);
+//	}
 
 	//TODO: ADD function to modify different tables in database
 	/*public static void main(String[] args){

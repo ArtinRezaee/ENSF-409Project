@@ -60,16 +60,15 @@ public class Server
 				if(line.equals("adduser"))
 				{
 					NewUserInfo info = (NewUserInfo)objectIn.readObject();
-					db.addUser(info.first, info.last, info.email, info.password, info.type);
+					db.insert("client", "'"+info.first+"', '"+ info.last +"', '" + info.email +"', '" +info.type + "', '"+ info.password +"'");
 				}
 				else if(line.equals("checklogin"))
 				{
 					String id = stringIn.readLine();
 					String pass = stringIn.readLine();
 					String type = stringIn.readLine();
-					Boolean exists = false;
-					exists = db.searchUser(id, pass, type);
-					if(exists)
+					ResultSet s = db.search("client", "Email = '"+ id + "' AND " + "Password = '" + pass + "' AND " + "type = '" + type +"'");
+					if(!s.next())
 						stringOut.println("yes");
 					else
 						stringOut.println("no");
