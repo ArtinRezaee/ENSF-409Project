@@ -4,35 +4,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class DatabaseConnector {
-
-	/**
-	 * Source of connection to the database
-	 */
+public class DatabaseConnector
+{
+	//Source of connection to the database
 	private Connection connection;
 	
-	/**
-	 * SQL statements to be executed
-	 */
+	//SQL statements to be executed
 	private Statement statement;
+	private PreparedStatement pStat;
+	private ResultSet result;
 	
-	/**
-	 * The database
-	 */
-	
-	/**
-	 * Constructor that creates a database and populates it
-	 */
+	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
-		
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database","root","rootroot");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409dbs?autoReconnect=true&useSSL=false", "root", "1234");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,12 +33,12 @@ public class DatabaseConnector {
 			
 			while((line = br.readLine()) != null){
 				String[] result = line.split(";", line.length());
-				String values="";
+				String values = "";
 				
-				for(int i=0; i<result.length-1; i++){
-					values+="'"+result[i]+"',";
+				for(int i = 0; i < result.length-1; i++){
+					values += "'" + result[i] + "',";
 				}
-				values+="'"+result[result.length-1]+"'";
+				values += "'" + result[result.length-1] + "'";
 				insert("flights", values);
 				
 			}
@@ -125,11 +112,44 @@ public class DatabaseConnector {
 		}
 		return result;
 	}
-	
+
+	//method to add user to database - table clients
+	public void addUser(String f, String l, String e, String p, String t)
+	{
+		try{
+			String query = "INSERT INTO client (Email, FirstName, LastName, Password, Type) VALUES (?,?,?,?,?)";
+			pStat = connection.prepareStatement(query);
+			pStat.setString(1, e);
+			pStat.setString(2, f);
+			pStat.setString(3, l);
+			pStat.setString(4, p);
+			pStat.setString(5, t);
+			pStat.executeUpdate();
+		}catch(SQLException err)
+		{	err.printStackTrace(); }
+	}
+
+	public Boolean searchUser(String id, String pass, String type)
+	{
+		try{
+			String query = "SELECT * FROM client WHERE Email = ? AND Password = ? AND Type = ?";
+			pStat = connection.prepareStatement(query);
+			pStat.setString(1, id);
+			pStat.setString(2, pass);
+			pStat.setString(3, type);
+			result = pStat.executeQuery();
+		}catch(SQLException err)
+		{	err.printStackTrace(); }
+
+		if(result == null)
+			return false;
+		else
+			return true;
+	}
+
 	//TODO: ADD function to modify different tables in database
-	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		DatabaseConnector database = new DatabaseConnector();
 		database.addFlights("flightCatalog.txt");
-	}
+	}*/
 }

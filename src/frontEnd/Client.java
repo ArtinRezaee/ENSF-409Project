@@ -12,9 +12,10 @@ import java.io.*;
 public class Client implements Runnable
 {
     private Socket socket;
-    private BufferedReader socketIn;
-    private PrintWriter socketOut;
+    private BufferedReader stringIn;
+    private PrintWriter stringOut;
     private ObjectOutputStream objOut;
+    private ObjectInputStream objIn;
 
     private String id;
     private String password;
@@ -27,9 +28,11 @@ public class Client implements Runnable
         try
         {
             socket = new Socket(server, port);
-            socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            socketOut = new PrintWriter((socket.getOutputStream()), true);
+            stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            stringOut = new PrintWriter((socket.getOutputStream()), true);
             objOut = new ObjectOutputStream(socket.getOutputStream());
+            objIn = new ObjectInputStream(socket.getInputStream());
+
             makeLoginGUI();
         }catch(IOException err1)
         {
@@ -43,7 +46,7 @@ public class Client implements Runnable
     {
         JFrame loginFrame = new JFrame();
         loginFrame.setTitle("Login");
-        loginFrame.setSize(350, 200);
+        loginFrame.setSize(300, 200);
         loginFrame.setLayout(new BorderLayout());
 
         JTextField idField = new JTextField(15);
@@ -71,10 +74,10 @@ public class Client implements Runnable
         JPanel mid = new JPanel(new GridLayout(2, 1));
 
         JPanel mid1 = new JPanel(new FlowLayout());
-        mid1.add(new JLabel("User Name"));
+        mid1.add(new JLabel("E-mail        "));
         mid1.add(idField);
         JPanel mid2 = new JPanel(new FlowLayout());
-        mid2.add(new JLabel("Password "));
+        mid2.add(new JLabel("Password"));
         mid2.add(passwordField);
 
         mid.add(mid1);
@@ -91,7 +94,30 @@ public class Client implements Runnable
             {
                 if(action.getSource() == signIn)
                 {
+                    stringOut.println("checklogin");
+                    stringOut.println(idField.getText().trim());
+                    stringOut.println(passwordField.getText().trim());
+                    String ty;
+                    if(passenger.isSelected())
+                        ty = "Passenger";
+                    else
+                        ty = "Admin";
+                    stringOut.println(ty);
 
+                    try{
+                        String valid = stringIn.readLine();
+                        if(valid.equals("yes"))
+                        {
+                            //make user GUI
+                            System.out.println(valid + " " + ty);
+                        }
+                        else
+                        {
+                            String error = "User does not exist.\nPlease try again.";
+                            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.PLAIN_MESSAGE);
+                        }
+                    }catch (IOException err4)
+                    {   err4.printStackTrace();    }
                 }
                 else if(action.getSource() == signUp)
                 {
@@ -118,10 +144,12 @@ public class Client implements Runnable
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION)
                 {
-                    System.exit(0);
-                    /*try{
-                        socketIn.close();
-                        socketOut.close();
+                    stringOut.println("over");
+                    try{
+                        stringOut.close();
+                        stringIn.close();
+                        objIn.close();
+                        objOut.close();
                         socket.close();
                     }catch(IOException err2)
                     {
@@ -129,9 +157,7 @@ public class Client implements Runnable
                         err2.printStackTrace();
                     }
                     System.exit(0);
-                    */
                 }
-
             }
         });
     }
@@ -147,16 +173,20 @@ public class Client implements Runnable
         JButton confirm = new JButton("Confirm");
         confirm.setFont(new Font("Calibri", Font.BOLD, 15));
 
+        String[] ClientTypes = {"Passenger", "Administrator"};
+
         JTextField first = new JTextField(15);
         JTextField last = new JTextField(15);
         JTextField email = new JTextField(15);
         JTextField passField = new JTextField(15);
+        JComboBox type = new JComboBox(ClientTypes);
 
-        JPanel main = new JPanel(new GridLayout(4, 1));
+        JPanel main = new JPanel(new GridLayout(5, 1));
         JPanel main1 = new JPanel(new FlowLayout());
         JPanel main2 = new JPanel(new FlowLayout());
         JPanel main3 = new JPanel(new FlowLayout());
         JPanel main4 = new JPanel(new FlowLayout());
+        JPanel main5 = new JPanel(new FlowLayout());
 
         main1.add(new JLabel("First Name"));
         main1.add(first);
@@ -166,11 +196,14 @@ public class Client implements Runnable
         main3.add(email);
         main4.add(new JLabel("Password "));
         main4.add(passField);
+        main5.add(new JLabel("User Type"));
+        main5.add(type);
 
         main.add(main1);
         main.add(main2);
         main.add(main3);
         main.add(main4);
+        main.add(main5);
 
         JPanel bot = new JPanel(new FlowLayout());
         bot.add(confirm);
@@ -182,34 +215,44 @@ public class Client implements Runnable
             {
                 if(action.getSource() == confirm)
                 {
+                    String f = first.getText().trim();
+                    String l = last.getText().trim();
+                    String e = email.getText().trim();
+                    String p = passField.getText().trim();
+                    String t = null;
+                    if(type.getSelectedIndex() == 0)
+                        t = "Passenger";
+                    else
+                        t = "Admin";
+
                     String error = "";
-                    if(first.getText().trim().length() > 40 || first.getText().trim().length() < 1)
+                    if(f.length() > 40 || f.length() < 1)
                     {
-                        if(first.getText().trim().length() > 40)
+                        if(f.length() > 40)
                             error += "Your first name cannot be more than 40 characters.\n";
 
                         else
                             error += "Your first name cannot be empty.\n";
                     }
-                    if(last.getText().trim().length() > 40 || last.getText().trim().length() < 1)
+                    if(l.length() > 40 || l.length() < 1)
                     {
-                        if(last.getText().trim().length() > 40)
+                        if(l.length() > 40)
                             error += "Your last name cannot be more than 40 characters.\n";
                         else
                             error += "Your last name cannot be empty.\n";
                     }
-                    if(email.getText().trim().length() > 40 || email.getText().trim().length() < 1)
+                    if(e.length() > 40 || e.length() < 1)
                     {
-                        if(email.getText().trim().length() > 40)
+                        if(e.length() > 40)
                             error += "Your e-mail address cannot be more than 40 characters.\n";
                         else
                             error += "Your e-mail address cannot be empty.\n";
                     }
-                    if(!email.getText().trim().contains(".com") || !email.getText().trim().contains("@"))
+                    if(!e.contains(".com") || !e.contains("@"))
                         error += "Your e-mail address needs to be in this format: abc@def.com\n";
-                    if(passField.getText().trim().length() > 40 || passField.getText().trim().length() < 1)
+                    if(p.length() > 40 || p.length() < 1)
                     {
-                        if(passField.getText().trim().length() > 40)
+                        if(p.length() > 40)
                             error += "Your password cannot be more than 40 characters.\n";
                         else
                             error += "Your password cannot be empty.\n";
@@ -217,19 +260,16 @@ public class Client implements Runnable
 
                     if(error.equals(""))
                     {
-                        NewUserInfo info = new NewUserInfo(first.getText().trim(), last.getText().trim(),
-                                email.getText().trim(), passField.getText().trim());
+                        NewUserInfo info = new NewUserInfo(f, l, e, p, t);
                         try {
+                            stringOut.println("adduser");
                             objOut.writeObject(info);
-                        }catch(IOException e)
-                        {
-                            e.printStackTrace();
-                        }
+                            signUpFrame.dispose();
+                        }catch(IOException err3)
+                        {   err3.printStackTrace(); }
                     }
                     else
-                    {
                         JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
-                    }
                 }
             }
         }
