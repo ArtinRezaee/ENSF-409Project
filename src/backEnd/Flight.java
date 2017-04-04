@@ -14,8 +14,9 @@ public class Flight
     private double price;
 
     /** Constructor **/
-    public Flight(int flightNumber, String source, String destination, String time,
-                  String duration, int totalSeats, int availableSeats, double price, String date) {
+    public Flight(int flightNumber, String source, String destination, String date, String time,
+                  String duration, int totalSeats, int availableSeats, double price)
+    {
         this.flightNumber = flightNumber;
         this.source = source;
         this.destination = destination;
@@ -25,5 +26,10 @@ public class Flight
         this.totalSeats = totalSeats;
         this.availableSeats = availableSeats;
         this.price = price;
+    }
+
+    public String toString()
+    {
+        return(source + " " + destination + " " + date + " " + time);
     }
 }

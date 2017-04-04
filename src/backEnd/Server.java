@@ -60,18 +60,42 @@ public class Server
 				if(line.equals("adduser"))
 				{
 					NewUserInfo info = (NewUserInfo)objectIn.readObject();
-					db.insert("client", "'"+info.first+"', '"+ info.last +"', '" + info.email +"', '" +info.type + "', '"+ info.password +"'");
+					db.insert("clients", "'"+info.email+"', '"+ info.first +"', '" + info.last +"', '" +info.password + "', '"+ info.type +"'");
 				}
 				else if(line.equals("checklogin"))
 				{
 					String id = stringIn.readLine();
 					String pass = stringIn.readLine();
 					String type = stringIn.readLine();
-					ResultSet s = db.search("client", "Email = '"+ id + "' AND " + "Password = '" + pass + "' AND " + "type = '" + type +"'");
-					if(!s.next())
+					ResultSet set = db.search("clients", "Email = '"+ id + "' AND Password = '" + pass + "' AND Type = '" + type +"'");
+					if(set.next())
 						stringOut.println("yes");
 					else
 						stringOut.println("no");
+				}
+				else if(line.equals("searchflightsdate"))
+				{
+					String date = stringIn.readLine();
+					String query = "Date = '" + date + "'";
+					ResultSet set = db.search("flights", query);
+					FlightCatalogue catalogue = new FlightCatalogue(set);
+					try {
+						stringOut.println("catalogincoming");
+						objectOut.writeObject(catalogue);
+					}catch(IOException err3)
+					{   err3.printStackTrace(); }
+				}
+				else if(line.equals("searchflightssource"))
+				{
+
+				}
+				else if(line.equals("searchflightsdest"))
+				{
+
+				}
+				else if(line.equals("book"))
+				{
+
 				}
 
 			}catch(Exception e)

@@ -53,7 +53,7 @@ public class DatabaseConnector
 		try {
 			
 			statement = connection.createStatement();
-			String stmnt = "INSERT " + "INTO " + table+ " VALUES("+ values +")";
+			String stmnt = "INSERT INTO " + table + " VALUES(" + values + ")";
 			System.out.println(stmnt);
 			statement.executeUpdate(stmnt);
 		} catch (SQLException e) {
@@ -61,15 +61,11 @@ public class DatabaseConnector
 		}
 	}
 	
-	/**
-	 * Method to delete a tuple from the database.Only for flights and clients tables
-	 * @param table Table that the tuple should be deleted from
-	 * @param id id of the flight or client
-	 */
-	public void delete(String table, int id ){
+	// Method to delete a flight
+	public void deleteFlight(int flightNum ){
 		try {
 			statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM " + table + " WHERE id=" + id );
+			statement.executeUpdate("DELETE FROM flights WHERE FlightNumber = " + flightNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,13 +75,14 @@ public class DatabaseConnector
 	 * Function to delete a booked ticket from table ticket
 	 * @param flightNum the flight number on the ticket
 	 * @param clientId the clientId of the passenger or Admin
-	 * @param seatNum The seat number of the client
+	 * increments the available seats in the flights table
 	 */
-	public void voidTicket(int flightNum, int clientId, int seatNum){
+	public void deleteTicket(int flightNum, String clientId){
 		try {
 			statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM ticket WHERE fNumber=" + flightNum + " AND clientId=" + clientId + 
-									" AND seatNum=" + seatNum);
+			statement.executeUpdate("DELETE FROM tickets WHERE FlightNumber = " + flightNum + " AND clientId = '" + clientId + "'");
+			statement = connection.createStatement();
+			statement.executeUpdate("UPDATE flights SET AvailableSeats = AvailableSeats + 1 WHERE FlightNumber = " + flightNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -112,45 +109,4 @@ public class DatabaseConnector
 		}
 		return result;
 	}
-
-//	//method to add user to database - table clients
-//	public void addUser(String f, String l, String e, String p, String t)
-//	{
-//		try{
-//			String query = "INSERT INTO client (Email, FirstName, LastName, Password, Type) VALUES (?,?,?,?,?)";
-//			pStat = connection.prepareStatement(query);
-//			pStat.setString(1, e);
-//			pStat.setString(2, f);
-//			pStat.setString(3, l);
-//			pStat.setString(4, p);
-//			pStat.setString(5, t);
-//			pStat.executeUpdate();
-//		}catch(SQLException err)
-//		{	err.printStackTrace(); }
-//	}
-
-//	public Boolean userExists(String id, String pass, String type)
-//	{
-//		int i = 0;
-//		try{
-//			String query = "SELECT * FROM client WHERE Email = ? AND Password = ? AND Type = ?";
-//			pStat = connection.prepareStatement(query);
-//			pStat.setString(1, id);
-//			pStat.setString(2, pass);
-//			pStat.setString(3, type);
-//			result = pStat.executeQuery();
-//
-//			while(result.next())
-//				i++;
-//		}catch(SQLException err)
-//		{	err.printStackTrace(); }
-//
-//		return (i == 1);
-//	}
-
-	//TODO: ADD function to modify different tables in database
-	/*public static void main(String[] args){
-		DatabaseConnector database = new DatabaseConnector();
-		database.addFlights("flightCatalog.txt");
-	}*/
 }

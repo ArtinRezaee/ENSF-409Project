@@ -3,25 +3,32 @@ package frontEnd;
 import backEnd.FlightCatalogue;
 import backEnd.Flight;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.net.Socket;
 import java.io.*;
+import java.lang.String;
 
-public class Client implements Runnable
+public class Client
 {
     private Socket socket;
     private BufferedReader stringIn;
     private PrintWriter stringOut;
-    private ObjectOutputStream objOut;
-    private ObjectInputStream objIn;
+    private ObjectOutputStream objectOut;
+    private ObjectInputStream objectIn;
 
-    private String id;
-    private String password;
-    private String type;
+    private String clientId;
+    private String clientPassword;
+    private String clientType;
+
     protected FlightCatalogue catalogue;
     protected ArrayList<Flight> flights;
+
+    private JFrame loginGUI;
+    private JFrame clientGUI;
 
     public Client(String server, int port)
     {
@@ -30,10 +37,10 @@ public class Client implements Runnable
             socket = new Socket(server, port);
             stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             stringOut = new PrintWriter((socket.getOutputStream()), true);
-            objOut = new ObjectOutputStream(socket.getOutputStream());
-            objIn = new ObjectInputStream(socket.getInputStream());
+            objectOut = new ObjectOutputStream(socket.getOutputStream());
+            objectIn = new ObjectInputStream(socket.getInputStream());
 
-            makeLoginGUI();
+            loginGUI = makeLoginGUI();
         }catch(IOException err1)
         {
             System.err.println(err1.getMessage());
@@ -42,7 +49,7 @@ public class Client implements Runnable
     }
 
     //creates the Login GUI
-    private void makeLoginGUI()
+    private JFrame makeLoginGUI()
     {
         JFrame loginFrame = new JFrame();
         loginFrame.setTitle("Login");
@@ -108,7 +115,28 @@ public class Client implements Runnable
                         String valid = stringIn.readLine();
                         if(valid.equals("yes"))
                         {
-                            //make user GUI
+                            clientId = idField.getText().trim();
+                            clientPassword = passwordField.getText().trim();
+                            clientType = ty;
+                            if(clientType.equals("Passenger"))
+                                clientGUI = makePassengerGUI();
+                            else
+                                clientGUI = makeAdminGUI();
+
+                            clientGUI.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                            clientGUI.addWindowListener(new java.awt.event.WindowAdapter() {
+                                public void windowClosing(WindowEvent e)
+                                {
+                                    JFrame frame = (JFrame)e.getSource();
+                                    int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
+                                    if(result == JOptionPane.YES_OPTION)
+                                    {
+                                        //send string to server
+                                        System.exit(0);
+                                    }
+                                }
+                            });
+                            clientGUI.setVisible(true);
                             System.out.println("Login Success" + " " + ty);
                         }
                         else
@@ -121,7 +149,7 @@ public class Client implements Runnable
                 }
                 else if(action.getSource() == signUp)
                 {
-                    signUpClient();
+                    makeSignUpClient();
                 }
             }
         }
@@ -135,7 +163,6 @@ public class Client implements Runnable
         container.add("Center", mid);
         container.add("South", bot);
 
-        loginFrame.setVisible(true);
         loginFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         loginFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(WindowEvent e)
@@ -148,8 +175,8 @@ public class Client implements Runnable
                     try{
                         stringOut.close();
                         stringIn.close();
-                        objIn.close();
-                        objOut.close();
+                        objectIn.close();
+                        objectOut.close();
                         socket.close();
                     }catch(IOException err2)
                     {
@@ -160,10 +187,248 @@ public class Client implements Runnable
                 }
             }
         });
+
+        return loginFrame;
+    }
+
+    private JFrame makePassengerGUI()
+    {
+        JFrame passengerFrame = new JFrame();
+        passengerFrame.setTitle("Access Level: Passenger");
+        passengerFrame.setLayout(new GridLayout(1, 2));
+        passengerFrame.setSize(700, 450);
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        JList<String> listArea = new JList<String>(listModel);
+
+        JButton search = new JButton("Search");
+        JTextField searchField = new JTextField(15);
+        JRadioButton dateSearch = new JRadioButton("Date");
+        JRadioButton sourceSearch = new JRadioButton("Source");
+        JRadioButton destSearch = new JRadioButton("Destination");
+        sourceSearch.setSelected(true);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(destSearch);
+        group.add(sourceSearch);
+        group.add(dateSearch);
+
+        JButton book = new JButton("Book");
+        JTextField flightNum = new JTextField(10);
+        flightNum.setEditable(false);
+        JTextField source = new JTextField(10);
+        source.setEditable(false);
+        JTextField destination = new JTextField(10);
+        destination.setEditable(false);
+        JTextField date = new JTextField(10);
+        date.setEditable(false);
+        JTextField time = new JTextField(10);
+        time.setEditable(false);
+        JTextField duration = new JTextField(10);
+        duration.setEditable(false);
+        JTextField availSeats = new JTextField(10);
+        availSeats.setEditable(false);
+        JTextField price = new JTextField(10);
+        price.setEditable(false);
+        JPanel right = new JPanel();
+        right.setLayout(new BorderLayout());
+
+        JPanel rightTop = new JPanel();
+        JLabel rightTitle = new JLabel("Flight Information");
+        rightTitle.setFont(new Font("Calibri", Font.BOLD, 20));
+        rightTop.add(rightTitle, Component.CENTER_ALIGNMENT);
+
+        JPanel rightCenter = new JPanel();
+        rightCenter.setLayout(new GridLayout(9, 1));
+        JPanel right1 = new JPanel(new FlowLayout());
+        JPanel right2 = new JPanel(new FlowLayout());
+        JPanel right3 = new JPanel(new FlowLayout());
+        JPanel right4 = new JPanel(new FlowLayout());
+        JPanel right5 = new JPanel(new FlowLayout());
+        JPanel right6 = new JPanel(new FlowLayout());
+        JPanel right7 = new JPanel(new FlowLayout());
+        JPanel right8 = new JPanel(new FlowLayout());
+        JPanel right9 = new JPanel(new FlowLayout());
+        right1.add(new JLabel("Flight Number"));
+        right1.add(flightNum);
+        right2.add(new JLabel("Source            "));
+        right2.add(source);
+        right3.add(new JLabel("Destination     "));
+        right3.add(destination);
+        right4.add(new JLabel("Date                 "));
+        right4.add(date);
+        right5.add(new JLabel("Time                 "));
+        right5.add(time);
+        right6.add(new JLabel("Duration          "));
+        right6.add(duration);
+        right7.add(new JLabel("Seats Left       "));
+        right7.add(availSeats);
+        right8.add(new JLabel("Price                "));
+        right8.add(price);
+        right9.add(book);
+        rightCenter.add(right1);
+        rightCenter.add(right2);
+        rightCenter.add(right3);
+        rightCenter.add(right4);
+        rightCenter.add(right5);
+        rightCenter.add(right6);
+        rightCenter.add(right7);
+        rightCenter.add(right8);
+        rightCenter.add(right9);
+
+        right.add("North", rightTop);
+        right.add("Center", rightCenter);
+
+        JPanel left = new JPanel();
+        left.setLayout(new GridLayout(2, 1));
+        left.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
+
+        JPanel leftTop = new JPanel();
+        leftTop.setLayout(new BorderLayout());
+
+        JPanel leftTopN = new JPanel();
+        JLabel lefttopTitle = new JLabel("Search Flights");
+        lefttopTitle.setFont(new Font("Calibri", Font.BOLD, 20));
+        leftTopN.add(lefttopTitle, Component.CENTER_ALIGNMENT);
+
+        JPanel leftTopC = new JPanel();
+        leftTopC.setLayout(new GridLayout(4, 1));
+        leftTopC.add(new JLabel("  Select the type of search to be performed:"), Component.LEFT_ALIGNMENT);
+        leftTopC.add(dateSearch, Component.LEFT_ALIGNMENT);
+        leftTopC.add(sourceSearch, Component.LEFT_ALIGNMENT);
+        leftTopC.add(destSearch, Component.LEFT_ALIGNMENT);
+
+        JPanel leftTopS = new JPanel();
+        leftTopS.setLayout(new BorderLayout());
+        leftTopS.add("North", new JLabel("  Enter the search parameters below:"));
+
+        JPanel leftTopSCenter = new JPanel();
+        leftTopSCenter.setLayout(new FlowLayout());
+        leftTopSCenter.add(searchField);
+        leftTopSCenter.add(search);
+        leftTopS.add("Center", leftTopSCenter);
+
+        leftTop.add("North", leftTopN);
+        leftTop.add("Center", leftTopC);
+        leftTop.add("South", leftTopS);
+
+        JPanel leftBot = new JPanel();
+        leftBot.setLayout(new BorderLayout());
+        leftBot.add("North", new JLabel("SOURCE            DESTINATION                DATE               TIME"));
+
+        listArea.setVisibleRowCount(8);
+        JScrollPane listPanel = new JScrollPane(listArea);
+
+        leftBot.add("Center", listPanel);
+        left.add(leftTop);
+        left.add(leftBot);
+
+        passengerFrame.add(left);
+        passengerFrame.add(right);
+
+        JLabel rightLabel = new JLabel("Flight Information", SwingConstants.CENTER);
+        rightLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+
+        class passengerButtonListener implements ActionListener
+        {
+            public void actionPerformed(ActionEvent action)
+            {
+                if(action.getSource() == search)
+                {
+                    String query = "";
+                    //CHANGE UP QUERY
+                    if(dateSearch.isSelected())
+                    {
+                        query = searchField.getText().trim();
+                        String error = "";
+                        if(query.length() != 10)
+                            error += "Date must be in this format: YYYY-MM-DD\n";
+                        else
+                        {
+                            for(int i = 0; i < 10; i++)
+                            {
+                                char a = query.charAt(i);
+                                if(i == 4 || i == 7)
+                                {
+                                    if(a != '-')
+                                        error = "Date must be in this format: YYYY-MM-DD\n";
+                                }
+                                else
+                                {
+                                    if(a < 48 || a > 57)
+                                        error = "Date must be in this format: YYYY-MM-DD\n";
+                                }
+                            }
+                        }
+                        if(error.equals(""))
+                        {
+                            stringOut.println("searchflightsdate");
+                            stringOut.println(query);
+                            try{
+                                String line = stringIn.readLine();
+                                FlightCatalogue catalogue = null;
+                                if(line.equals("catalogincoming"))
+                                {
+                                    catalogue = (FlightCatalogue) objectIn.readObject();
+                                }
+
+                            }catch(Exception errx)
+                            {   errx.printStackTrace(); }
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.PLAIN_MESSAGE);
+                    }
+                    else if(sourceSearch.isSelected())
+                    {
+
+                    }
+                    else if(destSearch.isSelected())
+                    {
+
+                    }
+                }
+                else if(action.getSource() == book)
+                {
+
+                }
+            }
+        }
+
+        class passengerListListener implements ListSelectionListener
+        {
+            public void valueChanged(ListSelectionEvent e)
+            {
+                int index = listArea.getSelectedIndex();
+                if (index >= 0)
+                {
+                    //idField.setText(String.valueOf(searchRecords.get(index).id));
+                    //firstField.setText(searchRecords.get(index).first);
+                    //lastField.setText(searchRecords.get(index).last);
+                    //addressField.setText(searchRecords.get(index).address);
+                    // postalField.setText(searchRecords.get(index).postal);
+                    //phoneField.setText(searchRecords.get(index).phone);
+                }
+            }
+        }
+
+        passengerButtonListener buttonListener = new passengerButtonListener();
+        search.addActionListener(buttonListener);
+        book.addActionListener(buttonListener);
+
+        passengerListListener listListener = new passengerListListener();
+        listArea.addListSelectionListener(listListener);
+
+        return passengerFrame;
+    }
+
+    private JFrame makeAdminGUI()
+    {
+
+        return null;
     }
 
     //creates the Sign-Up GUI
-    private void signUpClient()
+    private void makeSignUpClient()
     {
         JFrame signUpFrame = new JFrame();
         signUpFrame.setSize(350, 300);
@@ -226,17 +491,17 @@ public class Client implements Runnable
                         t = "Admin";
 
                     String error = "";
-                    if(f.length() > 40 || f.length() < 1)
+                    if(f.length() > 20 || f.length() < 1)
                     {
-                        if(f.length() > 40)
+                        if(f.length() > 20)
                             error += "Your first name cannot be more than 40 characters.\n";
 
                         else
                             error += "Your first name cannot be empty.\n";
                     }
-                    if(l.length() > 40 || l.length() < 1)
+                    if(l.length() > 20 || l.length() < 1)
                     {
-                        if(l.length() > 40)
+                        if(l.length() > 20)
                             error += "Your last name cannot be more than 40 characters.\n";
                         else
                             error += "Your last name cannot be empty.\n";
@@ -249,10 +514,10 @@ public class Client implements Runnable
                             error += "Your e-mail address cannot be empty.\n";
                     }
                     if((!e.contains(".com") && !e.contains(".ca")) || !e.contains("@"))
-                        error += "Your e-mail address needs to be in this format: abc@def.com\n";
-                    if(p.length() > 40 || p.length() < 1)
+                        error += "Your e-mail address needs to be in this format: abc@def.com or abc@def.ca\n";
+                    if(p.length() > 20 || p.length() < 1)
                     {
-                        if(p.length() > 40)
+                        if(p.length() > 20)
                             error += "Your password cannot be more than 40 characters.\n";
                         else
                             error += "Your password cannot be empty.\n";
@@ -263,7 +528,7 @@ public class Client implements Runnable
                         NewUserInfo info = new NewUserInfo(f, l, e, p, t);
                         try {
                             stringOut.println("adduser");
-                            objOut.writeObject(info);
+                            objectOut.writeObject(info);
                             signUpFrame.dispose();
                         }catch(IOException err3)
                         {   err3.printStackTrace(); }
@@ -295,12 +560,6 @@ public class Client implements Runnable
                     signUpFrame.dispose();
             }
         });
-    }
-
-    @Override
-    public void run()
-    {
-
     }
 
     protected void login() {
@@ -337,4 +596,3 @@ public class Client implements Runnable
 
     public static void main(String[] args) { Client client = new Client("localhost", 8099);    }
 }
-
