@@ -109,7 +109,7 @@ public class Client implements Runnable
                         if(valid.equals("yes"))
                         {
                             //make user GUI
-                            System.out.println(valid + " " + ty);
+                            System.out.println("Login Success" + " " + ty);
                         }
                         else
                         {
@@ -248,7 +248,7 @@ public class Client implements Runnable
                         else
                             error += "Your e-mail address cannot be empty.\n";
                     }
-                    if(!e.contains(".com") || !e.contains("@"))
+                    if((!e.contains(".com") && !e.contains(".ca")) || !e.contains("@"))
                         error += "Your e-mail address needs to be in this format: abc@def.com\n";
                     if(p.length() > 40 || p.length() < 1)
                     {

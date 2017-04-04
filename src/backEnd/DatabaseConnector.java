@@ -131,6 +131,7 @@ public class DatabaseConnector
 
 	public Boolean searchUser(String id, String pass, String type)
 	{
+		int i = 0;
 		try{
 			String query = "SELECT * FROM client WHERE Email = ? AND Password = ? AND Type = ?";
 			pStat = connection.prepareStatement(query);
@@ -138,13 +139,13 @@ public class DatabaseConnector
 			pStat.setString(2, pass);
 			pStat.setString(3, type);
 			result = pStat.executeQuery();
+
+			while(result.next())
+				i++;
 		}catch(SQLException err)
 		{	err.printStackTrace(); }
 
-		if(result == null)
-			return false;
-		else
-			return true;
+		return (i == 1);
 	}
 
 	//TODO: ADD function to modify different tables in database
