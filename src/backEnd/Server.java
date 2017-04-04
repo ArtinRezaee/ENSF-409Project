@@ -1,17 +1,15 @@
 package backEnd;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Handler;
 import java.util.concurrent.*;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import frontEnd.NewUserInfo;
 
 public class Server {
 	
@@ -21,6 +19,7 @@ public class Server {
 	private PrintWriter outString;
 	private ObjectInputStream objectIn;
 	private ObjectOutputStream objectOut;
+
 	private final ExecutorService pool = Executors.newFixedThreadPool(3);
 	
 	
@@ -29,26 +28,29 @@ public class Server {
 			serverSocket = new ServerSocket(8099);
 			System.out.println("Server is running...");
 			socket = serverSocket.accept();
+			System.out.println("Client connected..");
 			inString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			outString = new PrintWriter(socket.getOutputStream(),true);
+			objectIn = new ObjectInputStream(socket.getInputStream());
+			communicate();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void communicate(){
-		for (;;) {
-			pool.execute(new Handler(socket));
-		} 
+	public void communicate()
+	{
+		try
+		{
+			NewUserInfo info = (NewUserInfo)objectIn.readObject();
+			System.out.println(info.first + " " + info.last + " " + info.email + " " + info.password);
+
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
-	
-	class Handler implements Runnable {
-		private final Socket socket;
-		Handler(Socket socket) {
-		this.socket = socket; }
-		public void run()
-		{ // read and service request }
-		} 
-	}
+
+	public static void main(String[] args) {	Server server = new Server();	}
 }

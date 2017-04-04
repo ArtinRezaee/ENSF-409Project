@@ -14,6 +14,7 @@ public class Client implements Runnable
     private Socket socket;
     private BufferedReader socketIn;
     private PrintWriter socketOut;
+    private ObjectOutputStream objOut;
 
     private String id;
     private String password;
@@ -23,18 +24,18 @@ public class Client implements Runnable
 
     public Client(String server, int port)
     {
-        /*try
+        try
         {
             socket = new Socket(server, port);
             socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             socketOut = new PrintWriter((socket.getOutputStream()), true);
+            objOut = new ObjectOutputStream(socket.getOutputStream());
             makeLoginGUI();
         }catch(IOException err1)
         {
             System.err.println(err1.getMessage());
             err1.printStackTrace();
-        }*/
-        makeLoginGUI();
+        }
     }
 
     //creates the Login GUI
@@ -182,44 +183,53 @@ public class Client implements Runnable
                 if(action.getSource() == confirm)
                 {
                     String error = "";
-                    if(first.getText().trim().length() > 20 || first.getText().trim().length() < 1)
+                    if(first.getText().trim().length() > 40 || first.getText().trim().length() < 1)
                     {
-                        if(first.getText().trim().length() > 20)
-                            error += "Your first name cannot be more than 20 characters.\n";
+                        if(first.getText().trim().length() > 40)
+                            error += "Your first name cannot be more than 40 characters.\n";
 
                         else
                             error += "Your first name cannot be empty.\n";
                     }
-                    if(last.getText().trim().length() > 20 || last.getText().trim().length() < 1)
+                    if(last.getText().trim().length() > 40 || last.getText().trim().length() < 1)
                     {
-                        if(last.getText().trim().length() > 20)
-                            error += "Your last name cannot be more than 20 characters.\n";
+                        if(last.getText().trim().length() > 40)
+                            error += "Your last name cannot be more than 40 characters.\n";
                         else
                             error += "Your last name cannot be empty.\n";
                     }
-                    if(email.getText().trim().length() > 50 || email.getText().trim().length() < 1)
+                    if(email.getText().trim().length() > 40 || email.getText().trim().length() < 1)
                     {
-                        if(email.getText().trim().length() > 50)
-                            error += "Your e-mail address cannot be more than 50 characters.\n";
+                        if(email.getText().trim().length() > 40)
+                            error += "Your e-mail address cannot be more than 40 characters.\n";
                         else
                             error += "Your e-mail address cannot be empty.\n";
                     }
                     if(!email.getText().trim().contains(".com") || !email.getText().trim().contains("@"))
                         error += "Your e-mail address needs to be in this format: abc@def.com\n";
-                    if(passField.getText().trim().length() < 1)
+                    if(passField.getText().trim().length() > 40 || passField.getText().trim().length() < 1)
                     {
-                        error += "Your password cannot be empty.\n";
+                        if(passField.getText().trim().length() > 40)
+                            error += "Your password cannot be more than 40 characters.\n";
+                        else
+                            error += "Your password cannot be empty.\n";
                     }
 
                     if(error.equals(""))
                     {
-
+                        NewUserInfo info = new NewUserInfo(first.getText().trim(), last.getText().trim(),
+                                email.getText().trim(), passField.getText().trim());
+                        try {
+                            objOut.writeObject(info);
+                        }catch(IOException e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
                     }
-
                 }
             }
         }
@@ -285,6 +295,6 @@ public class Client implements Runnable
         //TODO
     }
 
-    public static void main(String[] args) { Client client = new Client("localhost", 3309);    }
+    public static void main(String[] args) { Client client = new Client("localhost", 8099);    }
 }
 
