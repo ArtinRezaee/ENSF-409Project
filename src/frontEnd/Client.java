@@ -202,16 +202,9 @@ public class Client
         JList<String> listArea = new JList<String>(listModel);
 
         JButton search = new JButton("Search");
-        JTextField searchField = new JTextField(15);
-        JRadioButton dateSearch = new JRadioButton("Date");
-        JRadioButton sourceSearch = new JRadioButton("Source");
-        JRadioButton destSearch = new JRadioButton("Destination");
-        sourceSearch.setSelected(true);
-
-        ButtonGroup group = new ButtonGroup();
-        group.add(destSearch);
-        group.add(sourceSearch);
-        group.add(dateSearch);
+        JTextField dateField = new JTextField(15);
+        JTextField sourceField = new JTextField(15);
+        JTextField destField = new JTextField(15);
 
         JButton book = new JButton("Book");
         JTextField flightNum = new JTextField(10);
@@ -293,24 +286,25 @@ public class Client
 
         JPanel leftTopC = new JPanel();
         leftTopC.setLayout(new GridLayout(4, 1));
-        leftTopC.add(new JLabel("  Select the type of search to be performed:"), Component.LEFT_ALIGNMENT);
-        leftTopC.add(dateSearch, Component.LEFT_ALIGNMENT);
-        leftTopC.add(sourceSearch, Component.LEFT_ALIGNMENT);
-        leftTopC.add(destSearch, Component.LEFT_ALIGNMENT);
+        JPanel left1 = new JPanel(new FlowLayout());
+        JPanel left2 = new JPanel(new FlowLayout());
+        JPanel left3 = new JPanel(new FlowLayout());
+        JPanel left4 = new JPanel(new FlowLayout());
+        left1.add(new JLabel("Date             "));
+        left1.add(dateField);
+        left2.add(new JLabel("Source        "));
+        left2.add(sourceField);
+        left3.add(new JLabel("Destination"));
+        left3.add(destField);
+        left4.add(search);
 
-        JPanel leftTopS = new JPanel();
-        leftTopS.setLayout(new BorderLayout());
-        leftTopS.add("North", new JLabel("  Enter the search parameters below:"));
-
-        JPanel leftTopSCenter = new JPanel();
-        leftTopSCenter.setLayout(new FlowLayout());
-        leftTopSCenter.add(searchField);
-        leftTopSCenter.add(search);
-        leftTopS.add("Center", leftTopSCenter);
+        leftTopC.add(left1,Component.LEFT_ALIGNMENT);
+        leftTopC.add(left2, Component.LEFT_ALIGNMENT);
+        leftTopC.add(left3, Component.LEFT_ALIGNMENT);
+        leftTopC.add(left4, Component.LEFT_ALIGNMENT);
 
         leftTop.add("North", leftTopN);
         leftTop.add("Center", leftTopC);
-        leftTop.add("South", leftTopS);
 
         JPanel leftBot = new JPanel();
         leftBot.setLayout(new BorderLayout());
@@ -336,55 +330,39 @@ public class Client
                 if(action.getSource() == search)
                 {
                     String query = "";
-                    //CHANGE UP QUERY
-                    if(dateSearch.isSelected())
+                    String error = "";
+                    if(dateField.getText().trim().length() != 0)
                     {
-                        query = searchField.getText().trim();
-                        String error = "";
-                        if(query.length() != 10)
-                            error += "Date must be in this format: YYYY-MM-DD\n";
-                        else
-                        {
-                            for(int i = 0; i < 10; i++)
-                            {
-                                char a = query.charAt(i);
-                                if(i == 4 || i == 7)
-                                {
-                                    if(a != '-')
-                                        error = "Date must be in this format: YYYY-MM-DD\n";
-                                }
-                                else
-                                {
-                                    if(a < 48 || a > 57)
-                                        error = "Date must be in this format: YYYY-MM-DD\n";
-                                }
-                            }
-                        }
-                        if(error.equals(""))
-                        {
-                            stringOut.println("searchflightsdate");
-                            stringOut.println(query);
-                            try{
-                                String line = stringIn.readLine();
-                                FlightCatalogue catalogue = null;
-                                if(line.equals("catalogincoming"))
-                                {
-                                    catalogue = (FlightCatalogue) objectIn.readObject();
-                                }
+                        String date = dateField.getText().trim();
+                        Boolean check = true;
+                        if(date.length() != 10)
+                            error += "Date has to be in this format: YYYY-MM-DD\n";
 
-                            }catch(Exception errx)
-                            {   errx.printStackTrace(); }
+                        for(int i = 0; i < date.length(); i++)
+                        {
+                            char a = date.charAt(i);
+                            if(i == 4 || i == )
                         }
-                        else
-                            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.PLAIN_MESSAGE);
+
                     }
-                    else if(sourceSearch.isSelected())
+                    if(sourceField.getText().trim().length() != 0)
                     {
 
                     }
-                    else if(destSearch.isSelected())
+                    if(destField.getText().trim().length() != 0)
                     {
 
+                    }
+
+                    if(error.equals(""))
+                    {
+                        stringOut.println("searchflights");
+                        stringOut.println(query);
+                    }
+                    else
+                    {
+
+                        JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
                     }
                 }
                 else if(action.getSource() == book)
@@ -562,34 +540,6 @@ public class Client
         });
     }
 
-    protected void login() {
-        //TODO
-    }
-
-    protected void book(){
-        //TODO
-    }
-
-    /* Not sure if we even need all this search methods????
-    protected void search(){
-
-    }
-    protected void search(String source){
-
-    }
-    protected void search(String dest){
-
-    }
-    protected void search(int id){
-
-    }
-    protected void search(String date){
-
-    }*/
-
-    protected void search(String source, String dest, String date, int id){
-        //TODO
-    }
     protected void refresh(){
         //TODO
     }

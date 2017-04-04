@@ -73,10 +73,9 @@ public class Server
 					else
 						stringOut.println("no");
 				}
-				else if(line.equals("searchflightsdate"))
+				else if(line.equals("searchflights"))
 				{
-					String date = stringIn.readLine();
-					String query = "Date = '" + date + "'";
+					String query = stringIn.readLine();
 					ResultSet set = db.search("flights", query);
 					FlightCatalogue catalogue = new FlightCatalogue(set);
 					try {
@@ -84,14 +83,6 @@ public class Server
 						objectOut.writeObject(catalogue);
 					}catch(IOException err3)
 					{   err3.printStackTrace(); }
-				}
-				else if(line.equals("searchflightssource"))
-				{
-
-				}
-				else if(line.equals("searchflightsdest"))
-				{
-
 				}
 				else if(line.equals("book"))
 				{

@@ -82,7 +82,7 @@ public class DatabaseConnector
 			statement = connection.createStatement();
 			statement.executeUpdate("DELETE FROM tickets WHERE FlightNumber = " + flightNum + " AND clientId = '" + clientId + "'");
 			statement = connection.createStatement();
-			statement.executeUpdate("UPDATE flights SET AvailableSeats = AvailableSeats + 1 WHERE FlightNumber = " + flightNum);
+			statement.executeUpdate("UPDATE flights SET AvailableSeats = AvailableSeats - 1 WHERE FlightNumber = " + flightNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

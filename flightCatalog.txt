@@ -9,4 +9,4 @@
 180956;Dhaka, Bangladesh;Riyadh, Saudi Arabia;2017-05-26;17:20;05:40;66;66;882.00
 626390;Hong Kong, China;Dhaka, Bangladesh;2017-06-05;17:30;03:45;81;81;521.00
 789345;Berlin, Germany;Cape Town, South Africa;2017-06-21;22:50;13:50;92;92;1086.00
-109230;Calgary, Canada; Edmonton, Canada;2017-04-04;08:00;01:15;50;50;150.00
+109230;Calgary, Canada;Edmonton, Canada;2017-04-04;08:00;01:15;50;50;150.00
