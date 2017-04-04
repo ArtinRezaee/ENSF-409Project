@@ -32,7 +32,11 @@ public class Server {
 			inString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			outString = new PrintWriter(socket.getOutputStream(),true);
 			objectIn = new ObjectInputStream(socket.getInputStream());
+			objectOut = new ObjectOutputStream(socket.getOutputStream());
+
+
 			communicate();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
