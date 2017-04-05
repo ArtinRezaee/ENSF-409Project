@@ -29,6 +29,8 @@ public class Client
     private JFrame loginGUI;
     private JFrame clientGUI;
 
+    private String refreshQuery = "";
+
     public Client(String server, int port)
     {
         try
@@ -190,6 +192,7 @@ public class Client
         JList<String> listArea = new JList<String>(listModel);
 
         JButton search = new JButton("Search");
+        JButton refresh = new JButton("Refresh");
         JTextField dateField = new JTextField(15);
         JTextField sourceField = new JTextField(15);
         JTextField destField = new JTextField(15);
@@ -285,6 +288,7 @@ public class Client
         left3.add(new JLabel("Destination (City, Country)    "));
         left3.add(destField);
         left4.add(search);
+        left4.add(refresh);
 
         leftTopC.add(left1,Component.LEFT_ALIGNMENT);
         leftTopC.add(left2, Component.LEFT_ALIGNMENT);
@@ -293,7 +297,6 @@ public class Client
 
         leftTop.add("North", leftTopN);
         leftTop.add("Center", leftTopC);
-
 
         listArea.setVisibleRowCount(8);
         JScrollPane listPanel = new JScrollPane(listArea);
@@ -308,11 +311,13 @@ public class Client
 
         class passengerButtonListener implements ActionListener
         {
+            @Override
             public void actionPerformed(ActionEvent action)
             {
                 if(action.getSource() == search)
                 {
                     listModel.removeAllElements();
+                    flights = null;
                     String date = "";
                     String source = "";
                     String dest = "";
@@ -361,6 +366,7 @@ public class Client
                             query = "Destination = '" + dest + "'";
                         }
                         stringOut.println("searchflights");
+                        refreshQuery = query;
                         stringOut.println(query);
                         try{
                             String line = stringIn.readLine();
@@ -369,11 +375,9 @@ public class Client
                                 catalogue = (FlightCatalogue) objectIn.readObject();
                             flights = catalogue.getFlights();
                             for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.toString());
-
+                                listModel.addElement(flights.get(i).toString());
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
-
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
@@ -382,11 +386,30 @@ public class Client
                 {
 
                 }
+                else if(action.getSource() == refresh)
+                {
+                    listModel.removeAllElements();
+                    flights = null;
+                    stringOut.println("searchflights");
+                    stringOut.println(refreshQuery);
+                    try{
+                        String line = stringIn.readLine();
+                        FlightCatalogue catalogue = null;
+                        if(line.equals("catalogincoming"))
+                            catalogue = (FlightCatalogue) objectIn.readObject();
+                        flights = catalogue.getFlights();
+                        for(int i = 0; i < flights.size(); i++)
+                            listModel.addElement(flights.get(i).toString());
+
+                    }catch(Exception errx)
+                    {   errx.printStackTrace(); }
+                }
             }
         }
 
         class passengerListListener implements ListSelectionListener
         {
+            @Override
             public void valueChanged(ListSelectionEvent e)
             {
                 int index = listArea.getSelectedIndex();
@@ -406,6 +429,7 @@ public class Client
 
         passengerButtonListener buttonListener = new passengerButtonListener();
         search.addActionListener(buttonListener);
+        refresh.addActionListener(buttonListener);
         book.addActionListener(buttonListener);
 
         passengerListListener listListener = new passengerListListener();
@@ -494,6 +518,7 @@ public class Client
         //button listener for Sign-Up GUI
         class signUpListener implements ActionListener
         {
+            @Override
             public void actionPerformed(ActionEvent action)
             {
                 if(action.getSource() == confirm)
