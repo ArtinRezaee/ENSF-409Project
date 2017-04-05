@@ -22,15 +22,13 @@ public class Client
     private ObjectInputStream objectIn;
 
     private String clientId;
-    private String clientPassword;
     private String clientType;
-
-    private ArrayList<Flight> flights;
 
     private JFrame loginGUI;
     private JFrame clientGUI;
 
-    private String refreshQuery = "";
+    private ArrayList<Flight> flights;
+    private String refreshQuery;
 
     public Client(String server, int port)
     {
@@ -39,6 +37,7 @@ public class Client
             flights = null;
             loginGUI = null;
             clientGUI = null;
+            refreshQuery = "";
 
             socket = new Socket(server, port);
             stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -52,7 +51,7 @@ public class Client
         {   err1.printStackTrace();     }
     }
 
-    //creates the Login GUI
+    //creates the login GUI
     private JFrame makeLoginGUI()
     {
         JFrame loginFrame = new JFrame();
@@ -118,7 +117,6 @@ public class Client
                         String valid = stringIn.readLine();
                         if(valid.equals("yes")) {
                             clientId = idField.getText().trim();
-                            clientPassword = passwordField.getText().trim();
                             clientType = ty;
                             if(clientType.equals("Passenger"))
                                 clientGUI = makePassengerGUI();
@@ -177,23 +175,24 @@ public class Client
         return loginFrame;
     }
 
+    //creates passenger GUI
     private JFrame makePassengerGUI()
     {
         JFrame passengerFrame = new JFrame();
-        passengerFrame.setTitle("Access Level: Passenger");
+        passengerFrame.setTitle("Passenger: " + clientId);
         passengerFrame.setLayout(new GridLayout(1, 2));
-        passengerFrame.setSize(850, 450);
+        passengerFrame.setSize(850, 500);
 
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         JList<String> listArea = new JList<String>(listModel);
 
         JButton search = new JButton("Search");
         JButton refresh = new JButton("Refresh");
+        JButton book = new JButton("Book");
         JTextField dateField = new JTextField(15);
         JTextField sourceField = new JTextField(15);
         JTextField destField = new JTextField(15);
 
-        JButton book = new JButton("Book");
         JTextField flightNum = new JTextField(15);
         flightNum.setEditable(false);
         JTextField source = new JTextField(15);
@@ -302,9 +301,6 @@ public class Client
         passengerFrame.add(left);
         passengerFrame.add(right);
 
-        JLabel rightLabel = new JLabel("Flight Information", SwingConstants.CENTER);
-        rightLabel.setFont(new Font("Calibri", Font.BOLD, 20));
-
         class passengerButtonListener implements ActionListener
         {
             @Override
@@ -369,19 +365,21 @@ public class Client
                         else if(!dest.equals("")) {
                             query = "Destination = '" + dest + "'";
                         }
-                        stringOut.println("searchflights");
-                        refreshQuery = query;
-                        stringOut.println(query);
-                        try{
-                            String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.get(i).toString());
-                        }catch(Exception errx)
-                        {   errx.printStackTrace(); }
+                        if(!query.equals("")) {
+                            refreshQuery = query;
+                            stringOut.println("searchflights");
+                            stringOut.println(query);
+                            try{
+                                String line = stringIn.readLine();
+                                FlightCatalogue catalogue = null;
+                                if(line.equals("catalogincoming"))
+                                    catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModel.addElement(flights.get(i).toString());
+                            }catch(Exception errx)
+                            {   errx.printStackTrace(); }
+                        }
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
@@ -425,17 +423,17 @@ public class Client
                 }
                 else if(action.getSource() == refresh)
                 {
-                    flightNum.setText("");
-                    source.setText("");
-                    destination.setText("");
-                    date.setText("");
-                    time.setText("");
-                    duration.setText("");
-                    availSeats.setText("");
-                    price.setText("");
-                    listModel.removeAllElements();
-                    flights = null;
                     if(!refreshQuery.equals("")) {
+                        flightNum.setText("");
+                        source.setText("");
+                        destination.setText("");
+                        date.setText("");
+                        time.setText("");
+                        duration.setText("");
+                        availSeats.setText("");
+                        price.setText("");
+                        listModel.removeAllElements();
+                        flights = null;
                         stringOut.println("searchflights");
                         stringOut.println(refreshQuery);
                         try{
@@ -496,8 +494,7 @@ public class Client
                         objectIn.close();
                         objectOut.close();
                         socket.close();
-                    }catch(IOException err2)
-                    {
+                    }catch(IOException err2) {
                         System.out.println(err2.getMessage());
                         err2.printStackTrace();
                     }
@@ -508,163 +505,235 @@ public class Client
         return passengerFrame;
     }
 
+    //creates admin GUI
     private JFrame makeAdminGUI()
     {
-        /*JFrame adminFrame = new JFrame();
-        adminFrame.setTitle("Access Level: Admin");
+        JFrame adminFrame = new JFrame();
+        adminFrame.setTitle("Admin: " + clientId);
         adminFrame.setLayout(new GridLayout(1, 4));
-        adminFrame.setSize(900, 400);
+        adminFrame.setSize(1700, 600);
 
+        //Search Flights and Book fields
         DefaultListModel<String> listModelFlights = new DefaultListModel<String>();
         JList<String> listAreaFlights = new JList<String>(listModelFlights);
-        JButton searchF = new JButton("Search Flights");
+        listAreaFlights.setVisibleRowCount(8);
+        JScrollPane scrollFlights = new JScrollPane(listAreaFlights);
+        JButton searchF = new JButton("Search");
         JButton refreshF = new JButton("Refresh");
         JButton bookF = new JButton("Book");
-        JTextField dateField = new JTextField(10);
-        JTextField sourceField = new JTextField(10);
-        JTextField destField = new JTextField(10);
+        JButton deleteF = new JButton("Delete");
+        JTextField dateField = new JTextField(15);
+        JTextField sourceField = new JTextField(15);
+        JTextField destField = new JTextField(15);
 
-        JButton addF = new JButton("Add Flight");
-        JButton addFlights = new JButton("Add Flights from File");
+        //add Flights fields
+        JButton addF = new JButton("Add one Flight");
+        JButton addFlights = new JButton("Add Flights");
+        JTextField fileName = new JTextField(10);
 
+        //Search tickets fields
         DefaultListModel<String> listModelTickets = new DefaultListModel<String>();
         JList<String> listAreaTickets = new JList<String>(listModelTickets);
+        listAreaTickets.setVisibleRowCount(8);
+        JScrollPane scrollTickets = new JScrollPane(listAreaTickets);
         JButton searchT = new JButton("Search Tickets");
         JButton deleteT = new JButton("Delete Ticket");
         JTextField fnumField = new JTextField(10);
         JTextField emailField = new JTextField(10);
 
+        //Search Users fields
         DefaultListModel<String> listModelUsers = new DefaultListModel<String>();
         JList<String> listAreaUsers = new JList<String>(listModelUsers);
+        listAreaUsers.setVisibleRowCount(8);
+        JScrollPane scrollUsers = new JScrollPane(listAreaUsers);
         JButton searchU = new JButton("Search Users");
         JButton deleteU = new JButton("Delete User");
-        JTextField lastnField = new JTextField(10);
+        JTextField lastNameField = new JTextField(10);
         JTextField typeField = new JTextField(10);
 
-
-
-        JTextField
-
-        JTextField flightNum = new JTextField(15);
+        //Flight Info
+        JTextField flightNum = new JTextField(5);
         flightNum.setEditable(false);
         JTextField source = new JTextField(15);
         source.setEditable(false);
         JTextField destination = new JTextField(15);
         destination.setEditable(false);
-        JTextField date = new JTextField(15);
+        JTextField date = new JTextField(7);
         date.setEditable(false);
-        JTextField time = new JTextField(15);
+        JTextField time = new JTextField(5);
         time.setEditable(false);
-        JTextField duration = new JTextField(15);
+        JTextField duration = new JTextField(5);
         duration.setEditable(false);
-        JTextField availSeats = new JTextField(15);
+        JTextField availSeats = new JTextField(5);
         availSeats.setEditable(false);
-        JTextField price = new JTextField(15);
+        JTextField price = new JTextField(5);
         price.setEditable(false);
 
-        JPanel panel2 = new JPanel();
-        panel2.setLayout(new BorderLayout());
+        //col 1 - flights
+        JPanel col1 = new JPanel();
+        col1.setLayout(new GridLayout(2, 1));
+        col1.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
+        JPanel oneTop = new JPanel();
+        oneTop.setLayout(new BorderLayout());
+        JPanel oneTopN = new JPanel();
+        JLabel oneTopTitle = new JLabel("Search Flights");
+        oneTopTitle.setFont(new Font("Calibri", Font.BOLD, 20));
+        oneTopN.add(oneTopTitle, Component.CENTER_ALIGNMENT);
+        JPanel oneTopC = new JPanel();
+        oneTopC.setLayout(new GridLayout(4, 1));
+        JPanel one1 = new JPanel(new FlowLayout());
+        JPanel one2 = new JPanel(new FlowLayout());
+        JPanel one3 = new JPanel(new FlowLayout());
+        JPanel one4 = new JPanel(new FlowLayout());
+        one1.add(new JLabel("Date (YYYY-MM-DD)                 "));
+        one1.add(dateField);
+        one2.add(new JLabel("Source (City, Country)            "));
+        one2.add(sourceField);
+        one3.add(new JLabel("Destination (City, Country)    "));
+        one3.add(destField);
+        one4.add(searchF);
+        one4.add(refreshF);
+        oneTopC.add(one1,Component.LEFT_ALIGNMENT);
+        oneTopC.add(one2, Component.LEFT_ALIGNMENT);
+        oneTopC.add(one3, Component.LEFT_ALIGNMENT);
+        oneTopC.add(one4, Component.LEFT_ALIGNMENT);
+        oneTop.add("North", oneTopN);
+        oneTop.add("Center", oneTopC);
+        col1.add(oneTop);
+        col1.add(scrollFlights);
 
-        JPanel rightTop = new JPanel();
-        JLabel rightTitle = new JLabel("Flight Information");
-        rightTitle.setFont(new Font("Calibri", Font.BOLD, 20));
-        rightTop.add(rightTitle, Component.CENTER_ALIGNMENT);
+        //col 2 - flights
+        JPanel col2 = new JPanel();
+        col2.setLayout(new GridLayout(10, 1));
+        JLabel secondTitle1 = new JLabel("Add Flights");
+        secondTitle1.setFont(new Font("Calibri", Font.BOLD, 20));
+        JLabel secondTitle2 = new JLabel("Flight Information");
+        secondTitle2.setFont(new Font("Calibri", Font.BOLD, 20));
+        JPanel second1 = new JPanel(new FlowLayout());
+        JPanel second2 = new JPanel(new FlowLayout());
+        JPanel second3 = new JPanel(new FlowLayout());
+        JPanel second4 = new JPanel(new FlowLayout());
+        JPanel second5 = new JPanel(new FlowLayout());
+        JPanel second6 = new JPanel(new FlowLayout());
+        JPanel second7 = new JPanel(new FlowLayout());
+        JPanel second8 = new JPanel(new FlowLayout());
+        JPanel second9 = new JPanel(new FlowLayout());
+        JPanel second10 = new JPanel(new FlowLayout());
+        second1.add(secondTitle1, Component.CENTER_ALIGNMENT);
+        second2.add(addF);
+        second3.add(new JLabel("File Name"));
+        second3.add(fileName);
+        second3.add(addFlights);
+        second4.add(secondTitle2, Component.CENTER_ALIGNMENT);
+        second5.add(new JLabel("Flight Number"));
+        second5.add(flightNum);
+        second5.add(new JLabel("Date"));
+        second5.add(date);
+        second6.add(new JLabel("Time"));
+        second6.add(time);
+        second6.add(new JLabel("Duration"));
+        second6.add(duration);
+        second7.add(new JLabel("Seats Left"));
+        second7.add(availSeats);
+        second7.add(new JLabel("Price"));
+        second7.add(price);
+        second8.add(new JLabel("Source        "));
+        second8.add(source);
+        second9.add(new JLabel("Destination"));
+        second9.add(destination);
+        second10.add(bookF);
+        second10.add(deleteF);
+        col2.add(second1);
+        col2.add(second2);
+        col2.add(second3);
+        col2.add(second4);
+        col2.add(second5);
+        col2.add(second6);
+        col2.add(second7);
+        col2.add(second8);
+        col2.add(second9);
+        col2.add(second10);
 
-        JPanel rightCenter = new JPanel();
-        rightCenter.setLayout(new GridLayout(9, 1));
-        JPanel right1 = new JPanel(new FlowLayout());
-        JPanel right2 = new JPanel(new FlowLayout());
-        JPanel right3 = new JPanel(new FlowLayout());
-        JPanel right4 = new JPanel(new FlowLayout());
-        JPanel right5 = new JPanel(new FlowLayout());
-        JPanel right6 = new JPanel(new FlowLayout());
-        JPanel right7 = new JPanel(new FlowLayout());
-        JPanel right8 = new JPanel(new FlowLayout());
-        JPanel right9 = new JPanel(new FlowLayout());
-        right1.add(new JLabel("Flight Number"));
-        right1.add(flightNum);
-        right2.add(new JLabel("Source            "));
-        right2.add(source);
-        right3.add(new JLabel("Destination     "));
-        right3.add(destination);
-        right4.add(new JLabel("Date                 "));
-        right4.add(date);
-        right5.add(new JLabel("Time                 "));
-        right5.add(time);
-        right6.add(new JLabel("Duration          "));
-        right6.add(duration);
-        right7.add(new JLabel("Seats Left       "));
-        right7.add(availSeats);
-        right8.add(new JLabel("Price                "));
-        right8.add(price);
-        right9.add(book);
-        rightCenter.add(right1);
-        rightCenter.add(right2);
-        rightCenter.add(right3);
-        rightCenter.add(right4);
-        rightCenter.add(right5);
-        rightCenter.add(right6);
-        rightCenter.add(right7);
-        rightCenter.add(right8);
-        rightCenter.add(right9);
+        //col3 - tickets
+        JPanel col3 = new JPanel();
+        col3.setLayout(new GridLayout(2, 1));
+        //col3.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
+        JPanel threeTop = new JPanel();
+        threeTop.setLayout(new BorderLayout());
+        JPanel threeTopN = new JPanel();
+        JLabel threeTopTitle = new JLabel("Search Tickets");
+        threeTopTitle.setFont(new Font("Calibri", Font.BOLD, 20));
+        threeTopN.add(threeTopTitle, Component.CENTER_ALIGNMENT);
+        JPanel threeTopC = new JPanel();
+        threeTopC.setLayout(new GridLayout(3, 1));
+        JPanel three1 = new JPanel(new FlowLayout());
+        JPanel three2 = new JPanel(new FlowLayout());
+        JPanel three3 = new JPanel(new FlowLayout());
+        three1.add(new JLabel("Flight Number"));
+        three1.add(fnumField);
+        three2.add(new JLabel("Email ID          "));
+        three2.add(emailField);
+        three3.add(searchT);
+        three3.add(deleteT);
+        threeTopC.add(three1,Component.LEFT_ALIGNMENT);
+        threeTopC.add(three2, Component.LEFT_ALIGNMENT);
+        threeTopC.add(three3, Component.LEFT_ALIGNMENT);
+        threeTop.add("North", threeTopN);
+        threeTop.add("Center", threeTopC);
+        col3.add(threeTop);
+        col3.add(scrollTickets);
 
-        right.add("North", rightTop);
-        right.add("Center", rightCenter);
+        //col4 - users
+        JPanel col4 = new JPanel();
+        col4.setLayout(new GridLayout(2, 1));
+        //col4.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
+        JPanel fourTop = new JPanel();
+        fourTop.setLayout(new BorderLayout());
+        JPanel fourTopN = new JPanel();
+        JLabel fourTopTitle = new JLabel("Search Users");
+        fourTopTitle.setFont(new Font("Calibri", Font.BOLD, 20));
+        fourTopN.add(fourTopTitle, Component.CENTER_ALIGNMENT);
+        JPanel fourTopC = new JPanel();
+        fourTopC.setLayout(new GridLayout(3, 1));
+        JPanel four1 = new JPanel(new FlowLayout());
+        JPanel four2 = new JPanel(new FlowLayout());
+        JPanel four3 = new JPanel(new FlowLayout());
+        four1.add(new JLabel("Last Name"));
+        four1.add(lastNameField);
+        four2.add(new JLabel("User Type "));
+        four2.add(typeField);
+        four3.add(searchU);
+        four3.add(deleteU);
+        fourTopC.add(four1,Component.LEFT_ALIGNMENT);
+        fourTopC.add(four2, Component.LEFT_ALIGNMENT);
+        fourTopC.add(four3, Component.LEFT_ALIGNMENT);
+        fourTop.add("North", fourTopN);
+        fourTop.add("Center", fourTopC);
+        col4.add(fourTop);
+        col4.add(scrollUsers);
 
-        JPanel left = new JPanel();
-        left.setLayout(new GridLayout(2, 1));
-        left.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
+        //mainframe
+        adminFrame.add(col1);
+        adminFrame.add(col2);
+        adminFrame.add(col3);
+        adminFrame.add(col4);
 
-        JPanel leftTop = new JPanel();
-        leftTop.setLayout(new BorderLayout());
-
-        JPanel leftTopN = new JPanel();
-        JLabel lefttopTitle = new JLabel("Search Flights");
-        lefttopTitle.setFont(new Font("Calibri", Font.BOLD, 20));
-        leftTopN.add(lefttopTitle, Component.CENTER_ALIGNMENT);
-
-        JPanel leftTopC = new JPanel();
-        leftTopC.setLayout(new GridLayout(4, 1));
-        JPanel left1 = new JPanel(new FlowLayout());
-        JPanel left2 = new JPanel(new FlowLayout());
-        JPanel left3 = new JPanel(new FlowLayout());
-        JPanel left4 = new JPanel(new FlowLayout());
-        left1.add(new JLabel("Date (YYYY-MM-DD)                 "));
-        left1.add(dateField);
-        left2.add(new JLabel("Source (City, Country)            "));
-        left2.add(sourceField);
-        left3.add(new JLabel("Destination (City, Country)    "));
-        left3.add(destField);
-        left4.add(search);
-        left4.add(refresh);
-
-        leftTopC.add(left1,Component.LEFT_ALIGNMENT);
-        leftTopC.add(left2, Component.LEFT_ALIGNMENT);
-        leftTopC.add(left3, Component.LEFT_ALIGNMENT);
-        leftTopC.add(left4, Component.LEFT_ALIGNMENT);
-
-        leftTop.add("North", leftTopN);
-        leftTop.add("Center", leftTopC);
-
-        listArea.setVisibleRowCount(8);
-        JScrollPane listPanel = new JScrollPane(listArea);
-        left.add(leftTop);
-        left.add(listPanel);
-
-        adminFrame.add(left);
-        adminFrame.add(right);
-
-        JLabel rightLabel = new JLabel("Flight Information", SwingConstants.CENTER);
-        rightLabel.setFont(new Font("Calibri", Font.BOLD, 20));
-
-        class passengerButtonListener implements ActionListener
+        class adminButtonListener implements ActionListener
         {
             @Override
             public void actionPerformed(ActionEvent action)
             {
-                if(action.getSource() == search)
+                if(action.getSource() == searchF)
                 {
-                    listModel.removeAllElements();
+                    flightNum.setText("");
+                    source.setText("");
+                    destination.setText("");
+                    date.setText("");
+                    time.setText("");
+                    duration.setText("");
+                    availSeats.setText("");
+                    price.setText("");
+                    listModelFlights.removeAllElements();
                     flights = null;
                     String date = "";
                     String source = "";
@@ -713,31 +782,75 @@ public class Client
                         else if(!dest.equals("")) {
                             query = "Destination = '" + dest + "'";
                         }
-                        stringOut.println("searchflights");
-                        refreshQuery = query;
-                        stringOut.println(query);
-                        try{
-                            String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.get(i).toString());
-                        }catch(Exception errx)
-                        {   errx.printStackTrace(); }
+                        if(!query.equals("")) {
+                            refreshQuery = query;
+                            stringOut.println("searchflights");
+                            stringOut.println(query);
+                            try{
+                                String line = stringIn.readLine();
+                                FlightCatalogue catalogue = null;
+                                if(line.equals("catalogincoming"))
+                                    catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModelFlights.addElement(flights.get(i).toString());
+                            }catch(Exception errx)
+                            {   errx.printStackTrace(); }
+                        }
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
                 }
-                else if(action.getSource() == book)
+                else if(action.getSource() == bookF)
                 {
+                    JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
+                    boolean isEmpty = false;
 
+                    for(int i=0; i<allFields.length; i++){
+                        if(allFields[i].getText().equals(""))
+                            isEmpty = true;
+                    }
+
+                    if(!isEmpty){
+                        Booking booking = new Booking(clientId,Integer.parseInt(flightNum.getText()));
+                        stringOut.println("Booking");
+                        try {
+                            objectOut.writeObject(booking);
+                            String line = stringIn.readLine();
+                            if(line.equals("Booking successful")){
+
+                                Ticket ticket = (Ticket)objectIn.readObject();
+                                int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking info",
+                                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new
+                                                String[]{"Print Ticket","Cancel"}, "default");
+
+                                if(res == 1){
+                                    ticket.print();
+                                }
+                                else{}
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Please select a flight to book", "Input Error", JOptionPane.PLAIN_MESSAGE);
                 }
-                else if(action.getSource() == refresh) {
-                    listModel.removeAllElements();
-                    flights = null;
+                else if(action.getSource() == refreshF)
+                {
                     if(!refreshQuery.equals("")) {
+                        flightNum.setText("");
+                        source.setText("");
+                        destination.setText("");
+                        date.setText("");
+                        time.setText("");
+                        duration.setText("");
+                        availSeats.setText("");
+                        price.setText("");
+                        listModelFlights.removeAllElements();
+                        flights = null;
                         stringOut.println("searchflights");
                         stringOut.println(refreshQuery);
                         try{
@@ -747,7 +860,7 @@ public class Client
                                 catalogue = (FlightCatalogue) objectIn.readObject();
                             flights = catalogue.getFlights();
                             for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.get(i).toString());
+                                listModelFlights.addElement(flights.get(i).toString());
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -755,12 +868,12 @@ public class Client
             }
         }
 
-        class passengerListListener implements ListSelectionListener
+        class adminListListenerFlight implements ListSelectionListener
         {
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
-                int index = listArea.getSelectedIndex();
+                int index = listAreaFlights.getSelectedIndex();
                 if (index >= 0)
                 {
                     flightNum.setText(String.valueOf(flights.get(index).getNum()));
@@ -775,13 +888,62 @@ public class Client
             }
         }
 
-        passengerButtonListener buttonListener = new passengerButtonListener();
-        search.addActionListener(buttonListener);
-        refresh.addActionListener(buttonListener);
-        book.addActionListener(buttonListener);
+        class adminListListenerTicket implements ListSelectionListener
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e)
+            {
+                int index = listAreaTickets.getSelectedIndex();
+                if (index >= 0)
+                {
+                    flightNum.setText(String.valueOf(flights.get(index).getNum()));
+                    source.setText(flights.get(index).getSrc());
+                    destination.setText(flights.get(index).getDest());
+                    date.setText(flights.get(index).getDate());
+                    time.setText(flights.get(index).getTime());
+                    duration.setText(flights.get(index).getDur());
+                    availSeats.setText(String.valueOf(flights.get(index).getAvailSeats()));
+                    price.setText(String.valueOf(flights.get(index).getPrice()));
+                }
+            }
+        }
 
-        passengerListListener listListener = new passengerListListener();
-        listArea.addListSelectionListener(listListener);
+        class adminListListenerUser implements ListSelectionListener
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e)
+            {
+                int index = listAreaUsers.getSelectedIndex();
+                if (index >= 0)
+                {
+                    flightNum.setText(String.valueOf(flights.get(index).getNum()));
+                    source.setText(flights.get(index).getSrc());
+                    destination.setText(flights.get(index).getDest());
+                    date.setText(flights.get(index).getDate());
+                    time.setText(flights.get(index).getTime());
+                    duration.setText(flights.get(index).getDur());
+                    availSeats.setText(String.valueOf(flights.get(index).getAvailSeats()));
+                    price.setText(String.valueOf(flights.get(index).getPrice()));
+                }
+            }
+        }
+
+        adminButtonListener adminButtonListener = new adminButtonListener();
+        searchF.addActionListener(adminButtonListener);
+        refreshF.addActionListener(adminButtonListener);
+        bookF.addActionListener(adminButtonListener);
+        deleteF.addActionListener(adminButtonListener);
+        searchT.addActionListener(adminButtonListener);
+        deleteT.addActionListener(adminButtonListener);
+        searchU.addActionListener(adminButtonListener);
+        deleteU.addActionListener(adminButtonListener);
+
+        adminListListenerFlight fListListener = new adminListListenerFlight();
+        listAreaFlights.addListSelectionListener(fListListener);
+        adminListListenerTicket tListListener = new adminListListenerTicket();
+        listAreaTickets.addListSelectionListener(tListListener);
+        adminListListenerUser uListListener = new adminListListenerUser();
+        listAreaUsers.addListSelectionListener(uListListener);
 
         adminFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         adminFrame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -798,23 +960,19 @@ public class Client
                         objectIn.close();
                         objectOut.close();
                         socket.close();
-                    }catch(IOException err2)
-                    {
+                    }catch(IOException err2) {
                         System.out.println(err2.getMessage());
                         err2.printStackTrace();
                     }
-                    clientGUI.dispose();
+                    System.exit(0);
                 }
             }
         });
-
-        adminFrame.pack();
+        //adminFrame.pack();
         return adminFrame;
-        */
-        return null;
     }
 
-    //creates the Sign-Up GUI
+    //creates the sign up GUI
     private void makeSignUpGUI()
     {
         JFrame signUpFrame = new JFrame();

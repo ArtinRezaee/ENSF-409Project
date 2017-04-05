@@ -82,7 +82,7 @@ public class WorkerThread extends Thread
 					}catch(IOException err3)
 					{   err3.printStackTrace(); }
 				}
-				else if(line.equals("book"))
+				else if(line.equals("Booking"))
 				{
 					Booking book = (Booking)objectIn.readObject();
 					//TODO: get name and flight id from book. Add to database with a randomly generated ticket ID.

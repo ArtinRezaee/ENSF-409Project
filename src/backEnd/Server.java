@@ -13,7 +13,6 @@ public class Server extends Thread
 		try {
 			serverSocket = new ServerSocket(8099);
 			System.out.println("Server is running...");
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
