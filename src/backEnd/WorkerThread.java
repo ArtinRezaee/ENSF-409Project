@@ -94,6 +94,13 @@ public class WorkerThread extends Thread
 		}
 		if(!id.equals(""))
 			System.out.println(id + " disconnected");
+		try{
+			stringOut.close();
+			objectOut.close();
+			objectIn.close();
+			stringIn.close();
+			socket.close();
+		}catch(IOException e)
+		{	e.printStackTrace();	}
 	}
-
 }

@@ -467,7 +467,7 @@ public class Client
                         System.out.println(err2.getMessage());
                         err2.printStackTrace();
                     }
-                    clientGUI.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -775,7 +775,8 @@ public class Client
         });
 
         adminFrame.pack();
-        return adminFrame;*/
+        return adminFrame;
+        */
         return null;
     }
 
@@ -844,23 +845,19 @@ public class Client
                         t = "Admin";
 
                     String error = "";
-                    if(f.length() > 20 || f.length() < 1)
-                    {
+                    if(f.length() > 20 || f.length() < 1) {
                         if(f.length() > 20)
                             error += "Your first name cannot be more than 40 characters.\n";
-
                         else
                             error += "Your first name cannot be empty.\n";
                     }
-                    if(l.length() > 20 || l.length() < 1)
-                    {
+                    if(l.length() > 20 || l.length() < 1) {
                         if(l.length() > 20)
                             error += "Your last name cannot be more than 40 characters.\n";
                         else
                             error += "Your last name cannot be empty.\n";
                     }
-                    if(e.length() > 40 || e.length() < 1)
-                    {
+                    if(e.length() > 40 || e.length() < 1) {
                         if(e.length() > 40)
                             error += "Your e-mail address cannot be more than 40 characters.\n";
                         else
@@ -868,16 +865,14 @@ public class Client
                     }
                     if((!e.contains(".com") && !e.contains(".ca")) || !e.contains("@"))
                         error += "Your e-mail address needs to be in this format: abc@def.com or abc@def.ca\n";
-                    if(p.length() > 20 || p.length() < 1)
-                    {
+                    if(p.length() > 20 || p.length() < 1) {
                         if(p.length() > 20)
                             error += "Your password cannot be more than 40 characters.\n";
                         else
                             error += "Your password cannot be empty.\n";
                     }
 
-                    if(error.equals(""))
-                    {
+                    if(error.equals("")) {
                         UserInfo info = new UserInfo(f, l, e, p, t);
                         try {
                             stringOut.println("adduser");
@@ -909,8 +904,20 @@ public class Client
             {
                 JFrame frame = (JFrame)e.getSource();
                 int result = JOptionPane.showConfirmDialog(frame, "Are you sure you don't want to sign up?", "Exit Sign-Up", JOptionPane.YES_NO_OPTION);
-                if(result == JOptionPane.YES_OPTION)
-                    signUpFrame.dispose();
+                if(result == JOptionPane.YES_OPTION) {
+                    stringOut.println("over");
+                    try {
+                        stringOut.close();
+                        stringIn.close();
+                        objectIn.close();
+                        objectOut.close();
+                        socket.close();
+                    } catch (IOException err2) {
+                        System.out.println(err2.getMessage());
+                        err2.printStackTrace();
+                    }
+                    System.exit(0);
+                }
             }
         });
     }
