@@ -12,25 +12,32 @@ import java.sql.SQLException;
 
 import frontEnd.Booking;
 
-public class WorkerThread extends Thread{
+
+public class WorkerThread extends Thread
+{
 	private Socket socket;
 	private BufferedReader stringIn;
 	private PrintWriter stringOut;
 	private ObjectInputStream objectIn;
 	private ObjectOutputStream objectOut;
 	private DatabaseConnector db;
+	private String id;
+	private String pass;
+	private String type;
 	
 	public WorkerThread(Socket s){
 		try {
+			id = "";
+			pass = "";
+			type = "";
 			socket = s;
 			stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			stringOut = new PrintWriter(socket.getOutputStream(),true);
 			objectIn = new ObjectInputStream(socket.getInputStream());
 			objectOut = new ObjectOutputStream(socket.getOutputStream());
 			db =  new DatabaseConnector();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} catch (IOException e)
+		{	e.printStackTrace();	}
 	}
 	
 	public void run(){
@@ -49,12 +56,18 @@ public class WorkerThread extends Thread{
 				}
 				else if(line.equals("checklogin"))
 				{
-					String id = stringIn.readLine();
-					String pass = stringIn.readLine();
-					String type = stringIn.readLine();
-					ResultSet set = db.search("clients", "Email = '"+ id + "' AND Password = '" + pass + "' AND Type = '" + type +"'");
+					String i = stringIn.readLine();
+					String p = stringIn.readLine();
+					String t = stringIn.readLine();
+					ResultSet set = db.search("clients", "Email = '"+ i + "' AND Password = '" + p + "' AND Type = '" + t +"'");
 					if(set.next())
+					{
 						stringOut.println("yes");
+						id = i;
+						pass = p;
+						type = t;
+						System.out.println(i + " connected");
+					}
 					else
 						stringOut.println("no");
 				}
@@ -84,7 +97,15 @@ public class WorkerThread extends Thread{
 				e.printStackTrace();
 			}
 		}
-
+		if(!id.equals(""))
+			System.out.println(id + " disconnected");
+		try{
+			stringOut.close();
+			objectOut.close();
+			objectIn.close();
+			stringIn.close();
+			socket.close();
+		}catch(IOException e)
+		{	e.printStackTrace();	}
 	}
-
 }
