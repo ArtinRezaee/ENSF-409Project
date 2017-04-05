@@ -115,8 +115,7 @@ public class WorkerThread extends Thread
 						seats = set2.getInt("AvailableSeats");
 					}
 					if(seats != 0) {
-						db.insert("tickets", "'" + flightID + "', '" + email +"', '"
-									+ passengerFirstName +"', '" +passengerLastName +"', '" + ticketID +"'");
+						db.insert("tickets", "'" + flightID + "', '" + email +"', '" +ticketID +"'");
 
 						Ticket ticket = new Ticket(passengerFirstName, passengerLastName, flightFrom, flightTo,
 														flightDate,flightTime ,flightDuration,flightCost, ticketID);
