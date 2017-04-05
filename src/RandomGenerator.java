@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.text.DecimalFormat;
 
 public class RandomGenerator
 {
@@ -22,7 +23,7 @@ public class RandomGenerator
     public static double randomDouble(int lo, int hi)
     {
         Random r = new Random();
-        double randomValue = (lo + (hi - lo)) * r.nextDouble();
+        double randomValue = lo + (hi - lo)*r.nextDouble();
         return randomValue;
     }
 
@@ -42,6 +43,7 @@ public class RandomGenerator
 
     public static void main(String[] args)
     {
+        DecimalFormat df = new DecimalFormat(".##");
         ArrayList<Integer> fList = new ArrayList<>();
         PrintWriter write = null;
         try{
@@ -58,7 +60,8 @@ public class RandomGenerator
             int timeI = randomInt(0, 11);
             int durI = randomInt(0, 11);
             int seats = randomInt(50, 500);
-            double price = Math.floor(randomDouble(250, 5000)*100)/100;
+            double price = randomDouble(200, 2001);
+            price = Double.parseDouble(df.format(price));
 
             while(destI == srcI)
                 destI = randomInt(0, 24);
