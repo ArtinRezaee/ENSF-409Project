@@ -186,7 +186,7 @@ public class Client
         JFrame passengerFrame = new JFrame();
         passengerFrame.setTitle("Access Level: Passenger");
         passengerFrame.setLayout(new GridLayout(1, 2));
-        passengerFrame.setSize(750, 400);
+        passengerFrame.setSize(775, 400);
 
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         JList<String> listArea = new JList<String>(listModel);
@@ -386,23 +386,23 @@ public class Client
                 {
 
                 }
-                else if(action.getSource() == refresh)
-                {
+                else if(action.getSource() == refresh) {
                     listModel.removeAllElements();
                     flights = null;
-                    stringOut.println("searchflights");
-                    stringOut.println(refreshQuery);
-                    try{
-                        String line = stringIn.readLine();
-                        FlightCatalogue catalogue = null;
-                        if(line.equals("catalogincoming"))
-                            catalogue = (FlightCatalogue) objectIn.readObject();
-                        flights = catalogue.getFlights();
-                        for(int i = 0; i < flights.size(); i++)
-                            listModel.addElement(flights.get(i).toString());
-
-                    }catch(Exception errx)
-                    {   errx.printStackTrace(); }
+                    if(!refreshQuery.equals("")) {
+                        stringOut.println("searchflights");
+                        stringOut.println(refreshQuery);
+                        try{
+                            String line = stringIn.readLine();
+                            FlightCatalogue catalogue = null;
+                            if(line.equals("catalogincoming"))
+                                catalogue = (FlightCatalogue) objectIn.readObject();
+                            flights = catalogue.getFlights();
+                            for(int i = 0; i < flights.size(); i++)
+                                listModel.addElement(flights.get(i).toString());
+                        }catch(Exception errx)
+                        {   errx.printStackTrace(); }
+                    }
                 }
             }
         }
@@ -603,10 +603,6 @@ public class Client
                     signUpFrame.dispose();
             }
         });
-    }
-
-    protected void refresh(){
-        //TODO
     }
 
     public static void main(String[] args) { Client client = new Client("localhost", 8099);    }
