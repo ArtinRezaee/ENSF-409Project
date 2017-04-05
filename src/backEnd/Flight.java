@@ -1,6 +1,9 @@
 // Created by crist on 2017-04-01
 package backEnd;
-public class Flight
+
+import java.io.Serializable;
+
+public class Flight implements Serializable
 {
     /** Member functions of class Flight **/
     private int flightNumber;
@@ -12,6 +15,8 @@ public class Flight
     private int totalSeats;
     private int availableSeats;
     private double price;
+
+    static final long serialVersionUID = 3;
 
     /** Constructor **/
     public Flight(int flightNumber, String source, String destination, String date, String time,
@@ -30,6 +35,19 @@ public class Flight
 
     public String toString()
     {
-        return(source + " " + destination + " " + date + " " + time);
+        return(source + " to " + destination + " on " + date);
     }
+
+    public int getNum()     {   return flightNumber;    }
+    public String getSrc()  {   return source;    }
+    public String getDest() {   return destination;    }
+    public String getDate() {   return date;    }
+    public String getTime() {   return time;    }
+    public String getDur()  {   return duration;    }
+    public int getTotalSeats() {   return totalSeats;    }
+    public int getAvailSeats() {   return availableSeats;    }
+    public double getPrice()    {   return price;   }
+
+
+
 }

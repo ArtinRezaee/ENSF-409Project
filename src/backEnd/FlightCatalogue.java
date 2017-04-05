@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class FlightCatalogue implements Serializable
 {
 	static final long serialVersionUID = 2;
-    public ArrayList<Flight> flights;
+    private ArrayList<Flight> flights;
 
     //Constructor
     public FlightCatalogue(ResultSet set)
@@ -31,6 +31,10 @@ public class FlightCatalogue implements Serializable
 			}
 		}catch(SQLException e)
 		{	e.printStackTrace();	}
-
     }
+
+    public ArrayList<Flight> getFlights()
+	{
+		return flights;
+	}
 }

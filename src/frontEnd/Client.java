@@ -24,8 +24,7 @@ public class Client
     private String clientPassword;
     private String clientType;
 
-    protected FlightCatalogue catalogue;
-    protected ArrayList<Flight> flights;
+    private ArrayList<Flight> flights;
 
     private JFrame loginGUI;
     private JFrame clientGUI;
@@ -54,7 +53,7 @@ public class Client
     {
         JFrame loginFrame = new JFrame();
         loginFrame.setTitle("Login");
-        loginFrame.setSize(300, 200);
+        loginFrame.setSize(350, 200);
         loginFrame.setLayout(new BorderLayout());
 
         JTextField idField = new JTextField(15);
@@ -124,20 +123,8 @@ public class Client
                             else
                                 clientGUI = makeAdminGUI();
 
-                            clientGUI.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                            clientGUI.addWindowListener(new java.awt.event.WindowAdapter() {
-                                public void windowClosing(WindowEvent e)
-                                {
-                                    JFrame frame = (JFrame)e.getSource();
-                                    int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
-                                    if(result == JOptionPane.YES_OPTION)
-                                    {
-                                        //send string to server
-                                        System.exit(0);
-                                    }
-                                }
-                            });
                             clientGUI.setVisible(true);
+                            loginGUI.dispose();
                             System.out.println("Login Success" + " " + ty);
                         }
                         else
@@ -197,7 +184,7 @@ public class Client
         JFrame passengerFrame = new JFrame();
         passengerFrame.setTitle("Access Level: Passenger");
         passengerFrame.setLayout(new GridLayout(1, 2));
-        passengerFrame.setSize(700, 450);
+        passengerFrame.setSize(750, 400);
 
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         JList<String> listArea = new JList<String>(listModel);
@@ -208,21 +195,21 @@ public class Client
         JTextField destField = new JTextField(15);
 
         JButton book = new JButton("Book");
-        JTextField flightNum = new JTextField(10);
+        JTextField flightNum = new JTextField(15);
         flightNum.setEditable(false);
-        JTextField source = new JTextField(10);
+        JTextField source = new JTextField(15);
         source.setEditable(false);
-        JTextField destination = new JTextField(10);
+        JTextField destination = new JTextField(15);
         destination.setEditable(false);
-        JTextField date = new JTextField(10);
+        JTextField date = new JTextField(15);
         date.setEditable(false);
-        JTextField time = new JTextField(10);
+        JTextField time = new JTextField(15);
         time.setEditable(false);
-        JTextField duration = new JTextField(10);
+        JTextField duration = new JTextField(15);
         duration.setEditable(false);
-        JTextField availSeats = new JTextField(10);
+        JTextField availSeats = new JTextField(15);
         availSeats.setEditable(false);
-        JTextField price = new JTextField(10);
+        JTextField price = new JTextField(15);
         price.setEditable(false);
         JPanel right = new JPanel();
         right.setLayout(new BorderLayout());
@@ -291,11 +278,11 @@ public class Client
         JPanel left2 = new JPanel(new FlowLayout());
         JPanel left3 = new JPanel(new FlowLayout());
         JPanel left4 = new JPanel(new FlowLayout());
-        left1.add(new JLabel("Date             "));
+        left1.add(new JLabel("Date (YYYY-MM-DD)                 "));
         left1.add(dateField);
-        left2.add(new JLabel("Source        "));
+        left2.add(new JLabel("Source (City, Country)            "));
         left2.add(sourceField);
-        left3.add(new JLabel("Destination"));
+        left3.add(new JLabel("Destination (City, Country)    "));
         left3.add(destField);
         left4.add(search);
 
@@ -307,16 +294,11 @@ public class Client
         leftTop.add("North", leftTopN);
         leftTop.add("Center", leftTopC);
 
-        JPanel leftBot = new JPanel();
-        leftBot.setLayout(new BorderLayout());
-        leftBot.add("North", new JLabel("SOURCE            DESTINATION                DATE               TIME"));
 
         listArea.setVisibleRowCount(8);
         JScrollPane listPanel = new JScrollPane(listArea);
-
-        leftBot.add("Center", listPanel);
         left.add(leftTop);
-        left.add(leftBot);
+        left.add(listPanel);
 
         passengerFrame.add(left);
         passengerFrame.add(right);
@@ -328,7 +310,78 @@ public class Client
         {
             public void actionPerformed(ActionEvent action)
             {
-               
+                if(action.getSource() == search)
+                {
+                    listModel.removeAllElements();
+                    String date = "";
+                    String source = "";
+                    String dest = "";
+                    String error = "";
+                    if(dateField.getText().trim().length() != 0)
+                    {
+                        date = dateField.getText().trim();
+                        for(int i = 0; i < date.length(); i++)
+                        {
+                            char a = date.charAt(i);
+                            if(i == 4 || i == 7) {
+                                if(a != '-')
+                                    error = "The date has to be in this format: YYYY-MM-DD\n";
+                            }
+                            else {
+                                if(a < 48 || a > 57)
+                                    error = "The date has to be in this format: YYYY-MM-DD\n";
+                            }
+                            if(i > 10)
+                                error = "The date has to be in this format: YYYY-MM-DD\n";
+
+                        }
+                        if(!error.equals(""))
+                            date = "";
+                    }
+                    if(sourceField.getText().trim().length() != 0)
+                        source = sourceField.getText().trim();
+                    if(destField.getText().trim().length() != 0)
+                        dest = destField.getText().trim();
+
+                    String query = "";
+                    if(error.equals("")) {
+                        if(!date.equals("")) {
+                            query = "Date = '" + date + "'";
+                            if(!source.equals(""))
+                                query += " AND Source = '" + source + "'";
+                            if(!dest.equals(""))
+                                query += " AND Destination = '" + dest + "'";
+                        }
+                        else if(!source.equals("")) {
+                            query = "Source = '" + source + "'";
+                            if(!dest.equals(""))
+                                query += " AND Destination = '" + dest + "'";
+                        }
+                        else if(!dest.equals("")) {
+                            query = "Destination = '" + dest + "'";
+                        }
+                        stringOut.println("searchflights");
+                        stringOut.println(query);
+                        try{
+                            String line = stringIn.readLine();
+                            FlightCatalogue catalogue = null;
+                            if(line.equals("catalogincoming"))
+                                catalogue = (FlightCatalogue) objectIn.readObject();
+                            flights = catalogue.getFlights();
+                            for(int i = 0; i < flights.size(); i++)
+                                listModel.addElement(flights.toString());
+
+                        }catch(Exception errx)
+                        {   errx.printStackTrace(); }
+
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
+                }
+                else if(action.getSource() == book)
+                {
+
+                }
             }
         }
 
@@ -339,12 +392,14 @@ public class Client
                 int index = listArea.getSelectedIndex();
                 if (index >= 0)
                 {
-                    //idField.setText(String.valueOf(searchRecords.get(index).id));
-                    //firstField.setText(searchRecords.get(index).first);
-                    //lastField.setText(searchRecords.get(index).last);
-                    //addressField.setText(searchRecords.get(index).address);
-                    // postalField.setText(searchRecords.get(index).postal);
-                    //phoneField.setText(searchRecords.get(index).phone);
+                    flightNum.setText(String.valueOf(flights.get(index).getNum()));
+                    source.setText(flights.get(index).getSrc());
+                    destination.setText(flights.get(index).getDest());
+                    date.setText(flights.get(index).getDate());
+                    time.setText(flights.get(index).getTime());
+                    duration.setText(flights.get(index).getDur());
+                    availSeats.setText(String.valueOf(flights.get(index).getAvailSeats()));
+                    price.setText(String.valueOf(flights.get(index).getPrice()));
                 }
             }
         }
@@ -355,6 +410,31 @@ public class Client
 
         passengerListListener listListener = new passengerListListener();
         listArea.addListSelectionListener(listListener);
+
+        passengerFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        passengerFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(WindowEvent e)
+            {
+                JFrame frame = (JFrame)e.getSource();
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the application?", "Exit Application", JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                {
+                    stringOut.println("over");
+                    try{
+                        stringOut.close();
+                        stringIn.close();
+                        objectIn.close();
+                        objectOut.close();
+                        socket.close();
+                    }catch(IOException err2)
+                    {
+                        System.out.println(err2.getMessage());
+                        err2.printStackTrace();
+                    }
+                    clientGUI.dispose();
+                }
+            }
+        });
 
         return passengerFrame;
     }
@@ -461,8 +541,8 @@ public class Client
                             error += "Your password cannot be empty.\n";
                     }
 
-                    if(error.equals("")){
-                    	System.out.println(f + " " + l + " " + e + " " + p + " " + t);
+                    if(error.equals(""))
+                    {
                         NewUserInfo info = new NewUserInfo(f, l, e, p, t);
                         try {
                             stringOut.println("adduser");

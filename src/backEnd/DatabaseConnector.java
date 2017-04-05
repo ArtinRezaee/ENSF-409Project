@@ -19,7 +19,7 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "1234");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,7 +54,6 @@ public class DatabaseConnector
 			
 			statement = connection.createStatement();
 			String stmnt = "INSERT INTO " + table + " VALUES(" + values + ")";
-			System.out.println(stmnt);
 			statement.executeUpdate(stmnt);
 		} catch (SQLException e) {
 			e.printStackTrace();

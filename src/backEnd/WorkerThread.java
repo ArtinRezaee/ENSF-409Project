@@ -39,11 +39,11 @@ public class WorkerThread extends Thread{
 		{
 			try
 			{
-				System.out.println("Hello");
+				//System.out.println("Hello");
 				line = stringIn.readLine();
 				if(line.equals("adduser"))
 				{
-					System.out.println("Here");
+					//System.out.println("Here");
 					NewUserInfo info = (NewUserInfo)objectIn.readObject();
 					System.out.println(info.getFirst());
 					db.insert("clients", "'"+info.getMail()+"', '"+ info.getFirst() +"', '" 
