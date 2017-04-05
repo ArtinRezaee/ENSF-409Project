@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import frontEnd.Booking;
+
 public class WorkerThread extends Thread{
 	private Socket socket;
 	private BufferedReader stringIn;
@@ -37,11 +39,9 @@ public class WorkerThread extends Thread{
 		{
 			try
 			{
-				//System.out.println("Hello");
 				line = stringIn.readLine();
 				if(line.equals("adduser"))
 				{
-					//System.out.println("Here");
 					UserInfo info = (UserInfo)objectIn.readObject();
 					System.out.println(info.getFirst());
 					db.insert("clients", "'"+info.getMail()+"', '"+ info.getFirst() +"', '" 
@@ -71,7 +71,9 @@ public class WorkerThread extends Thread{
 				}
 				else if(line.equals("book"))
 				{
-
+					Booking book = (Booking)objectIn.readObject();
+					//TODO: get name and flight id from book. Add to database with a randomly generated ticket ID.
+					//TODO: Create a ticket
 				}
 
 			}catch(IOException e){	

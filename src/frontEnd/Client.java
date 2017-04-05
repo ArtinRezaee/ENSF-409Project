@@ -380,7 +380,25 @@ public class Client
                 }
                 else if(action.getSource() == book)
                 {
-
+                	JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
+                	boolean isEmpty = false;
+                	
+                	for(int i=0; i<allFields.length; i++){
+                		if(allFields[i].getText().equals(""))
+                			isEmpty = true;
+                	}
+                	
+                	if(!isEmpty){
+                		Booking booking = new Booking(clientId,Integer.parseInt(flightNum.getText()));
+                		stringOut.println("Booking");
+                		try {
+							objectOut.writeObject(booking);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	else
+                		JOptionPane.showMessageDialog(null, "Please select a flight to book", "Input Error", JOptionPane.PLAIN_MESSAGE);
                 }
                 else if(action.getSource() == refresh) {
                     listModel.removeAllElements();
