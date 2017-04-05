@@ -126,7 +126,6 @@ public class Client
 
                             clientGUI.setVisible(true);
                             loginGUI.dispose();
-                            System.out.println("Login Success" + " " + ty);
                         }
                         else {
                             String error = "User does not exist.\nPlease try again.";
@@ -182,7 +181,7 @@ public class Client
         JFrame passengerFrame = new JFrame();
         passengerFrame.setTitle("Access Level: Passenger");
         passengerFrame.setLayout(new GridLayout(1, 2));
-        passengerFrame.setSize(775, 400);
+        passengerFrame.setSize(850, 450);
 
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         JList<String> listArea = new JList<String>(listModel);
@@ -312,6 +311,14 @@ public class Client
             {
                 if(action.getSource() == search)
                 {
+                    flightNum.setText("");
+                    source.setText("");
+                    destination.setText("");
+                    date.setText("");
+                    time.setText("");
+                    duration.setText("");
+                    availSeats.setText("");
+                    price.setText("");
                     listModel.removeAllElements();
                     flights = null;
                     String date = "";
@@ -382,7 +389,16 @@ public class Client
                 {
 
                 }
-                else if(action.getSource() == refresh) {
+                else if(action.getSource() == refresh)
+                {
+                    flightNum.setText("");
+                    source.setText("");
+                    destination.setText("");
+                    date.setText("");
+                    time.setText("");
+                    duration.setText("");
+                    availSeats.setText("");
+                    price.setText("");
                     listModel.removeAllElements();
                     flights = null;
                     if(!refreshQuery.equals("")) {
@@ -455,34 +471,46 @@ public class Client
                 }
             }
         });
-
-        passengerFrame.pack();
         return passengerFrame;
     }
 
     private JFrame makeAdminGUI()
-    {/*
-        JFrame adminFrame = new JFrame();
+    {
+        /*JFrame adminFrame = new JFrame();
         adminFrame.setTitle("Access Level: Admin");
         adminFrame.setLayout(new GridLayout(1, 4));
         adminFrame.setSize(900, 400);
 
         DefaultListModel<String> listModelFlights = new DefaultListModel<String>();
         JList<String> listAreaFlights = new JList<String>(listModelFlights);
+        JButton searchF = new JButton("Search Flights");
+        JButton refreshF = new JButton("Refresh");
+        JButton bookF = new JButton("Book");
+        JTextField dateField = new JTextField(10);
+        JTextField sourceField = new JTextField(10);
+        JTextField destField = new JTextField(10);
 
-        DefaultListModel<String> listModelUsers = new DefaultListModel<String>();
-        JList<String> listAreaUsers = new JList<String>(listModelUsers);
+        JButton addF = new JButton("Add Flight");
+        JButton addFlights = new JButton("Add Flights from File");
 
         DefaultListModel<String> listModelTickets = new DefaultListModel<String>();
         JList<String> listAreaTickets = new JList<String>(listModelTickets);
+        JButton searchT = new JButton("Search Tickets");
+        JButton deleteT = new JButton("Delete Ticket");
+        JTextField fnumField = new JTextField(10);
+        JTextField emailField = new JTextField(10);
 
-        JButton search = new JButton("Search");
-        JButton refresh = new JButton("Refresh");
-        JTextField dateField = new JTextField(15);
-        JTextField sourceField = new JTextField(15);
-        JTextField destField = new JTextField(15);
+        DefaultListModel<String> listModelUsers = new DefaultListModel<String>();
+        JList<String> listAreaUsers = new JList<String>(listModelUsers);
+        JButton searchU = new JButton("Search Users");
+        JButton deleteU = new JButton("Delete User");
+        JTextField lastnField = new JTextField(10);
+        JTextField typeField = new JTextField(10);
 
-        JButton book = new JButton("Book");
+
+
+        JTextField
+
         JTextField flightNum = new JTextField(15);
         flightNum.setEditable(false);
         JTextField source = new JTextField(15);

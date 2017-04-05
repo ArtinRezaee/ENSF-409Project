@@ -24,11 +24,9 @@ public class Server extends Thread
 			try {
 				Socket socket = serverSocket.accept();
 				WorkerThread wk = new WorkerThread(socket);
-				System.out.println("Client connected...");
 				wk.start();
-			} catch (IOException e) {
-				e.printStackTrace();
-				}
+			} catch (IOException e)
+			{	e.printStackTrace();	}
 		}
 	}
 
