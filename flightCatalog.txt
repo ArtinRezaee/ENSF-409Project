@@ -1,350 +1,400 @@
-814565;Calgary, Canada;Amsterdam, Netherlands;2017-04-07;02:15;03:10;494;494;3166.11
-743306;Hong Kong, China;Ottawa, Canada;2017-04-05;23:45;12:00;297;297;414.39
-666875;Reykjavik, Iceland;Cancun, Mexico;2017-04-05;02:15;07:15;96;96;2206.17
-981195;London, England;Vancouver, Canada;2017-04-07;18:00;09:10;82;82;4465.75
-943301;New York, USA;Ottawa, Canada;2017-04-04;00:00;07:40;256;256;2542.07
-594934;Florence, Italy;New Delhi, India;2017-04-08;23:45;03:10;51;51;804.35
-184603;London, England;Sydney, Australia;2017-04-03;09:00;01:30;343;343;1516.87
-964199;Reykjavik, Iceland;Rio De Janeiro, Brazil;2017-04-10;09:00;09:10;56;56;4427.57
-568125;Barcelona, Spain;Reykjavik, Iceland;2017-04-05;11:15;07:15;333;333;527.37
-379322;Madrid, Spain;Ottawa, Canada;2017-04-06;20:15;06:50;495;495;1083.57
-681702;Hong Kong, China;Rio De Janeiro, Brazil;2017-04-05;06:45;09:10;462;462;1674.56
-208433;Seoul, South Korea;Paris, France;2017-04-10;11:15;09:10;270;270;158.12
-824823;Rio De Janeiro, Brazil;Seoul, South Korea;2017-04-03;00:00;02:15;57;57;2254.13
-678569;Hong Kong, China;Barcelona, Spain;2017-04-06;06:45;07:15;308;308;303.15
-266412;Johannesburg, South Africa;Calgary, Canada;2017-04-07;09:00;12:00;242;242;4791.49
-997823;Calgary, Canada;Berlin, Germany;2017-04-07;11:15;04:20;181;181;2423.52
-203517;Madrid, Spain;Florence, Italy;2017-04-10;22:30;03:10;238;238;1914.96
-342543;Calgary, Canada;New York, USA;2017-04-06;04:30;07:15;495;495;1549.91
-427011;Amsterdam, Netherlands;New York, USA;2017-04-08;18:00;03:10;406;406;4573.61
-538975;Tokyo, Japan;London, England;2017-04-05;06:45;06:50;495;495;428.15
-164191;Rio De Janeiro, Brazil;Florence, Italy;2017-04-05;04:30;14:15;191;191;3179.5
-971677;Reykjavik, Iceland;Johannesburg, South Africa;2017-04-06;23:45;05:40;362;362;4708.02
-142043;Amsterdam, Netherlands;Athens, Greece;2017-04-06;22:30;12:00;339;339;2320.3
-499342;Sydney, Australia;Berlin, Germany;2017-04-01;02:15;07:40;398;398;67.15
-717536;Paris, France;Sydney, Australia;2017-04-07;06:45;03:10;306;306;830.07
-603776;Berlin, Germany;Johannesburg, South Africa;2017-04-07;11:15;11:30;235;235;4685.36
-757567;Florence, Italy;Madrid, Spain;2017-04-02;06:45;01:30;197;197;4713.17
-550266;Bangkok, Thailand;Calgary, Canada;2017-04-08;23:45;03:10;352;352;218.0
-616116;Reykjavik, Iceland;Calgary, Canada;2017-04-06;02:15;05:40;182;182;2288.24
-202198;Berlin, Germany;Florence, Italy;2017-04-02;23:45;14:15;432;432;4274.67
-984474;Tokyo, Japan;Dubai, United Arab Emirates;2017-04-08;02:15;02:15;336;336;2088.8
-373514;New York, USA;Madrid, Spain;2017-04-08;11:15;12:00;130;130;2857.58
-847601;Sydney, Australia;Seoul, South Korea;2017-04-01;18:00;07:40;399;399;579.09
-352718;New York, USA;Sydney, Australia;2017-04-06;22:30;05:40;141;141;3990.29
-651989;Moscow, Russia;London, England;2017-04-07;09:00;02:15;245;245;3013.62
-562147;Ottawa, Canada;Tokyo, Japan;2017-04-09;09:00;07:15;52;52;2685.92
-831925;New Delhi, India;Calgary, Canada;2017-04-05;04:30;11:30;196;196;3882.02
-323365;Amsterdam, Netherlands;Calgary, Canada;2017-04-03;13:30;04:20;100;100;4359.34
-394144;Rio De Janeiro, Brazil;Moscow, Russia;2017-04-10;09:00;12:00;276;276;2072.49
-195845;Athens, Greece;London, England;2017-04-01;15:45;14:15;342;342;1635.76
-181777;Bangkok, Thailand;Johannesburg, South Africa;2017-04-10;22:30;03:10;429;429;1068.45
-747907;Cancun, Mexico;Hong Kong, China;2017-04-05;13:30;01:30;66;66;1198.58
-136141;Seoul, South Korea;Moscow, Russia;2017-04-10;11:15;05:40;312;312;447.9
-693175;Florence, Italy;Paris, France;2017-04-06;22:30;06:50;86;86;2120.62
-799622;Barcelona, Spain;London, England;2017-04-10;23:45;02:15;170;170;575.53
-704599;New Delhi, India;Tokyo, Japan;2017-04-04;04:30;05:40;58;58;1222.62
-513683;Bangkok, Thailand;Rio De Janeiro, Brazil;2017-04-04;20:15;07:40;64;64;1518.16
-660217;Madrid, Spain;Los Angeles, USA;2017-04-05;00:00;14:15;96;96;2590.0
-989799;Tokyo, Japan;Amsterdam, Netherlands;2017-04-04;11:15;07:40;277;277;1630.16
-943543;Johannesburg, South Africa;Cancun, Mexico;2017-04-06;09:00;05:40;445;445;662.65
-122354;Barcelona, Spain;Los Angeles, USA;2017-04-03;20:15;04:20;489;489;119.03
-113089;Amsterdam, Netherlands;Bangkok, Thailand;2017-04-05;23:45;12:00;64;64;3791.69
-407497;Bangkok, Thailand;Moscow, Russia;2017-04-08;02:15;14:15;255;255;643.05
-956731;Ottawa, Canada;Amsterdam, Netherlands;2017-04-08;04:30;11:30;288;288;1431.76
-779857;Florence, Italy;New York, USA;2017-04-04;09:00;05:40;376;376;2989.59
-241583;Reykjavik, Iceland;Los Angeles, USA;2017-04-04;00:00;11:30;410;410;140.7
-396843;Vancouver, Canada;Johannesburg, South Africa;2017-04-04;11:15;12:00;101;101;1301.09
-425663;Amsterdam, Netherlands;Moscow, Russia;2017-04-09;15:45;01:30;270;270;4395.34
-931633;Los Angeles, USA;Johannesburg, South Africa;2017-04-10;23:45;12:00;158;158;3835.44
-638877;Tokyo, Japan;Reykjavik, Iceland;2017-04-04;13:30;07:40;177;177;727.64
-199127;Madrid, Spain;Seoul, South Korea;2017-04-07;18:00;01:30;442;442;4987.7
-800119;Barcelona, Spain;Madrid, Spain;2017-04-02;13:30;02:15;243;243;3086.92
-333684;Johannesburg, South Africa;New York, USA;2017-04-06;23:45;11:30;74;74;4260.91
-447674;Athens, Greece;Sydney, Australia;2017-04-03;13:30;05:40;75;75;4224.43
-832689;Bangkok, Thailand;Vancouver, Canada;2017-04-07;00:00;01:30;124;124;4353.04
-295086;Cancun, Mexico;Hong Kong, China;2017-04-05;06:45;01:30;397;397;1143.02
-302330;Los Angeles, USA;Seoul, South Korea;2017-04-03;04:30;07:15;195;195;4772.69
-200894;Seoul, South Korea;Amsterdam, Netherlands;2017-04-05;06:45;12:00;220;220;4564.19
-367930;Seoul, South Korea;New York, USA;2017-04-01;02:15;07:15;384;384;1843.72
-337015;Berlin, Germany;Sydney, Australia;2017-04-02;00:00;02:15;98;98;1781.64
-619586;Vancouver, Canada;Amsterdam, Netherlands;2017-04-10;04:30;07:15;449;449;577.42
-361766;Madrid, Spain;Cancun, Mexico;2017-04-01;22:30;06:50;253;253;3660.19
-352983;New York, USA;Florence, Italy;2017-04-05;11:15;14:15;386;386;4309.73
-898172;Cancun, Mexico;Tokyo, Japan;2017-04-08;22:30;03:10;288;288;4083.7
-352592;Ottawa, Canada;Reykjavik, Iceland;2017-04-10;04:30;07:40;155;155;3733.13
-456972;Cancun, Mexico;Paris, France;2017-04-09;15:45;12:00;340;340;2258.92
-752792;Madrid, Spain;Reykjavik, Iceland;2017-04-09;09:00;02:15;146;146;838.26
-377124;Florence, Italy;Calgary, Canada;2017-04-06;09:00;03:10;388;388;4746.34
-230128;Cancun, Mexico;Paris, France;2017-04-08;22:30;07:40;78;78;1573.72
-717513;Madrid, Spain;New York, USA;2017-04-06;20:15;02:15;121;121;4061.46
-851205;Tokyo, Japan;Cancun, Mexico;2017-04-10;09:00;05:40;335;335;2497.86
-466025;Hong Kong, China;Vancouver, Canada;2017-04-10;22:30;03:10;165;165;4217.81
-970969;Berlin, Germany;Tokyo, Japan;2017-04-01;11:15;04:20;158;158;2599.26
-377806;Barcelona, Spain;Cancun, Mexico;2017-04-09;18:00;02:15;430;430;3513.53
-259859;Reykjavik, Iceland;Calgary, Canada;2017-04-07;13:30;14:15;76;76;2584.81
-400280;Bangkok, Thailand;Dubai, United Arab Emirates;2017-04-01;22:30;03:10;470;470;2105.91
-104015;Florence, Italy;Barcelona, Spain;2017-04-10;06:45;11:30;421;421;1712.11
-940459;Tokyo, Japan;Reykjavik, Iceland;2017-04-08;13:30;04:20;325;325;1896.72
-469996;Seoul, South Korea;London, England;2017-04-01;22:30;14:15;481;481;2070.44
-210440;Seoul, South Korea;Florence, Italy;2017-04-09;09:00;03:10;329;329;1415.69
-604392;Amsterdam, Netherlands;London, England;2017-04-10;15:45;12:00;130;130;26.08
-557799;Paris, France;Dubai, United Arab Emirates;2017-04-03;23:45;12:00;390;390;4.61
-453121;New York, USA;Rio De Janeiro, Brazil;2017-04-06;15:45;05:40;382;382;4247.18
-677614;Paris, France;Reykjavik, Iceland;2017-04-06;23:45;09:10;384;384;2184.36
-893916;Paris, France;Calgary, Canada;2017-04-07;13:30;02:15;266;266;4791.04
-457445;New Delhi, India;Dubai, United Arab Emirates;2017-04-10;22:30;09:10;68;68;2516.35
-486767;London, England;Johannesburg, South Africa;2017-04-06;04:30;07:15;439;439;3407.12
-159082;Bangkok, Thailand;Florence, Italy;2017-04-01;06:45;07:40;154;154;2166.61
-936164;Sydney, Australia;Hong Kong, China;2017-04-03;15:45;06:50;92;92;4969.27
-644099;Los Angeles, USA;Moscow, Russia;2017-04-10;15:45;01:30;67;67;991.27
-145267;London, England;Hong Kong, China;2017-04-02;20:15;07:40;413;413;1516.71
-566525;Rio De Janeiro, Brazil;Madrid, Spain;2017-04-06;09:00;11:30;491;491;3784.92
-794178;New York, USA;Vancouver, Canada;2017-04-08;11:15;04:20;323;323;1978.62
-191758;Reykjavik, Iceland;Florence, Italy;2017-04-02;04:30;14:15;279;279;2787.68
-260199;Calgary, Canada;Hong Kong, China;2017-04-04;09:00;04:20;255;255;3924.22
-787895;Rio De Janeiro, Brazil;Florence, Italy;2017-04-01;13:30;14:15;97;97;4980.62
-401739;Cancun, Mexico;Ottawa, Canada;2017-04-04;13:30;05:40;202;202;4268.7
-602062;Cancun, Mexico;Tokyo, Japan;2017-04-08;22:30;12:00;119;119;4162.9
-247066;Reykjavik, Iceland;Rio De Janeiro, Brazil;2017-04-07;13:30;11:30;382;382;2659.08
-953346;New York, USA;Paris, France;2017-04-01;18:00;07:15;377;377;2643.05
-799457;Paris, France;Berlin, Germany;2017-04-07;13:30;04:20;290;290;270.73
-647078;Amsterdam, Netherlands;Barcelona, Spain;2017-04-05;11:15;02:15;275;275;3654.54
-155718;Amsterdam, Netherlands;Calgary, Canada;2017-04-05;20:15;07:15;213;213;1469.27
-301823;Cancun, Mexico;Los Angeles, USA;2017-04-04;15:45;02:15;432;432;1667.98
-750614;Vancouver, Canada;Reykjavik, Iceland;2017-04-05;20:15;07:15;65;65;2329.14
-481515;Johannesburg, South Africa;Florence, Italy;2017-04-08;22:30;04:20;95;95;2791.3
-147197;Amsterdam, Netherlands;Florence, Italy;2017-04-08;06:45;09:10;428;428;4862.16
-709687;Ottawa, Canada;Berlin, Germany;2017-04-10;06:45;14:15;203;203;3545.6
-658091;Florence, Italy;Reykjavik, Iceland;2017-04-01;15:45;06:50;64;64;2125.33
-964169;Rio De Janeiro, Brazil;Cancun, Mexico;2017-04-06;18:00;03:10;375;375;3808.45
-233773;Barcelona, Spain;Vancouver, Canada;2017-04-02;06:45;05:40;123;123;4087.65
-543498;Los Angeles, USA;Reykjavik, Iceland;2017-04-07;04:30;06:50;387;387;4450.81
-991434;Los Angeles, USA;Moscow, Russia;2017-04-05;00:00;04:20;210;210;3529.78
-668726;New Delhi, India;Johannesburg, South Africa;2017-04-05;11:15;02:15;469;469;500.21
-985769;Reykjavik, Iceland;Tokyo, Japan;2017-04-01;09:00;12:00;469;469;4848.41
-375731;Dubai, United Arab Emirates;Cancun, Mexico;2017-04-02;11:15;01:30;500;500;1802.46
-944272;Athens, Greece;Reykjavik, Iceland;2017-04-10;09:00;11:30;262;262;4376.09
-340404;Tokyo, Japan;Amsterdam, Netherlands;2017-04-01;22:30;06:50;369;369;1061.62
-222785;Hong Kong, China;Johannesburg, South Africa;2017-04-04;02:15;01:30;128;128;4554.49
-105606;Amsterdam, Netherlands;Dubai, United Arab Emirates;2017-04-10;13:30;09:10;76;76;4219.58
-289218;Barcelona, Spain;Berlin, Germany;2017-04-06;04:30;11:30;300;300;1314.82
-970070;Moscow, Russia;Sydney, Australia;2017-04-05;02:15;05:40;288;288;1799.44
-359453;Athens, Greece;Cancun, Mexico;2017-04-02;04:30;05:40;391;391;1349.25
-112058;New Delhi, India;Sydney, Australia;2017-04-08;11:15;09:10;283;283;633.83
-458847;Berlin, Germany;Reykjavik, Iceland;2017-04-06;04:30;05:40;195;195;708.1
-416093;Amsterdam, Netherlands;Tokyo, Japan;2017-04-01;15:45;14:15;407;407;244.86
-676878;Johannesburg, South Africa;Florence, Italy;2017-04-04;22:30;07:15;489;489;4284.29
-196932;Berlin, Germany;Sydney, Australia;2017-04-05;20:15;03:10;156;156;3184.41
-672124;New York, USA;Dubai, United Arab Emirates;2017-04-09;22:30;02:15;239;239;4782.85
-426054;Reykjavik, Iceland;Vancouver, Canada;2017-04-08;00:00;02:15;155;155;2569.47
-905759;Calgary, Canada;New York, USA;2017-04-02;23:45;03:10;474;474;2130.61
-158581;Ottawa, Canada;London, England;2017-04-04;09:00;12:00;276;276;2144.33
-852495;Seoul, South Korea;Ottawa, Canada;2017-04-06;11:15;04:20;156;156;4304.48
-757377;Amsterdam, Netherlands;Reykjavik, Iceland;2017-04-02;23:45;14:15;196;196;4914.48
-979696;Bangkok, Thailand;Hong Kong, China;2017-04-10;20:15;12:00;290;290;1860.03
-374362;Vancouver, Canada;Seoul, South Korea;2017-04-09;13:30;14:15;380;380;680.18
-262818;Moscow, Russia;Los Angeles, USA;2017-04-01;00:00;01:30;102;102;1658.13
-914522;Paris, France;Berlin, Germany;2017-04-03;22:30;04:20;275;275;2498.27
-996980;Los Angeles, USA;Rio De Janeiro, Brazil;2017-04-02;06:45;01:30;401;401;1210.51
-856131;Paris, France;Florence, Italy;2017-04-08;13:30;02:15;222;222;2817.72
-523408;Madrid, Spain;Dubai, United Arab Emirates;2017-04-10;13:30;06:50;481;481;1545.27
-830708;Cancun, Mexico;Dubai, United Arab Emirates;2017-04-03;04:30;09:10;346;346;3319.69
-906885;New Delhi, India;Los Angeles, USA;2017-04-05;00:00;11:30;116;116;3899.97
-646662;London, England;Dubai, United Arab Emirates;2017-04-09;04:30;07:15;182;182;1805.8
-285233;Rio De Janeiro, Brazil;London, England;2017-04-08;00:00;05:40;421;421;1039.16
-579153;Calgary, Canada;Bangkok, Thailand;2017-04-06;23:45;02:15;362;362;2717.35
-695424;Berlin, Germany;New York, USA;2017-04-03;02:15;14:15;400;400;4550.1
-863354;Vancouver, Canada;Seoul, South Korea;2017-04-03;23:45;07:15;341;341;2564.88
-886465;Berlin, Germany;Barcelona, Spain;2017-04-07;15:45;06:50;415;415;1303.56
-596573;Hong Kong, China;Los Angeles, USA;2017-04-02;18:00;01:30;374;374;3491.54
-959049;Tokyo, Japan;Johannesburg, South Africa;2017-04-05;23:45;07:15;104;104;1750.2
-453379;Vancouver, Canada;Sydney, Australia;2017-04-05;15:45;05:40;114;114;269.21
-737150;Ottawa, Canada;Barcelona, Spain;2017-04-04;20:15;02:15;276;276;2219.73
-582636;Cancun, Mexico;Berlin, Germany;2017-04-05;18:00;12:00;123;123;2598.85
-596058;Bangkok, Thailand;Barcelona, Spain;2017-04-06;22:30;06:50;450;450;4599.95
-721312;Madrid, Spain;Seoul, South Korea;2017-04-03;23:45;14:15;215;215;4378.54
-415380;Moscow, Russia;Vancouver, Canada;2017-04-10;04:30;14:15;75;75;2511.32
-237809;Rio De Janeiro, Brazil;Florence, Italy;2017-04-05;06:45;03:10;287;287;1775.73
-892178;Barcelona, Spain;London, England;2017-04-09;04:30;01:30;451;451;4218.81
-610691;Athens, Greece;Barcelona, Spain;2017-04-09;04:30;07:40;390;390;2882.8
-954872;Hong Kong, China;Seoul, South Korea;2017-04-03;06:45;06:50;202;202;1970.13
-454014;Ottawa, Canada;Calgary, Canada;2017-04-06;15:45;14:15;284;284;2369.72
-999180;New Delhi, India;Cancun, Mexico;2017-04-09;04:30;07:15;74;74;3926.33
-635479;Bangkok, Thailand;Los Angeles, USA;2017-04-08;02:15;01:30;481;481;141.54
-236240;Reykjavik, Iceland;Moscow, Russia;2017-04-04;20:15;11:30;324;324;579.27
-293448;Calgary, Canada;Moscow, Russia;2017-04-01;13:30;01:30;470;470;4775.41
-893534;Madrid, Spain;Berlin, Germany;2017-04-01;06:45;07:15;103;103;2857.34
-798357;New Delhi, India;Athens, Greece;2017-04-05;15:45;09:10;396;396;3610.0
-931827;New Delhi, India;Amsterdam, Netherlands;2017-04-10;04:30;03:10;403;403;2404.82
-901860;Barcelona, Spain;Rio De Janeiro, Brazil;2017-04-10;22:30;07:40;277;277;544.91
-629099;Seoul, South Korea;Berlin, Germany;2017-04-03;23:45;02:15;357;357;2969.17
-312465;Tokyo, Japan;Calgary, Canada;2017-04-08;09:00;06:50;421;421;4413.07
-719663;Dubai, United Arab Emirates;London, England;2017-04-04;22:30;04:20;233;233;4738.15
-969082;Sydney, Australia;Hong Kong, China;2017-04-07;09:00;14:15;232;232;3373.78
-200624;Tokyo, Japan;Dubai, United Arab Emirates;2017-04-07;23:45;06:50;84;84;507.81
-651965;New York, USA;Amsterdam, Netherlands;2017-04-05;18:00;04:20;215;215;3125.05
-755551;Florence, Italy;Dubai, United Arab Emirates;2017-04-08;06:45;04:20;440;440;228.51
-746276;Florence, Italy;Paris, France;2017-04-02;20:15;02:15;65;65;3424.94
-637362;Florence, Italy;Athens, Greece;2017-04-07;15:45;06:50;201;201;2356.43
-429391;Berlin, Germany;Los Angeles, USA;2017-04-03;18:00;01:30;428;428;3888.47
-880237;Florence, Italy;Ottawa, Canada;2017-04-10;23:45;07:40;234;234;2961.73
-357127;New York, USA;Florence, Italy;2017-04-02;02:15;12:00;258;258;4333.1
-986064;Paris, France;Barcelona, Spain;2017-04-01;18:00;06:50;273;273;4046.64
-454849;Calgary, Canada;Sydney, Australia;2017-04-03;02:15;07:15;395;395;4164.82
-484072;Paris, France;Rio De Janeiro, Brazil;2017-04-04;06:45;06:50;123;123;1744.86
-265523;Sydney, Australia;Berlin, Germany;2017-04-08;09:00;02:15;451;451;4630.34
-105923;Amsterdam, Netherlands;Los Angeles, USA;2017-04-04;20:15;05:40;128;128;8.7
-917282;Reykjavik, Iceland;Athens, Greece;2017-04-10;22:30;09:10;399;399;1612.92
-702146;Barcelona, Spain;New York, USA;2017-04-02;13:30;06:50;179;179;4908.48
-738891;Reykjavik, Iceland;Los Angeles, USA;2017-04-06;09:00;11:30;355;355;1795.02
-256775;Hong Kong, China;New Delhi, India;2017-04-06;23:45;05:40;278;278;4515.3
-562473;Los Angeles, USA;Amsterdam, Netherlands;2017-04-06;18:00;12:00;69;69;937.75
-887379;London, England;Paris, France;2017-04-09;11:15;07:40;128;128;780.36
-602813;London, England;Seoul, South Korea;2017-04-07;11:15;11:30;402;402;2405.36
-878182;Los Angeles, USA;Tokyo, Japan;2017-04-03;22:30;07:40;92;92;1690.77
-526422;Reykjavik, Iceland;Amsterdam, Netherlands;2017-04-01;18:00;07:40;483;483;2221.07
-594984;Reykjavik, Iceland;London, England;2017-04-03;11:15;05:40;446;446;45.32
-173243;Barcelona, Spain;New Delhi, India;2017-04-10;18:00;01:30;304;304;1856.59
-493061;London, England;Rio De Janeiro, Brazil;2017-04-02;18:00;05:40;63;63;3483.84
-696398;Athens, Greece;Amsterdam, Netherlands;2017-04-08;09:00;06:50;324;324;4247.3
-475593;Cancun, Mexico;Rio De Janeiro, Brazil;2017-04-09;20:15;11:30;223;223;3585.53
-654709;Athens, Greece;Ottawa, Canada;2017-04-02;23:45;07:40;407;407;1185.73
-421477;Johannesburg, South Africa;Los Angeles, USA;2017-04-05;18:00;14:15;384;384;388.79
-496834;Berlin, Germany;Dubai, United Arab Emirates;2017-04-03;18:00;01:30;67;67;61.66
-228412;Cancun, Mexico;Dubai, United Arab Emirates;2017-04-04;13:30;01:30;98;98;3704.81
-798621;New Delhi, India;Reykjavik, Iceland;2017-04-02;22:30;03:10;261;261;1932.79
-694421;Cancun, Mexico;Hong Kong, China;2017-04-08;13:30;06:50;439;439;1158.81
-126038;Dubai, United Arab Emirates;Moscow, Russia;2017-04-05;23:45;07:40;437;437;3030.61
-333502;Rio De Janeiro, Brazil;Dubai, United Arab Emirates;2017-04-05;23:45;03:10;305;305;1289.45
-914051;Cancun, Mexico;Barcelona, Spain;2017-04-05;23:45;09:10;324;324;1656.09
-620516;Tokyo, Japan;Amsterdam, Netherlands;2017-04-03;22:30;06:50;266;266;3444.44
-652040;Florence, Italy;Cancun, Mexico;2017-04-01;18:00;03:10;413;413;1032.96
-523896;Ottawa, Canada;Berlin, Germany;2017-04-09;06:45;03:10;474;474;1846.03
-243497;Rio De Janeiro, Brazil;Johannesburg, South Africa;2017-04-05;06:45;14:15;201;201;1321.3
-505511;Rio De Janeiro, Brazil;Hong Kong, China;2017-04-02;20:15;04:20;83;83;4227.6
-450319;Hong Kong, China;Tokyo, Japan;2017-04-04;13:30;11:30;459;459;3588.45
-852176;Seoul, South Korea;Berlin, Germany;2017-04-06;13:30;14:15;71;71;3829.7
-858289;Calgary, Canada;Amsterdam, Netherlands;2017-04-02;13:30;07:15;440;440;952.03
-389003;Madrid, Spain;Calgary, Canada;2017-04-05;13:30;03:10;314;314;2517.92
-255824;Calgary, Canada;Florence, Italy;2017-04-03;23:45;03:10;108;108;3079.16
-523222;Hong Kong, China;Barcelona, Spain;2017-04-06;15:45;04:20;168;168;3408.64
-712585;London, England;Florence, Italy;2017-04-08;23:45;02:15;154;154;1742.59
-424139;New Delhi, India;Bangkok, Thailand;2017-04-07;22:30;11:30;367;367;2394.67
-322440;Amsterdam, Netherlands;Berlin, Germany;2017-04-10;04:30;03:10;261;261;2097.13
-767913;Calgary, Canada;Dubai, United Arab Emirates;2017-04-08;22:30;12:00;306;306;1427.91
-643628;Tokyo, Japan;Reykjavik, Iceland;2017-04-03;06:45;07:15;429;429;2856.19
-211196;Cancun, Mexico;Florence, Italy;2017-04-05;00:00;07:40;107;107;3649.38
-686118;Berlin, Germany;Paris, France;2017-04-06;06:45;14:15;410;410;248.57
-274934;Seoul, South Korea;Berlin, Germany;2017-04-04;23:45;05:40;448;448;4620.86
-808989;Amsterdam, Netherlands;Berlin, Germany;2017-04-03;20:15;07:15;67;67;1049.5
-501316;Hong Kong, China;Cancun, Mexico;2017-04-08;18:00;12:00;88;88;3288.02
-940577;New Delhi, India;Johannesburg, South Africa;2017-04-01;00:00;07:15;406;406;4896.2
-509143;Dubai, United Arab Emirates;Seoul, South Korea;2017-04-04;00:00;03:10;247;247;4986.66
-479674;Cancun, Mexico;Dubai, United Arab Emirates;2017-04-02;00:00;01:30;463;463;1006.09
-974029;Amsterdam, Netherlands;Dubai, United Arab Emirates;2017-04-07;02:15;14:15;255;255;1538.5
-162777;Moscow, Russia;Bangkok, Thailand;2017-04-04;04:30;05:40;452;452;603.52
-309012;Moscow, Russia;New York, USA;2017-04-02;22:30;09:10;155;155;3999.98
-977602;Tokyo, Japan;Seoul, South Korea;2017-04-01;18:00;03:10;381;381;1898.75
-523129;Barcelona, Spain;Bangkok, Thailand;2017-04-09;00:00;12:00;174;174;3356.34
-885936;Sydney, Australia;Tokyo, Japan;2017-04-06;11:15;05:40;264;264;404.21
-198899;Athens, Greece;New York, USA;2017-04-03;18:00;07:15;230;230;3788.99
-691757;New Delhi, India;Cancun, Mexico;2017-04-01;18:00;11:30;281;281;2486.46
-713008;Los Angeles, USA;Madrid, Spain;2017-04-10;15:45;05:40;156;156;3214.13
-919767;Los Angeles, USA;New York, USA;2017-04-07;15:45;07:40;107;107;4804.65
-632534;Amsterdam, Netherlands;Barcelona, Spain;2017-04-05;00:00;04:20;186;186;1704.42
-916906;Athens, Greece;Berlin, Germany;2017-04-02;23:45;02:15;383;383;156.83
-816439;New Delhi, India;Los Angeles, USA;2017-04-03;23:45;07:15;255;255;1546.12
-349304;London, England;New York, USA;2017-04-09;11:15;05:40;127;127;1228.98
-835043;Rio De Janeiro, Brazil;Seoul, South Korea;2017-04-05;20:15;01:30;340;340;4727.38
-467911;New York, USA;Vancouver, Canada;2017-04-09;00:00;05:40;67;67;2942.98
-792117;Rio De Janeiro, Brazil;Hong Kong, China;2017-04-09;18:00;11:30;422;422;4389.66
-529201;Vancouver, Canada;Sydney, Australia;2017-04-02;18:00;03:10;305;305;2624.45
-458119;Tokyo, Japan;Amsterdam, Netherlands;2017-04-09;15:45;06:50;445;445;3826.62
-110159;New Delhi, India;London, England;2017-04-02;11:15;11:30;104;104;1031.6
-801482;Rio De Janeiro, Brazil;Paris, France;2017-04-07;11:15;01:30;77;77;625.4
-885388;Reykjavik, Iceland;Vancouver, Canada;2017-04-03;02:15;09:10;97;97;3999.36
-984162;Madrid, Spain;Seoul, South Korea;2017-04-08;02:15;11:30;272;272;3979.52
-973651;Cancun, Mexico;Sydney, Australia;2017-04-06;23:45;14:15;328;328;4389.5
-249993;Vancouver, Canada;Florence, Italy;2017-04-04;02:15;06:50;76;76;2107.12
-337671;Athens, Greece;Amsterdam, Netherlands;2017-04-09;23:45;14:15;332;332;1587.62
-737976;Ottawa, Canada;London, England;2017-04-02;18:00;07:15;155;155;1942.87
-391599;New Delhi, India;Sydney, Australia;2017-04-05;20:15;11:30;374;374;2999.86
-488381;Seoul, South Korea;Los Angeles, USA;2017-04-06;02:15;09:10;418;418;3574.84
-532179;Sydney, Australia;Rio De Janeiro, Brazil;2017-04-06;18:00;07:40;199;199;3671.88
-485999;Paris, France;Dubai, United Arab Emirates;2017-04-06;11:15;09:10;62;62;4490.51
-965979;Calgary, Canada;Dubai, United Arab Emirates;2017-04-07;11:15;07:40;201;201;2610.83
-173013;Vancouver, Canada;Sydney, Australia;2017-04-05;06:45;07:15;50;50;2397.27
-631852;Sydney, Australia;Tokyo, Japan;2017-04-10;23:45;07:40;188;188;3665.34
-374791;Athens, Greece;Berlin, Germany;2017-04-03;04:30;09:10;250;250;1632.14
-393400;Amsterdam, Netherlands;London, England;2017-04-09;02:15;01:30;152;152;735.67
-427875;London, England;Tokyo, Japan;2017-04-09;22:30;11:30;205;205;2473.34
-468002;Moscow, Russia;Hong Kong, China;2017-04-04;13:30;02:15;457;457;4921.07
-478899;Tokyo, Japan;New Delhi, India;2017-04-03;20:15;05:40;404;404;540.42
-721268;New York, USA;Dubai, United Arab Emirates;2017-04-08;00:00;04:20;264;264;628.03
-280552;Amsterdam, Netherlands;New York, USA;2017-04-05;04:30;03:10;187;187;4390.21
-764178;Madrid, Spain;Berlin, Germany;2017-04-09;15:45;02:15;139;139;1771.7
-528067;Amsterdam, Netherlands;Hong Kong, China;2017-04-02;13:30;07:40;478;478;4157.17
-515146;Johannesburg, South Africa;Cancun, Mexico;2017-04-09;09:00;09:10;311;311;4956.95
-150781;Rio De Janeiro, Brazil;Paris, France;2017-04-07;13:30;07:15;364;364;3521.8
-555592;Paris, France;Moscow, Russia;2017-04-08;22:30;09:10;229;229;3749.12
-997266;Rio De Janeiro, Brazil;Moscow, Russia;2017-04-06;15:45;12:00;386;386;4423.21
-343432;Seoul, South Korea;Tokyo, Japan;2017-04-07;04:30;01:30;352;352;4888.69
-478132;Reykjavik, Iceland;Bangkok, Thailand;2017-04-07;15:45;01:30;260;260;3179.88
-895406;Athens, Greece;Rio De Janeiro, Brazil;2017-04-06;04:30;07:40;481;481;2473.13
-510650;Amsterdam, Netherlands;Rio De Janeiro, Brazil;2017-04-01;20:15;12:00;163;163;323.48
-480734;Athens, Greece;Rio De Janeiro, Brazil;2017-04-10;23:45;11:30;396;396;155.54
-731933;Amsterdam, Netherlands;Tokyo, Japan;2017-04-10;23:45;06:50;55;55;2952.07
-329891;Barcelona, Spain;New Delhi, India;2017-04-03;06:45;11:30;356;356;1660.37
-218918;Athens, Greece;Amsterdam, Netherlands;2017-04-05;02:15;07:40;457;457;4527.08
-728679;Seoul, South Korea;Sydney, Australia;2017-04-04;11:15;12:00;122;122;1766.91
-745476;Athens, Greece;Reykjavik, Iceland;2017-04-05;06:45;14:15;336;336;2600.25
-539790;Berlin, Germany;Florence, Italy;2017-04-06;18:00;11:30;227;227;2044.44
-683835;Ottawa, Canada;New York, USA;2017-04-01;11:15;06:50;394;394;2489.18
-974505;Johannesburg, South Africa;Cancun, Mexico;2017-04-07;15:45;02:15;491;491;1252.18
-970235;Berlin, Germany;Cancun, Mexico;2017-04-09;20:15;12:00;212;212;3355.83
-450657;Athens, Greece;Berlin, Germany;2017-04-01;00:00;07:15;158;158;3821.28
-336737;Vancouver, Canada;Tokyo, Japan;2017-04-04;02:15;05:40;499;499;810.38
-653060;New Delhi, India;Amsterdam, Netherlands;2017-04-04;20:15;03:10;418;418;2284.43
-218285;Amsterdam, Netherlands;New York, USA;2017-04-04;04:30;02:15;349;349;450.29
-415605;Sydney, Australia;Athens, Greece;2017-04-06;20:15;07:40;95;95;3923.91
-155341;Florence, Italy;Reykjavik, Iceland;2017-04-03;02:15;07:15;217;217;3542.92
-126754;Hong Kong, China;Barcelona, Spain;2017-04-09;20:15;03:10;152;152;2181.99
-991188;Calgary, Canada;Hong Kong, China;2017-04-03;06:45;03:10;219;219;2624.64
-740051;Calgary, Canada;Tokyo, Japan;2017-04-08;18:00;07:15;300;300;2238.09
-978100;Moscow, Russia;Bangkok, Thailand;2017-04-09;11:15;07:40;252;252;576.93
-755391;Hong Kong, China;Cancun, Mexico;2017-04-10;13:30;11:30;187;187;1781.67
-232677;Seoul, South Korea;Madrid, Spain;2017-04-05;20:15;02:15;289;289;825.4
-312535;Seoul, South Korea;Bangkok, Thailand;2017-04-07;23:45;04:20;493;493;4301.85
-161788;Los Angeles, USA;Johannesburg, South Africa;2017-04-01;18:00;06:50;421;421;2261.85
-825985;Madrid, Spain;Paris, France;2017-04-09;20:15;06:50;157;157;2861.63
-682389;Vancouver, Canada;Rio De Janeiro, Brazil;2017-04-07;04:30;07:40;174;174;460.24
-834402;Seoul, South Korea;Tokyo, Japan;2017-04-08;02:15;06:50;375;375;3096.51
-613725;Calgary, Canada;Johannesburg, South Africa;2017-04-01;15:45;07:40;67;67;3381.63
-757105;Johannesburg, South Africa;Seoul, South Korea;2017-04-08;13:30;09:10;316;316;4068.09
-324372;Reykjavik, Iceland;Athens, Greece;2017-04-10;23:45;11:30;171;171;4818.98
-613845;Amsterdam, Netherlands;Paris, France;2017-04-09;13:30;06:50;403;403;2985.11
-499726;Sydney, Australia;Reykjavik, Iceland;2017-04-08;20:15;07:15;185;185;1313.07
-329950;Florence, Italy;New Delhi, India;2017-04-04;00:00;12:00;212;212;33.53
-557798;New Delhi, India;Seoul, South Korea;2017-04-03;22:30;04:20;481;481;4826.67
-681741;Paris, France;Barcelona, Spain;2017-04-10;00:00;01:30;369;369;1888.72
-982226;New Delhi, India;Amsterdam, Netherlands;2017-04-04;23:45;02:15;102;102;840.01
-621533;Hong Kong, China;Berlin, Germany;2017-04-05;13:30;02:15;438;438;3940.2
-711229;Athens, Greece;Moscow, Russia;2017-04-07;00:00;07:15;283;283;798.85
-288275;New Delhi, India;Cancun, Mexico;2017-04-03;13:30;03:10;245;245;4445.3
-117766;London, England;Rio De Janeiro, Brazil;2017-04-03;22:30;14:15;153;153;3902.33
-868549;Calgary, Canada;Amsterdam, Netherlands;2017-04-05;15:45;02:15;108;108;4841.47
-836603;Paris, France;Cancun, Mexico;2017-04-08;22:30;12:00;316;316;950.96
-290468;Los Angeles, USA;Seoul, South Korea;2017-04-02;06:45;04:20;229;229;3663.53
-743384;Johannesburg, South Africa;Rio De Janeiro, Brazil;2017-04-05;11:15;07:15;354;354;2190.1
-865383;Amsterdam, Netherlands;Sydney, Australia;2017-04-02;09:00;06:50;335;335;3433.58
-547763;Reykjavik, Iceland;New Delhi, India;2017-04-01;06:45;03:10;484;484;4662.91
-393378;Vancouver, Canada;Dubai, United Arab Emirates;2017-04-10;02:15;07:15;287;287;3651.3
-840744;Seoul, South Korea;New York, USA;2017-04-01;00:00;11:30;434;434;2127.75
-709595;Dubai, United Arab Emirates;New York, USA;2017-04-09;18:00;09:10;50;50;2566.66
-651956;Tokyo, Japan;Dubai, United Arab Emirates;2017-04-10;15:45;11:30;395;395;1419.45
-655912;London, England;New Delhi, India;2017-04-09;20:15;04:20;327;327;3577.67
-980271;Sydney, Australia;Ottawa, Canada;2017-04-09;18:00;07:15;224;224;66.45
-197062;Paris, France;Bangkok, Thailand;2017-04-10;02:15;11:30;108;108;382.04
-593553;Tokyo, Japan;Rio De Janeiro, Brazil;2017-04-01;18:00;12:00;195;195;4360.36
-153884;Barcelona, Spain;Vancouver, Canada;2017-04-07;20:15;12:00;460;460;718.28
+590490;Athens, Greece;Bangkok, Thailand;2017-04-07;00:00;04:20;298;298;3784.44
+477354;Dubai, UAE;Sydney, Australia;2017-04-08;18:00;09:10;276;276;854.75
+191343;Tokyo, Japan;Cancun, Mexico;2017-04-10;09:00;11:30;260;260;322.32
+895093;Amsterdam, Netherlands;Berlin, Germany;2017-04-10;15:45;11:30;359;359;295.09
+665835;Cancun, Mexico;Ottawa, Canada;2017-04-03;15:45;03:10;287;287;2128.78
+317548;Sydney, Australia;Amsterdam, Netherlands;2017-04-02;13:30;04:20;489;489;685.08
+563047;Los Angeles, USA;Barcelona, Spain;2017-04-09;13:30;01:30;89;89;857.99
+603846;Moscow, Russia;Florence, Italy;2017-04-09;02:15;03:10;417;417;4806.23
+140790;Reykjavik, Iceland;Sydney, Australia;2017-04-03;04:30;14:15;432;432;2729.29
+893528;Berlin, Germany;Calgary, Canada;2017-04-08;23:45;05:40;314;314;3568.21
+575386;Vancouver, Canada;Los Angeles, USA;2017-04-09;11:15;14:15;453;453;2782.96
+170069;Barcelona, Spain;Sydney, Australia;2017-04-09;06:45;07:40;441;441;3538.27
+235486;New York, USA;Vancouver, Canada;2017-04-10;20:15;05:40;296;296;3783.64
+147279;Johannesburg, South Africa;Athens, Greece;2017-04-01;11:15;02:15;323;323;832.31
+562800;Bangkok, Thailand;Seoul, South Korea;2017-04-01;02:15;07:40;344;344;768.29
+563008;Los Angeles, USA;Johannesburg, South Africa;2017-04-02;15:45;12:00;460;460;674.41
+359088;Athens, Greece;Paris, France;2017-04-07;04:30;01:30;494;494;2302.57
+273555;Cancun, Mexico;London, England;2017-04-09;20:15;07:15;68;68;1358.92
+292094;New York, USA;Johannesburg, South Africa;2017-04-07;18:00;14:15;388;388;454.3
+274432;New York, USA;Los Angeles, USA;2017-04-04;15:45;05:40;204;204;3518.84
+607751;Vancouver, Canada;Florence, Italy;2017-04-09;18:00;06:50;247;247;3694.26
+956306;Berlin, Germany;Rio De Janeiro, Brazil;2017-04-05;09:00;04:20;188;188;4875.4
+835877;Berlin, Germany;Athens, Greece;2017-04-02;13:30;02:15;119;119;324.09
+724957;Berlin, Germany;Calgary, Canada;2017-04-08;13:30;07:40;256;256;3100.86
+254981;Cancun, Mexico;Reykjavik, Iceland;2017-04-05;04:30;11:30;416;416;4423.45
+117724;Sydney, Australia;Dubai, UAE;2017-04-01;15:45;03:10;393;393;4277.84
+662216;Johannesburg, South Africa;Athens, Greece;2017-04-04;04:30;06:50;63;63;3188.99
+653003;Rio De Janeiro, Brazil;Hong Kong, China;2017-04-07;02:15;05:40;229;229;4274.88
+763136;Tokyo, Japan;Hong Kong, China;2017-04-10;09:00;01:30;344;344;4735.48
+349563;Los Angeles, USA;Vancouver, Canada;2017-04-01;22:30;07:15;394;394;1715.23
+801402;Barcelona, Spain;Paris, France;2017-04-04;11:15;03:10;213;213;709.17
+935717;Amsterdam, Netherlands;Moscow, Russia;2017-04-04;09:00;07:15;181;181;2095.13
+426966;Paris, France;Bangkok, Thailand;2017-04-07;13:30;04:20;364;364;3935.8
+586415;Madrid, Spain;Seoul, South Korea;2017-04-04;09:00;05:40;436;436;3358.03
+258728;Hong Kong, China;Rio De Janeiro, Brazil;2017-04-04;15:45;07:15;450;450;3423.69
+483932;Florence, Italy;New Delhi, India;2017-04-06;15:45;07:40;120;120;369.93
+475620;New Delhi, India;Madrid, Spain;2017-04-09;20:15;06:50;115;115;1807.45
+436428;London, England;Madrid, Spain;2017-04-02;02:15;02:15;256;256;2664.47
+683344;Florence, Italy;Hong Kong, China;2017-04-08;11:15;12:00;254;254;2746.53
+905124;New York, USA;Moscow, Russia;2017-04-02;18:00;14:15;272;272;2862.02
+872144;Johannesburg, South Africa;Los Angeles, USA;2017-04-07;11:15;04:20;368;368;550.43
+616146;Sydney, Australia;Barcelona, Spain;2017-04-01;13:30;14:15;209;209;4571.35
+543405;Rio De Janeiro, Brazil;Tokyo, Japan;2017-04-09;00:00;01:30;189;189;4548.57
+477264;Dubai, UAE;Sydney, Australia;2017-04-07;11:15;04:20;195;195;1775.02
+663132;Tokyo, Japan;London, England;2017-04-02;22:30;12:00;400;400;1703.92
+833192;Rio De Janeiro, Brazil;London, England;2017-04-10;13:30;11:30;427;427;3434.98
+269131;Moscow, Russia;Vancouver, Canada;2017-04-07;06:45;09:10;194;194;2460.6
+840306;Ottawa, Canada;Reykjavik, Iceland;2017-04-01;20:15;09:10;495;495;20.38
+784933;Bangkok, Thailand;Ottawa, Canada;2017-04-10;04:30;05:40;380;380;3194.22
+656595;Florence, Italy;Madrid, Spain;2017-04-05;23:45;09:10;429;429;1013.04
+114964;Moscow, Russia;Florence, Italy;2017-04-05;04:30;14:15;365;365;2499.37
+479234;Moscow, Russia;Seoul, South Korea;2017-04-05;09:00;03:10;156;156;1307.61
+691737;Reykjavik, Iceland;Tokyo, Japan;2017-04-03;02:15;01:30;239;239;2620.26
+737505;Tokyo, Japan;Madrid, Spain;2017-04-03;15:45;02:15;397;397;3548.68
+602395;Moscow, Russia;Amsterdam, Netherlands;2017-04-01;02:15;07:40;390;390;3947.52
+990459;London, England;Reykjavik, Iceland;2017-04-07;13:30;06:50;202;202;4424.14
+984554;Rio De Janeiro, Brazil;Berlin, Germany;2017-04-02;15:45;09:10;269;269;4866.15
+582833;New Delhi, India;Madrid, Spain;2017-04-10;00:00;09:10;304;304;1419.82
+173940;Sydney, Australia;Rio De Janeiro, Brazil;2017-04-06;06:45;01:30;155;155;3182.04
+469334;Calgary, Canada;Sydney, Australia;2017-04-07;15:45;03:10;116;116;1120.44
+474905;Johannesburg, South Africa;Tokyo, Japan;2017-04-10;15:45;12:00;75;75;4010.48
+736588;Bangkok, Thailand;Los Angeles, USA;2017-04-07;22:30;07:15;175;175;1291.4
+240435;New York, USA;Barcelona, Spain;2017-04-01;15:45;04:20;314;314;1152.06
+754860;Seoul, South Korea;Moscow, Russia;2017-04-09;04:30;09:10;270;270;3769.88
+453228;Barcelona, Spain;Ottawa, Canada;2017-04-03;18:00;14:15;269;269;1745.6
+791424;Florence, Italy;Ottawa, Canada;2017-04-09;13:30;07:15;108;108;607.82
+143896;Reykjavik, Iceland;Barcelona, Spain;2017-04-08;18:00;02:15;276;276;2997.38
+225011;New York, USA;Los Angeles, USA;2017-04-06;11:15;06:50;489;489;2274.6
+145274;Seoul, South Korea;Rio De Janeiro, Brazil;2017-04-07;06:45;09:10;191;191;1811.21
+378258;Ottawa, Canada;New Delhi, India;2017-04-05;20:15;07:40;297;297;1268.95
+336258;Amsterdam, Netherlands;London, England;2017-04-10;09:00;01:30;199;199;2630.49
+468115;Ottawa, Canada;Sydney, Australia;2017-04-01;06:45;04:20;92;92;2532.55
+853654;Tokyo, Japan;Johannesburg, South Africa;2017-04-06;20:15;05:40;118;118;3539.75
+769866;Paris, France;Vancouver, Canada;2017-04-08;18:00;14:15;335;335;832.8
+544994;New York, USA;Dubai, UAE;2017-04-01;20:15;11:30;155;155;4936.39
+983082;New York, USA;Los Angeles, USA;2017-04-08;00:00;09:10;294;294;951.87
+377435;Cancun, Mexico;Vancouver, Canada;2017-04-10;06:45;03:10;461;461;4541.99
+922846;Cancun, Mexico;Bangkok, Thailand;2017-04-01;09:00;12:00;438;438;1456.38
+307989;Tokyo, Japan;Amsterdam, Netherlands;2017-04-07;13:30;02:15;398;398;215.55
+920674;Hong Kong, China;Sydney, Australia;2017-04-10;06:45;14:15;71;71;1674.26
+315423;Vancouver, Canada;New Delhi, India;2017-04-10;09:00;07:15;455;455;4644.73
+127843;New Delhi, India;Hong Kong, China;2017-04-09;06:45;05:40;274;274;1560.44
+494396;Johannesburg, South Africa;Cancun, Mexico;2017-04-01;18:00;01:30;455;455;2456.43
+700244;Barcelona, Spain;Johannesburg, South Africa;2017-04-10;20:15;01:30;408;408;2457.27
+106393;Florence, Italy;Athens, Greece;2017-04-10;00:00;09:10;262;262;1049.61
+748322;Florence, Italy;Johannesburg, South Africa;2017-04-06;18:00;11:30;137;137;923.02
+791821;Reykjavik, Iceland;Florence, Italy;2017-04-10;09:00;03:10;406;406;3612.13
+359961;Rio De Janeiro, Brazil;Cancun, Mexico;2017-04-02;15:45;12:00;458;458;1902.83
+728667;Rio De Janeiro, Brazil;Tokyo, Japan;2017-04-03;18:00;12:00;390;390;3210.05
+120590;Florence, Italy;Sydney, Australia;2017-04-02;06:45;04:20;435;435;1378.97
+619707;Moscow, Russia;Seoul, South Korea;2017-04-09;09:00;09:10;341;341;3826.63
+735014;Florence, Italy;Reykjavik, Iceland;2017-04-09;13:30;11:30;116;116;325.86
+336751;Ottawa, Canada;Bangkok, Thailand;2017-04-07;00:00;05:40;179;179;93.89
+705883;Reykjavik, Iceland;Paris, France;2017-04-08;13:30;03:10;187;187;2283.93
+741431;Seoul, South Korea;Athens, Greece;2017-04-06;15:45;03:10;93;93;149.71
+500221;New York, USA;New Delhi, India;2017-04-02;22:30;02:15;97;97;4678.57
+722303;Hong Kong, China;Moscow, Russia;2017-04-08;09:00;12:00;215;215;873.41
+440114;Dubai, UAE;Tokyo, Japan;2017-04-01;22:30;03:10;336;336;676.9
+849418;Amsterdam, Netherlands;Barcelona, Spain;2017-04-06;06:45;14:15;488;488;2459.46
+159668;Sydney, Australia;New York, USA;2017-04-05;04:30;05:40;210;210;2122.7
+399940;Florence, Italy;Calgary, Canada;2017-04-02;11:15;02:15;196;196;448.02
+477157;Vancouver, Canada;Bangkok, Thailand;2017-04-07;02:15;02:15;353;353;1108.78
+430885;New Delhi, India;Cancun, Mexico;2017-04-09;06:45;06:50;449;449;2368.74
+392470;Johannesburg, South Africa;Barcelona, Spain;2017-04-08;18:00;07:40;304;304;1557.71
+999352;Florence, Italy;Barcelona, Spain;2017-04-02;20:15;06:50;474;474;2826.91
+550390;Cancun, Mexico;London, England;2017-04-04;23:45;09:10;213;213;494.1
+646124;Barcelona, Spain;Berlin, Germany;2017-04-06;02:15;12:00;375;375;2654.08
+202329;Barcelona, Spain;Florence, Italy;2017-04-03;23:45;06:50;85;85;1116.71
+388788;Barcelona, Spain;Seoul, South Korea;2017-04-10;23:45;05:40;234;234;609.67
+118174;Berlin, Germany;Sydney, Australia;2017-04-04;15:45;04:20;430;430;3829.98
+843727;London, England;Johannesburg, South Africa;2017-04-09;20:15;11:30;171;171;4265.96
+362746;London, England;Florence, Italy;2017-04-10;13:30;04:20;404;404;2037.7
+803245;Bangkok, Thailand;Reykjavik, Iceland;2017-04-10;13:30;14:15;145;145;387.23
+318887;Amsterdam, Netherlands;Tokyo, Japan;2017-04-02;18:00;07:15;227;227;2574.02
+954349;Amsterdam, Netherlands;Paris, France;2017-04-07;06:45;09:10;266;266;2610.31
+710972;Madrid, Spain;Ottawa, Canada;2017-04-05;22:30;09:10;236;236;1798.43
+457146;New York, USA;Athens, Greece;2017-04-04;13:30;01:30;279;279;2198.94
+980073;Tokyo, Japan;Berlin, Germany;2017-04-07;13:30;02:15;482;482;593.52
+301886;Dubai, UAE;Berlin, Germany;2017-04-04;15:45;09:10;324;324;3340.99
+929503;Florence, Italy;London, England;2017-04-03;13:30;06:50;82;82;4032.52
+784564;New York, USA;Vancouver, Canada;2017-04-05;13:30;06:50;301;301;3502.15
+446390;Sydney, Australia;Bangkok, Thailand;2017-04-03;13:30;07:15;160;160;2634.44
+264536;Cancun, Mexico;Bangkok, Thailand;2017-04-03;04:30;04:20;69;69;381.35
+861337;Sydney, Australia;Barcelona, Spain;2017-04-04;00:00;07:15;206;206;4150.61
+368713;London, England;Vancouver, Canada;2017-04-04;23:45;05:40;381;381;989.27
+451697;Berlin, Germany;Cancun, Mexico;2017-04-06;13:30;07:40;227;227;4882.27
+627043;Florence, Italy;New York, USA;2017-04-07;09:00;09:10;341;341;253.5
+644979;Sydney, Australia;Vancouver, Canada;2017-04-04;15:45;06:50;231;231;770.7
+701110;New York, USA;Los Angeles, USA;2017-04-08;20:15;05:40;365;365;4826.23
+425806;Amsterdam, Netherlands;New York, USA;2017-04-04;20:15;04:20;296;296;3393.6
+870437;Bangkok, Thailand;Ottawa, Canada;2017-04-04;06:45;01:30;128;128;4240.63
+248481;Bangkok, Thailand;Berlin, Germany;2017-04-03;13:30;14:15;115;115;1407.78
+916865;Vancouver, Canada;New Delhi, India;2017-04-04;18:00;03:10;365;365;4572.87
+255883;Paris, France;Ottawa, Canada;2017-04-10;02:15;11:30;71;71;4150.35
+972024;Madrid, Spain;Sydney, Australia;2017-04-10;23:45;11:30;72;72;1551.8
+713749;Florence, Italy;Johannesburg, South Africa;2017-04-03;15:45;03:10;469;469;301.02
+263544;Johannesburg, South Africa;New Delhi, India;2017-04-04;00:00;07:40;355;355;4479.24
+175101;Dubai, UAE;Moscow, Russia;2017-04-05;22:30;01:30;420;420;4751.51
+443190;Paris, France;New York, USA;2017-04-08;15:45;06:50;352;352;4323.53
+957458;Cancun, Mexico;Tokyo, Japan;2017-04-08;09:00;14:15;387;387;3356.66
+643489;Hong Kong, China;Rio De Janeiro, Brazil;2017-04-03;11:15;12:00;271;271;1547.4
+550601;Hong Kong, China;Seoul, South Korea;2017-04-05;18:00;14:15;314;314;78.01
+707481;Tokyo, Japan;Cancun, Mexico;2017-04-10;13:30;12:00;69;69;3359.15
+366125;Vancouver, Canada;Tokyo, Japan;2017-04-02;23:45;09:10;349;349;3308.5
+425694;Ottawa, Canada;Berlin, Germany;2017-04-02;15:45;05:40;251;251;2975.48
+871156;Athens, Greece;New Delhi, India;2017-04-09;04:30;07:40;303;303;3761.4
+600788;Florence, Italy;Paris, France;2017-04-05;11:15;04:20;158;158;2188.08
+858163;Reykjavik, Iceland;Seoul, South Korea;2017-04-05;04:30;02:15;362;362;1684.5
+376584;Reykjavik, Iceland;Los Angeles, USA;2017-04-02;13:30;03:10;265;265;2875.1
+592573;Johannesburg, South Africa;Tokyo, Japan;2017-04-10;23:45;01:30;261;261;630.24
+315824;Seoul, South Korea;Hong Kong, China;2017-04-01;13:30;09:10;83;83;3765.43
+967527;Berlin, Germany;Sydney, Australia;2017-04-08;15:45;14:15;160;160;924.77
+393547;Amsterdam, Netherlands;London, England;2017-04-01;06:45;12:00;391;391;2210.75
+267781;Vancouver, Canada;Paris, France;2017-04-03;15:45;07:40;69;69;3782.35
+425019;Vancouver, Canada;Madrid, Spain;2017-04-09;15:45;07:15;244;244;133.84
+438039;Seoul, South Korea;Bangkok, Thailand;2017-04-04;11:15;09:10;479;479;3279.38
+534991;Seoul, South Korea;Ottawa, Canada;2017-04-04;13:30;07:15;369;369;1891.76
+284276;Bangkok, Thailand;Paris, France;2017-04-04;02:15;09:10;260;260;277.25
+731461;Dubai, UAE;Barcelona, Spain;2017-04-05;18:00;01:30;262;262;3890.17
+636699;Tokyo, Japan;Cancun, Mexico;2017-04-03;15:45;07:40;100;100;85.97
+138429;Moscow, Russia;Barcelona, Spain;2017-04-06;11:15;05:40;461;461;2553.52
+850272;Berlin, Germany;Florence, Italy;2017-04-02;20:15;05:40;321;321;146.37
+663777;New Delhi, India;Seoul, South Korea;2017-04-09;02:15;05:40;118;118;4575.71
+722216;Reykjavik, Iceland;Athens, Greece;2017-04-03;06:45;09:10;250;250;4712.32
+538775;Vancouver, Canada;Dubai, UAE;2017-04-03;00:00;09:10;51;51;3614.1
+290025;Sydney, Australia;Johannesburg, South Africa;2017-04-03;18:00;11:30;264;264;3819.73
+352665;Seoul, South Korea;Cancun, Mexico;2017-04-06;02:15;03:10;115;115;2486.77
+695767;Los Angeles, USA;Madrid, Spain;2017-04-08;02:15;06:50;292;292;3486.13
+148399;Ottawa, Canada;Vancouver, Canada;2017-04-05;22:30;02:15;136;136;3065.97
+934797;Reykjavik, Iceland;Tokyo, Japan;2017-04-09;06:45;11:30;90;90;4307.46
+397393;Vancouver, Canada;Calgary, Canada;2017-04-01;13:30;11:30;53;53;2753.2
+141206;Athens, Greece;Hong Kong, China;2017-04-03;22:30;06:50;432;432;2276.22
+750927;Reykjavik, Iceland;Seoul, South Korea;2017-04-03;00:00;14:15;71;71;1773.86
+909672;Dubai, UAE;Calgary, Canada;2017-04-07;18:00;01:30;80;80;4764.84
+729072;New Delhi, India;Florence, Italy;2017-04-05;22:30;05:40;409;409;4965.52
+503559;New York, USA;London, England;2017-04-05;06:45;03:10;75;75;718.45
+217543;Paris, France;Reykjavik, Iceland;2017-04-01;06:45;09:10;316;316;192.89
+680133;Tokyo, Japan;Dubai, UAE;2017-04-06;02:15;05:40;414;414;3947.11
+735119;Reykjavik, Iceland;Los Angeles, USA;2017-04-03;09:00;06:50;79;79;4573.02
+993730;Florence, Italy;Seoul, South Korea;2017-04-10;06:45;09:10;176;176;3511.43
+421764;Hong Kong, China;Amsterdam, Netherlands;2017-04-01;22:30;03:10;398;398;2253.25
+881708;Florence, Italy;Barcelona, Spain;2017-04-09;18:00;04:20;244;244;2544.01
+678055;Seoul, South Korea;Paris, France;2017-04-05;04:30;12:00;131;131;1142.72
+394331;Bangkok, Thailand;Barcelona, Spain;2017-04-01;20:15;01:30;180;180;3698.9
+669342;Tokyo, Japan;Hong Kong, China;2017-04-04;09:00;06:50;309;309;311.4
+981094;Cancun, Mexico;Barcelona, Spain;2017-04-05;06:45;07:40;456;456;3855.0
+998639;Tokyo, Japan;Reykjavik, Iceland;2017-04-05;04:30;07:40;462;462;3042.8
+282763;Moscow, Russia;New York, USA;2017-04-06;20:15;01:30;116;116;1842.37
+294325;Johannesburg, South Africa;Ottawa, Canada;2017-04-08;22:30;06:50;285;285;4969.81
+353374;Sydney, Australia;Johannesburg, South Africa;2017-04-01;11:15;07:15;182;182;4537.09
+817761;Amsterdam, Netherlands;Dubai, UAE;2017-04-06;02:15;07:15;105;105;4151.24
+265691;Berlin, Germany;Los Angeles, USA;2017-04-06;02:15;07:40;243;243;1952.84
+381523;Cancun, Mexico;Dubai, UAE;2017-04-05;18:00;12:00;320;320;4943.79
+430023;Calgary, Canada;Tokyo, Japan;2017-04-06;00:00;12:00;382;382;3017.78
+771946;Johannesburg, South Africa;New York, USA;2017-04-01;23:45;07:15;220;220;263.16
+913542;Madrid, Spain;Seoul, South Korea;2017-04-09;15:45;01:30;472;472;3290.56
+316075;Sydney, Australia;Johannesburg, South Africa;2017-04-10;22:30;03:10;316;316;1442.05
+258205;Madrid, Spain;Amsterdam, Netherlands;2017-04-04;04:30;12:00;243;243;768.12
+104051;Athens, Greece;Barcelona, Spain;2017-04-06;04:30;03:10;352;352;4348.5
+440938;Rio De Janeiro, Brazil;Barcelona, Spain;2017-04-01;22:30;07:15;307;307;221.05
+867529;Cancun, Mexico;Seoul, South Korea;2017-04-01;22:30;14:15;143;143;1493.57
+198268;Calgary, Canada;New York, USA;2017-04-01;11:15;02:15;261;261;4370.29
+232360;Bangkok, Thailand;Hong Kong, China;2017-04-08;09:00;03:10;499;499;2109.9
+866897;Madrid, Spain;Vancouver, Canada;2017-04-09;18:00;06:50;239;239;93.05
+563749;Tokyo, Japan;Vancouver, Canada;2017-04-01;04:30;04:20;315;315;2261.7
+288653;Moscow, Russia;New York, USA;2017-04-10;13:30;09:10;125;125;1357.47
+803163;Berlin, Germany;Los Angeles, USA;2017-04-07;18:00;12:00;368;368;3701.78
+392107;Amsterdam, Netherlands;Reykjavik, Iceland;2017-04-09;02:15;09:10;354;354;842.23
+224479;Athens, Greece;Moscow, Russia;2017-04-02;09:00;09:10;56;56;2989.59
+462269;Rio De Janeiro, Brazil;Johannesburg, South Africa;2017-04-10;00:00;12:00;91;91;308.37
+945288;Cancun, Mexico;Los Angeles, USA;2017-04-09;06:45;02:15;191;191;4919.39
+232538;Sydney, Australia;Madrid, Spain;2017-04-10;04:30;11:30;327;327;1745.34
+790620;Reykjavik, Iceland;Calgary, Canada;2017-04-09;22:30;02:15;131;131;2304.21
+607391;Tokyo, Japan;Florence, Italy;2017-04-01;15:45;04:20;336;336;1388.02
+918362;Tokyo, Japan;Los Angeles, USA;2017-04-02;20:15;09:10;178;178;1369.35
+872650;Calgary, Canada;Amsterdam, Netherlands;2017-04-02;18:00;03:10;144;144;969.26
+247247;London, England;Sydney, Australia;2017-04-01;09:00;12:00;286;286;3143.86
+161584;Ottawa, Canada;Amsterdam, Netherlands;2017-04-02;18:00;02:15;333;333;2060.53
+845842;Madrid, Spain;Sydney, Australia;2017-04-01;11:15;09:10;343;343;498.88
+991683;Florence, Italy;Reykjavik, Iceland;2017-04-01;09:00;07:40;55;55;3928.63
+710338;Tokyo, Japan;Barcelona, Spain;2017-04-07;13:30;05:40;249;249;4776.26
+857356;Ottawa, Canada;New York, USA;2017-04-07;15:45;09:10;129;129;3941.1
+221184;Bangkok, Thailand;New Delhi, India;2017-04-01;22:30;14:15;420;420;3032.36
+171323;Johannesburg, South Africa;Sydney, Australia;2017-04-05;20:15;06:50;268;268;2848.88
+314545;Florence, Italy;Hong Kong, China;2017-04-02;22:30;07:40;348;348;416.46
+927817;Cancun, Mexico;Florence, Italy;2017-04-10;00:00;02:15;75;75;1654.5
+797266;Sydney, Australia;Paris, France;2017-04-03;04:30;09:10;489;489;3517.36
+409848;Berlin, Germany;Tokyo, Japan;2017-04-08;04:30;07:40;136;136;2136.67
+674982;Los Angeles, USA;New York, USA;2017-04-10;22:30;01:30;207;207;676.33
+440745;Berlin, Germany;Barcelona, Spain;2017-04-02;13:30;06:50;480;480;1843.63
+643821;Vancouver, Canada;Cancun, Mexico;2017-04-10;11:15;11:30;200;200;3131.44
+730713;Calgary, Canada;Sydney, Australia;2017-04-02;09:00;14:15;413;413;4355.55
+440159;Moscow, Russia;Paris, France;2017-04-03;04:30;09:10;116;116;1423.49
+284346;Tokyo, Japan;Florence, Italy;2017-04-01;22:30;05:40;328;328;545.85
+317599;Rio De Janeiro, Brazil;Moscow, Russia;2017-04-02;02:15;07:40;284;284;2448.05
+530397;Reykjavik, Iceland;Paris, France;2017-04-08;13:30;05:40;344;344;2104.31
+314954;Rio De Janeiro, Brazil;Ottawa, Canada;2017-04-04;02:15;14:15;292;292;461.72
+267176;Berlin, Germany;Madrid, Spain;2017-04-10;15:45;04:20;307;307;1461.23
+486829;Bangkok, Thailand;Berlin, Germany;2017-04-01;18:00;12:00;100;100;2436.99
+133896;Cancun, Mexico;Athens, Greece;2017-04-10;13:30;06:50;164;164;4087.42
+721183;Florence, Italy;Dubai, UAE;2017-04-06;22:30;01:30;105;105;2465.88
+332141;Tokyo, Japan;Barcelona, Spain;2017-04-06;22:30;07:15;146;146;1303.31
+914815;Athens, Greece;London, England;2017-04-09;13:30;07:15;239;239;1957.38
+466705;Sydney, Australia;New Delhi, India;2017-04-05;06:45;03:10;101;101;435.18
+417191;Paris, France;Barcelona, Spain;2017-04-07;11:15;02:15;241;241;4625.25
+648657;Athens, Greece;Florence, Italy;2017-04-02;11:15;01:30;178;178;313.06
+885946;New Delhi, India;New York, USA;2017-04-04;06:45;12:00;415;415;1689.0
+125465;New York, USA;London, England;2017-04-09;23:45;07:15;469;469;1984.85
+111602;Vancouver, Canada;Bangkok, Thailand;2017-04-02;23:45;14:15;172;172;306.53
+941093;Moscow, Russia;Seoul, South Korea;2017-04-03;06:45;11:30;287;287;4234.78
+916235;Calgary, Canada;Rio De Janeiro, Brazil;2017-04-08;04:30;11:30;336;336;2444.64
+540762;Ottawa, Canada;Barcelona, Spain;2017-04-10;02:15;14:15;466;466;1336.85
+261676;Ottawa, Canada;Cancun, Mexico;2017-04-08;09:00;06:50;406;406;1332.96
+839397;Los Angeles, USA;London, England;2017-04-01;18:00;09:10;260;260;3985.73
+969637;Los Angeles, USA;Madrid, Spain;2017-04-03;11:15;14:15;422;422;3858.75
+286692;Johannesburg, South Africa;Sydney, Australia;2017-04-04;09:00;12:00;365;365;1854.14
+156145;Hong Kong, China;Calgary, Canada;2017-04-03;11:15;04:20;183;183;1370.77
+716082;Los Angeles, USA;Calgary, Canada;2017-04-09;02:15;14:15;372;372;3261.19
+567247;Vancouver, Canada;Bangkok, Thailand;2017-04-05;22:30;12:00;328;328;816.2
+435932;London, England;Vancouver, Canada;2017-04-02;09:00;05:40;353;353;3789.03
+668802;Johannesburg, South Africa;Vancouver, Canada;2017-04-05;13:30;07:40;136;136;3962.94
+778373;Sydney, Australia;Berlin, Germany;2017-04-02;04:30;04:20;149;149;1246.47
+308552;Los Angeles, USA;Florence, Italy;2017-04-06;04:30;01:30;315;315;2763.43
+979517;Ottawa, Canada;New Delhi, India;2017-04-08;18:00;09:10;52;52;3091.25
+188555;New Delhi, India;Cancun, Mexico;2017-04-07;04:30;09:10;236;236;4585.54
+483615;Barcelona, Spain;Madrid, Spain;2017-04-07;22:30;03:10;452;452;4593.34
+344867;Madrid, Spain;Los Angeles, USA;2017-04-01;22:30;01:30;347;347;4039.93
+372283;Barcelona, Spain;New Delhi, India;2017-04-08;09:00;14:15;83;83;3876.41
+411146;Cancun, Mexico;Barcelona, Spain;2017-04-09;18:00;09:10;269;269;231.42
+885770;Sydney, Australia;London, England;2017-04-07;04:30;03:10;380;380;160.72
+887693;London, England;Vancouver, Canada;2017-04-08;20:15;04:20;369;369;4931.58
+172596;Ottawa, Canada;Calgary, Canada;2017-04-03;18:00;06:50;278;278;1879.24
+258576;Calgary, Canada;Amsterdam, Netherlands;2017-04-09;11:15;04:20;223;223;2600.54
+542452;London, England;Rio De Janeiro, Brazil;2017-04-05;18:00;05:40;212;212;4039.56
+601390;Cancun, Mexico;Ottawa, Canada;2017-04-10;00:00;07:40;249;249;34.61
+667630;Dubai, UAE;Calgary, Canada;2017-04-08;11:15;04:20;167;167;478.93
+155233;Bangkok, Thailand;Calgary, Canada;2017-04-10;04:30;01:30;166;166;2851.31
+102759;Bangkok, Thailand;Athens, Greece;2017-04-10;20:15;11:30;126;126;4552.07
+349581;Cancun, Mexico;Madrid, Spain;2017-04-05;23:45;02:15;160;160;2064.09
+535557;New Delhi, India;Dubai, UAE;2017-04-09;02:15;09:10;64;64;1016.6
+701737;Florence, Italy;Moscow, Russia;2017-04-04;09:00;14:15;318;318;2433.23
+265313;London, England;Amsterdam, Netherlands;2017-04-05;20:15;02:15;108;108;3683.34
+149490;New Delhi, India;London, England;2017-04-09;11:15;14:15;121;121;4919.79
+269405;Los Angeles, USA;Cancun, Mexico;2017-04-04;06:45;03:10;132;132;1804.57
+671774;Cancun, Mexico;Johannesburg, South Africa;2017-04-05;00:00;12:00;251;251;1997.72
+163847;Seoul, South Korea;Vancouver, Canada;2017-04-02;18:00;03:10;272;272;1780.13
+399456;Rio De Janeiro, Brazil;Cancun, Mexico;2017-04-02;18:00;07:40;382;382;3405.63
+209829;Moscow, Russia;Paris, France;2017-04-08;04:30;04:20;84;84;2843.34
+866947;Cancun, Mexico;New Delhi, India;2017-04-09;00:00;01:30;440;440;4766.59
+441407;Tokyo, Japan;Calgary, Canada;2017-04-02;23:45;02:15;61;61;3464.37
+605156;Ottawa, Canada;Tokyo, Japan;2017-04-05;11:15;02:15;206;206;1480.58
+747984;Reykjavik, Iceland;Moscow, Russia;2017-04-08;11:15;09:10;426;426;751.21
+162025;Ottawa, Canada;Athens, Greece;2017-04-07;02:15;09:10;123;123;4850.32
+589014;Calgary, Canada;Paris, France;2017-04-08;00:00;09:10;203;203;1986.49
+862166;Dubai, UAE;Barcelona, Spain;2017-04-07;13:30;14:15;321;321;3143.13
+243474;Dubai, UAE;Seoul, South Korea;2017-04-10;00:00;11:30;433;433;4084.46
+107561;Athens, Greece;Paris, France;2017-04-09;20:15;12:00;222;222;1148.25
+578079;Athens, Greece;Barcelona, Spain;2017-04-04;13:30;06:50;281;281;2389.4
+203128;Florence, Italy;Moscow, Russia;2017-04-01;11:15;04:20;317;317;3178.83
+863455;Amsterdam, Netherlands;Madrid, Spain;2017-04-03;00:00;01:30;459;459;4624.21
+741817;Hong Kong, China;Reykjavik, Iceland;2017-04-08;06:45;04:20;187;187;1363.42
+119639;Athens, Greece;Cancun, Mexico;2017-04-08;04:30;14:15;305;305;1166.97
+629209;Tokyo, Japan;Amsterdam, Netherlands;2017-04-10;09:00;12:00;399;399;1785.29
+780690;Ottawa, Canada;New York, USA;2017-04-04;13:30;14:15;411;411;1492.82
+827084;Ottawa, Canada;Florence, Italy;2017-04-10;04:30;06:50;486;486;1093.97
+273803;Athens, Greece;Seoul, South Korea;2017-04-07;04:30;14:15;207;207;1231.77
+906299;Tokyo, Japan;Amsterdam, Netherlands;2017-04-10;20:15;07:15;227;227;4647.18
+525836;Tokyo, Japan;Amsterdam, Netherlands;2017-04-01;11:15;02:15;398;398;3642.56
+108566;New York, USA;Madrid, Spain;2017-04-05;11:15;06:50;194;194;55.39
+155139;Hong Kong, China;Florence, Italy;2017-04-04;23:45;05:40;215;215;1085.71
+917839;New Delhi, India;Hong Kong, China;2017-04-04;04:30;01:30;404;404;4457.63
+201198;New York, USA;Paris, France;2017-04-01;09:00;07:15;218;218;583.58
+718403;Berlin, Germany;Hong Kong, China;2017-04-06;23:45;06:50;67;67;22.2
+245664;Moscow, Russia;Cancun, Mexico;2017-04-10;20:15;06:50;412;412;300.89
+732348;Vancouver, Canada;Paris, France;2017-04-03;23:45;07:15;467;467;3080.94
+169998;Ottawa, Canada;Bangkok, Thailand;2017-04-09;22:30;06:50;152;152;2092.93
+535022;New Delhi, India;New York, USA;2017-04-03;23:45;02:15;227;227;4167.1
+504241;Cancun, Mexico;Sydney, Australia;2017-04-05;00:00;09:10;399;399;1368.67
+759712;Hong Kong, China;Bangkok, Thailand;2017-04-07;20:15;09:10;242;242;2522.2
+761045;London, England;Vancouver, Canada;2017-04-05;06:45;12:00;69;69;1072.45
+226658;Calgary, Canada;Madrid, Spain;2017-04-02;22:30;04:20;378;378;628.04
+836398;Vancouver, Canada;Bangkok, Thailand;2017-04-01;02:15;07:15;129;129;489.96
+903803;Berlin, Germany;Johannesburg, South Africa;2017-04-03;06:45;04:20;238;238;4266.05
+300172;Bangkok, Thailand;Ottawa, Canada;2017-04-05;23:45;03:10;500;500;1335.25
+656640;Johannesburg, South Africa;New York, USA;2017-04-02;04:30;09:10;280;280;1948.39
+598825;Johannesburg, South Africa;Bangkok, Thailand;2017-04-06;09:00;04:20;461;461;4816.36
+955410;Berlin, Germany;Barcelona, Spain;2017-04-02;06:45;07:15;332;332;2161.01
+464790;Vancouver, Canada;Amsterdam, Netherlands;2017-04-06;22:30;04:20;302;302;3229.43
+176523;Vancouver, Canada;Los Angeles, USA;2017-04-04;04:30;14:15;433;433;3234.04
+185273;Amsterdam, Netherlands;Tokyo, Japan;2017-04-05;06:45;14:15;63;63;2142.48
+706989;Athens, Greece;Bangkok, Thailand;2017-04-04;06:45;12:00;278;278;2576.21
+568466;Calgary, Canada;Amsterdam, Netherlands;2017-04-09;06:45;04:20;240;240;4774.95
+693335;Ottawa, Canada;Tokyo, Japan;2017-04-01;09:00;11:30;94;94;1578.89
+434176;New Delhi, India;Seoul, South Korea;2017-04-03;02:15;05:40;356;356;4221.43
+644953;Cancun, Mexico;Vancouver, Canada;2017-04-01;06:45;05:40;367;367;1679.23
+748446;Rio De Janeiro, Brazil;Calgary, Canada;2017-04-03;06:45;14:15;243;243;1905.82
+827309;Reykjavik, Iceland;Berlin, Germany;2017-04-10;22:30;01:30;249;249;3543.52
+854604;Athens, Greece;Reykjavik, Iceland;2017-04-08;06:45;01:30;264;264;3890.64
+975441;Sydney, Australia;Calgary, Canada;2017-04-01;20:15;05:40;317;317;3534.4
+960163;London, England;Sydney, Australia;2017-04-01;20:15;06:50;70;70;1990.08
+104209;Berlin, Germany;Sydney, Australia;2017-04-06;15:45;07:40;322;322;130.5
+339776;Reykjavik, Iceland;Seoul, South Korea;2017-04-04;22:30;01:30;84;84;1976.12
+723339;New York, USA;Tokyo, Japan;2017-04-04;00:00;07:40;147;147;4861.1
+892215;Barcelona, Spain;New Delhi, India;2017-04-05;15:45;06:50;182;182;1278.32
+370080;Sydney, Australia;New Delhi, India;2017-04-02;13:30;11:30;492;492;2294.86
+264531;Seoul, South Korea;London, England;2017-04-06;06:45;07:15;261;261;32.53
+600780;Tokyo, Japan;Vancouver, Canada;2017-04-05;20:15;05:40;422;422;1100.58
+659288;Madrid, Spain;Vancouver, Canada;2017-04-07;23:45;03:10;421;421;3308.25
+620692;Berlin, Germany;Johannesburg, South Africa;2017-04-01;23:45;02:15;400;400;4694.67
+887322;Vancouver, Canada;Cancun, Mexico;2017-04-02;09:00;03:10;150;150;2758.42
+125262;Barcelona, Spain;Sydney, Australia;2017-04-02;22:30;11:30;293;293;1400.92
+359144;Johannesburg, South Africa;Moscow, Russia;2017-04-06;02:15;11:30;68;68;4733.16
+155547;Tokyo, Japan;Calgary, Canada;2017-04-06;13:30;07:15;126;126;3982.8
+302831;Moscow, Russia;Bangkok, Thailand;2017-04-07;20:15;03:10;379;379;3096.03
+116907;New Delhi, India;Berlin, Germany;2017-04-08;00:00;09:10;475;475;2542.42
+870818;Amsterdam, Netherlands;New Delhi, India;2017-04-01;02:15;12:00;187;187;1174.86
+749550;Hong Kong, China;Paris, France;2017-04-10;20:15;02:15;193;193;2723.02
+417830;Moscow, Russia;London, England;2017-04-07;13:30;07:40;383;383;199.8
+641087;Dubai, UAE;New York, USA;2017-04-09;20:15;07:15;469;469;3273.39
+145953;Johannesburg, South Africa;Rio De Janeiro, Brazil;2017-04-09;04:30;07:40;86;86;1893.55
+986674;Calgary, Canada;Athens, Greece;2017-04-04;02:15;12:00;301;301;2791.02
+928379;Vancouver, Canada;Los Angeles, USA;2017-04-09;13:30;04:20;271;271;490.39
+494478;Vancouver, Canada;Bangkok, Thailand;2017-04-01;13:30;07:15;296;296;4468.16
+416780;New Delhi, India;New York, USA;2017-04-09;20:15;07:15;299;299;4233.0
+231925;New Delhi, India;Hong Kong, China;2017-04-03;06:45;01:30;474;474;2773.05
+144849;London, England;Athens, Greece;2017-04-01;13:30;05:40;83;83;2152.18
+243216;Seoul, South Korea;Los Angeles, USA;2017-04-01;00:00;11:30;442;442;2103.02
+908825;Rio De Janeiro, Brazil;Madrid, Spain;2017-04-08;04:30;12:00;230;230;3750.91
+616504;Athens, Greece;Dubai, UAE;2017-04-06;02:15;05:40;345;345;3031.78
+314990;Bangkok, Thailand;Los Angeles, USA;2017-04-03;06:45;12:00;485;485;1621.0
+433930;Barcelona, Spain;Dubai, UAE;2017-04-08;15:45;04:20;315;315;1245.05
+714020;Ottawa, Canada;Johannesburg, South Africa;2017-04-05;11:15;01:30;419;419;1623.86
+967516;Ottawa, Canada;Paris, France;2017-04-09;13:30;02:15;418;418;120.87
+401569;Reykjavik, Iceland;Dubai, UAE;2017-04-07;00:00;03:10;239;239;3553.15
+201486;Bangkok, Thailand;Paris, France;2017-04-02;22:30;07:15;71;71;535.12
+614707;Dubai, UAE;Vancouver, Canada;2017-04-04;15:45;01:30;184;184;1508.3
+844410;Reykjavik, Iceland;Johannesburg, South Africa;2017-04-07;18:00;06:50;214;214;1399.08
+250856;Moscow, Russia;New Delhi, India;2017-04-01;18:00;06:50;168;168;2795.51
+221869;Vancouver, Canada;New York, USA;2017-04-05;06:45;07:40;383;383;4932.27
+666365;Los Angeles, USA;Berlin, Germany;2017-04-04;11:15;05:40;125;125;2099.34
+868176;Reykjavik, Iceland;Dubai, UAE;2017-04-04;23:45;14:15;93;93;1335.57
+117147;New York, USA;Los Angeles, USA;2017-04-03;23:45;06:50;278;278;4613.55
+283336;Reykjavik, Iceland;Cancun, Mexico;2017-04-02;20:15;01:30;317;317;2385.18
+192037;Hong Kong, China;Seoul, South Korea;2017-04-07;13:30;09:10;231;231;4182.49
+444332;Calgary, Canada;Madrid, Spain;2017-04-06;09:00;12:00;403;403;462.68
+141490;Berlin, Germany;Amsterdam, Netherlands;2017-04-02;04:30;03:10;435;435;1753.81
+967962;Hong Kong, China;Reykjavik, Iceland;2017-04-02;09:00;03:10;390;390;777.78
+293779;Madrid, Spain;Hong Kong, China;2017-04-07;23:45;06:50;387;387;2003.29
+516750;New York, USA;Vancouver, Canada;2017-04-01;09:00;05:40;467;467;1070.07
+732014;Athens, Greece;Ottawa, Canada;2017-04-10;02:15;05:40;270;270;286.87
+626813;Dubai, UAE;New York, USA;2017-04-01;23:45;02:15;209;209;1084.31
+623043;Reykjavik, Iceland;Tokyo, Japan;2017-04-06;02:15;11:30;219;219;4382.19
+837134;Calgary, Canada;Athens, Greece;2017-04-03;06:45;03:10;141;141;2391.76
+561186;Sydney, Australia;Reykjavik, Iceland;2017-04-10;06:45;09:10;221;221;3124.94
+890677;Dubai, UAE;Paris, France;2017-04-06;09:00;12:00;234;234;1844.55
+515568;Cancun, Mexico;Los Angeles, USA;2017-04-07;02:15;11:30;90;90;155.68
+476008;New Delhi, India;Rio De Janeiro, Brazil;2017-04-07;15:45;01:30;163;163;4678.05
+208680;Calgary, Canada;London, England;2017-04-04;15:45;05:40;303;303;2416.79
+814865;Tokyo, Japan;Berlin, Germany;2017-04-01;13:30;04:20;81;81;2442.83
+559521;Vancouver, Canada;Berlin, Germany;2017-04-09;04:30;03:10;367;367;2794.07

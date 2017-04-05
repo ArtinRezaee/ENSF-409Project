@@ -6,7 +6,7 @@ public class RandomGenerator
 {
     static String[] cities = {"London, England", "Tokyo, Japan", "Paris, France", "Berlin, Germany", "Seoul, South Korea", "Moscow, Russia", "Madrid, Spain",
             "Hong Kong, China", "Calgary, Canada", "Vancouver, Canada", "Athens, Greece", "Johannesburg, South Africa", "Los Angeles, USA", "Florence, Italy", "Sydney, Australia",
-            "Amsterdam, Netherlands", "New Delhi, India", "Cancun, Mexico", "Rio De Janeiro, Brazil", "Ottawa, Canada", "Reykjavik, Iceland", "New York, USA", "Dubai, United Arab Emirates",
+            "Amsterdam, Netherlands", "New Delhi, India", "Cancun, Mexico", "Rio De Janeiro, Brazil", "Ottawa, Canada", "Reykjavik, Iceland", "New York, USA", "Dubai, UAE",
             "Barcelona, Spain", "Bangkok, Thailand"};
 	static String[] dates = {"2017-04-01", "2017-04-02", "2017-04-03", "2017-04-04", "2017-04-05", "2017-04-06", "2017-04-07", "2017-04-08", "2017-04-09", "2017-04-10"};
 	static String[] times = {"00:00", "02:15", "04:30", "06:45", "09:00", "11:15", "13:30", "15:45", "18:00", "20:15", "22:30", "23:45"};
@@ -26,16 +26,30 @@ public class RandomGenerator
         return randomValue;
     }
 
+    public static Boolean checkFNum(ArrayList<Integer> list, int n)
+    {
+        Boolean valid = true;
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(n == list.get(i))
+            {
+                valid = false;
+                break;
+            }
+        }
+        return valid;
+    }
+
     public static void main(String[] args)
     {
-        ArrayList<Integer> fnumList = new ArrayList<>();
+        ArrayList<Integer> fList = new ArrayList<>();
         PrintWriter write = null;
         try{
-            write = new PrintWriter("catalog.txt");
+            write = new PrintWriter("flightCatalog.txt");
         }catch(FileNotFoundException e)
         {e.printStackTrace();}
 
-        for(int i = 0; i < 350; i++)
+        for(int i = 0; i < 400; i++)
         {
             int fnum = randomInt(100000, 999999);
             int srcI = randomInt(0, 24);
@@ -49,17 +63,14 @@ public class RandomGenerator
             while(destI == srcI)
                 destI = randomInt(0, 24);
 
-            for(int j = 0; j < fnumList.size(); j++)
-            {
+            while(!checkFNum(fList, fnum))
+                fnum = randomInt(100000, 999999);
 
-            }
-
-            //System.out.println(fnum + " " + srcI + " " + destI + " " + dateI + " " + timeI + " " + seats + " " + price);
+            fList.add(fnum);
 
 			String line = fnum + ";" + cities[srcI] + ";" + cities[destI] + ";" + dates[dateI] + ";" + times[timeI] + ";" + duration[durI] + ";" + seats + ";" + seats + ";" + price;
 			write.println(line);
         }
-
         write.close();
     }
 }

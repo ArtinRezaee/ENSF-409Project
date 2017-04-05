@@ -460,6 +460,7 @@ public class Client
             }
         });
 
+        passengerFrame.pack();
         return passengerFrame;
     }
 
