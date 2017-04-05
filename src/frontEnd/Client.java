@@ -823,7 +823,7 @@ public class Client
                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new
                                                 String[]{"Print Ticket","Cancel"}, "default");
 
-                                if(res == 1){
+                                if(res == 0){
                                     ticket.print();
                                 }
                                 else{}
