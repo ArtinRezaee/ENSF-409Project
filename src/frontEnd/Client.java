@@ -1,6 +1,7 @@
 package frontEnd;
 
 import backEnd.FlightCatalogue;
+import backEnd.Ticket;
 import backEnd.Flight;
 import backEnd.UserInfo;
 import javax.swing.*;
@@ -400,7 +401,22 @@ public class Client
                 		stringOut.println("Booking");
                 		try {
 							objectOut.writeObject(booking);
+							String line = stringIn.readLine();
+							if(line.equals("Booking successful")){
+								
+								Ticket ticket = (Ticket)objectIn.readObject();
+								int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking info", 
+										  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new 
+										  String[]{"Print Ticket","Cancel"}, "default");
+								
+								if(res == 1){
+									ticket.print();
+								}
+								else{}
+							}
 						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
                 	}
