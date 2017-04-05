@@ -2,51 +2,57 @@ package backEnd;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Ticket
+public class Ticket implements Serializable
 {
-   private String fName, lName, source , destination, time, date;
+   private String fName, lName, source , destination, time, date, duration;
    private  double totalPrice;
    private int ticketId;
    private ArrayList<Object> allFields;
-   private static int TICKETS = 0;
+   private static int TICKETS = 1;
+
+	static final long serialVersionUID = 1234689;
     /** constructor **/
-    public Ticket(String f,String l,String s,String d,String t, String date, double tPrice, int ticketId) {
-    	allFields = new ArrayList<Object>();
-    	fName = f;
-    	lName = l;
-    	source = s;
-    	destination = d;
-    	time = t;
-    	this.date = date;
-    	totalPrice = tPrice;
-    	this.ticketId = ticketId;
-    	allFields.add(fName);
-    	allFields.add(lName);
-    	allFields.add(source);
-      	allFields.add(destination);
-    	allFields.add(time);
-    	allFields.add(this.date);
-      	allFields.add(totalPrice);
-    	allFields.add(this.ticketId);
-    	TICKETS++;
-    }
+    public Ticket(String f,String l,String s,String d,String date,String t, String dur, double tPrice, int ticketId) {
+		allFields = new ArrayList<Object>();
+		fName = f;
+		lName = l;
+		source = s;
+		destination = d;
+		time = t;
+		duration = dur;
+		this.date = date;
+		totalPrice = tPrice;
+		this.ticketId = ticketId;
+		allFields.add(fName);
+		allFields.add(lName);
+		allFields.add(source);
+		allFields.add(destination);
+		allFields.add(this.date);
+		allFields.add(time);
+		allFields.add(duration);
+		allFields.add(totalPrice);
+		allFields.add(this.ticketId);
+		TICKETS++;
+	}
 
     /** methods to print the ticket **/
     public void print(){
-    	
+		System.out.println("gets to print");
     	try {
-			PrintWriter writer = new PrintWriter("Ticket"+TICKETS+"_"+ fName+ "_"+ lName +".txt", "UTF-8");	
-			String[] options = {"First Name: ", "Last Name:", "Source: ", "Destination: ", "Time of Departure: ", 
-								"Date of Departure: ", "Price: ", "Ticket ID: "};
+			PrintWriter writer = new PrintWriter("Ticket"+TICKETS+"_"+fName+"_"+lName+".txt", "UTF-8");
+			String[] options = {"First Name: ", "Last Name:", "Source: ", "Destination: ", "Date of Departure: ",
+								"Time of Departure: ","Flight Duration: ", "Price including 7% tax: ", "Ticket ID: "};
 			int j = 0;
 	    	Iterator i = allFields.iterator();
 	    	while(i.hasNext()){
 	    		writer.print(options[j]);
 	    		writer.println(i.next());
+	    		j++;
 	    	}
 			writer.close();
 		} catch (FileNotFoundException e) {

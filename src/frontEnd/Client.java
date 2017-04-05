@@ -390,12 +390,11 @@ public class Client
                 {
                 	JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
                 	boolean isEmpty = false;
-                	
+
                 	for(int i=0; i<allFields.length; i++){
-                		if(allFields[i].getText().equals(""))
+                		if(allFields[i].getText().trim().equals(""))
                 			isEmpty = true;
                 	}
-                	
                 	if(!isEmpty){
                 		Booking booking = new Booking(clientId,Integer.parseInt(flightNum.getText()));
                 		stringOut.println("Booking");
@@ -409,7 +408,7 @@ public class Client
 										  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new 
 										  String[]{"Print Ticket","Cancel"}, "default");
 								
-								if(res == 1){
+								if(res == 0){
 									ticket.print();
 								}
 								else{}
