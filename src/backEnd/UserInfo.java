@@ -1,8 +1,8 @@
-package frontEnd;
-// Created by satyaki on Apr 3 2017.
+package backEnd;
+
 import java.io.Serializable;
 
-public class NewUserInfo implements Serializable
+public class UserInfo implements Serializable
 {
     private String first;
     private String last;
@@ -12,7 +12,7 @@ public class NewUserInfo implements Serializable
 
     static final long serialVersionUID = 11111110;
 
-    public NewUserInfo(String a, String b, String c, String d, String e)
+    public UserInfo(String a, String b, String c, String d, String e)
     {
         first = a;
         last = b;
@@ -26,4 +26,9 @@ public class NewUserInfo implements Serializable
     public String getMail(){ return email; }
     public String getPass(){ return password; }
     public String getType(){ return type; }
+
+    public String toString()
+    {
+        return (email + ": " + first + " " + last + " - " + type);
+    }
 }

@@ -1,5 +1,5 @@
-// Created by crist on 2017-04-01
 package backEnd;
+
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public class FlightCatalogue implements Serializable
 {
-	static final long serialVersionUID = 2;
-    private ArrayList<Flight> flights;
+	private ArrayList<Flight> flights;
+
+	static final long serialVersionUID = 2235612;
 
     //Constructor
     public FlightCatalogue(ResultSet set)
@@ -32,6 +33,11 @@ public class FlightCatalogue implements Serializable
 		}catch(SQLException e)
 		{	e.printStackTrace();	}
     }
+
+	public FlightCatalogue(ArrayList<Flight> f)
+	{
+		flights = f;
+	}
 
     public ArrayList<Flight> getFlights()
 	{

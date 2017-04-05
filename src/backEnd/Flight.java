@@ -1,11 +1,10 @@
-// Created by crist on 2017-04-01
 package backEnd;
 
 import java.io.Serializable;
 
 public class Flight implements Serializable
 {
-    /** Member functions of class Flight **/
+    // Member functions of class Flight
     private int flightNumber;
     private String source;
     private String destination;
@@ -16,12 +15,10 @@ public class Flight implements Serializable
     private int availableSeats;
     private double price;
 
-    static final long serialVersionUID = 3;
+    static final long serialVersionUID = 3123567;
 
-    /** Constructor **/
     public Flight(int flightNumber, String source, String destination, String date, String time,
-                  String duration, int totalSeats, int availableSeats, double price)
-    {
+                  String duration, int totalSeats, int availableSeats, double price) {
         this.flightNumber = flightNumber;
         this.source = source;
         this.destination = destination;
@@ -31,11 +28,6 @@ public class Flight implements Serializable
         this.totalSeats = totalSeats;
         this.availableSeats = availableSeats;
         this.price = price;
-    }
-
-    public String toString()
-    {
-        return(source + " to " + destination + " on " + date);
     }
 
     public int getNum()     {   return flightNumber;    }
@@ -48,6 +40,8 @@ public class Flight implements Serializable
     public int getAvailSeats() {   return availableSeats;    }
     public double getPrice()    {   return price;   }
 
-
-
+    public String toString()
+    {
+        return(source + " to " + destination + " on " + date);
+    }
 }

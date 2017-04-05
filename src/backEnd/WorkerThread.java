@@ -10,8 +10,6 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import frontEnd.NewUserInfo;
-
 public class WorkerThread extends Thread{
 	private Socket socket;
 	private BufferedReader stringIn;
@@ -44,7 +42,7 @@ public class WorkerThread extends Thread{
 				if(line.equals("adduser"))
 				{
 					//System.out.println("Here");
-					NewUserInfo info = (NewUserInfo)objectIn.readObject();
+					UserInfo info = (UserInfo)objectIn.readObject();
 					System.out.println(info.getFirst());
 					db.insert("clients", "'"+info.getMail()+"', '"+ info.getFirst() +"', '" 
 							  + info.getLast() +"', '" +info.getPass() + "', '"+ info.getType() +"'");
