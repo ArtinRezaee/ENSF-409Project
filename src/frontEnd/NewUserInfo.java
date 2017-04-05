@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class NewUserInfo implements Serializable
 {
-    public String first;
-    public String last;
-    public String email;
-    public String password;
-    public String type;
+    private String first;
+    private String last;
+    private String email;
+    private String password;
+    private String type;
 
-    static final long serialVersionUID = 1;
+    static final long serialVersionUID = 11111110;
 
     public NewUserInfo(String a, String b, String c, String d, String e)
     {
@@ -20,4 +20,10 @@ public class NewUserInfo implements Serializable
         password = d;
         type = e;
     }
+    
+    public String getFirst(){ return first; }
+    public String getLast(){ return last; }
+    public String getMail(){ return email; }
+    public String getPass(){ return password; }
+    public String getType(){ return type; }
 }

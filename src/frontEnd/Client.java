@@ -41,6 +41,7 @@ public class Client
             objectIn = new ObjectInputStream(socket.getInputStream());
 
             loginGUI = makeLoginGUI();
+            loginGUI.setVisible(true);
         }catch(IOException err1)
         {
             System.err.println(err1.getMessage());
@@ -327,48 +328,7 @@ public class Client
         {
             public void actionPerformed(ActionEvent action)
             {
-                if(action.getSource() == search)
-                {
-                    String query = "";
-                    String error = "";
-                    if(dateField.getText().trim().length() != 0)
-                    {
-                        String date = dateField.getText().trim();
-                        Boolean check = true;
-                        if(date.length() != 10)
-                            error += "Date has to be in this format: YYYY-MM-DD\n";
-
-                        for(int i = 0; i < date.length(); i++)
-                        {
-                            char a = date.charAt(i);
-                            if(i == 4 || i == )
-                        }
-
-                    }
-                    if(sourceField.getText().trim().length() != 0)
-                    {
-
-                    }
-                    if(destField.getText().trim().length() != 0)
-                    {
-
-                    }
-
-                    if(error.equals(""))
-                    {
-                        stringOut.println("searchflights");
-                        stringOut.println(query);
-                    }
-                    else
-                    {
-
-                        JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
-                else if(action.getSource() == book)
-                {
-
-                }
+               
             }
         }
 
@@ -501,8 +461,8 @@ public class Client
                             error += "Your password cannot be empty.\n";
                     }
 
-                    if(error.equals(""))
-                    {
+                    if(error.equals("")){
+                    	System.out.println(f + " " + l + " " + e + " " + p + " " + t);
                         NewUserInfo info = new NewUserInfo(f, l, e, p, t);
                         try {
                             stringOut.println("adduser");
