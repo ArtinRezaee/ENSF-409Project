@@ -21,7 +21,7 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,34 +84,7 @@ public class DatabaseConnector
 			e.printStackTrace();
 		}
 	}
-	
-	// Method to delete a flight
-	public void deleteFlight(int flightNum ){
-		try {
-			statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM flights WHERE FlightNumber = " + flightNum);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Function to delete a booked ticket from table ticket
-	 * @param flightNum the flight number on the ticket
-	 * @param clientId the clientId of the passenger or Admin
-	 * increments the available seats in the flights table
-	 */
-	public void deleteTicket(int flightNum, String clientId){
-		try {
-			statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM tickets WHERE FlightNumber = " + flightNum + " AND ClientEmail = '" + clientId + "'");
-			statement = connection.createStatement();
-			statement.executeUpdate("UPDATE flights SET AvailableSeats = AvailableSeats + 1 WHERE FlightNumber = " + flightNum);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
+		
 	/**
 	 * Selects all the tuples from the specified table that meet the provided condition
 	 * @param table table to select from
@@ -135,14 +108,19 @@ public class DatabaseConnector
 	}
 	
 	/**
-	 * Deletes the specified tuple that meets the provided condition from the table. Designed for tables flight and Ticket
-	 * @param table table to delete from
-	 * @param id condition to delete the tuples based on
+	 * Method to delete flights or tickets
+	 * @param table the table that we want to delete
+	 * @param id the primary key related to that table
 	 */
-	public void deleteFlight(String table, int id ){
+	public void delete(String table, int id ){
 		try {
 			statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM " + table + " WHERE FlightNumber = " + id);
+			if(table.equals("flights"))
+				statement.executeUpdate("DELETE FROM " + table + " WHERE FlightNumber = " + id);
+			else if(table.equals("tickets")){
+				statement.executeUpdate("DELETE FROM " + table + " WHERE TicketID = " + id);
+				this.incrementFlightSeats(id);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -152,7 +130,7 @@ public class DatabaseConnector
 	 * Deletes the specified tuple that meets the provided condition from the table. Designed for tables clients
 	 * @param Email condition to delete the tuples based on
 	 */
-	public void delete(String Email){
+	public void deleteClient(String Email){
 		try {
 			statement = connection.createStatement();
 			statement.executeUpdate("DELETE FROM clients" + " WHERE Email = '" + Email + "'");
