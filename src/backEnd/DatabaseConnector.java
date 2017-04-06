@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DatabaseConnector
 {
@@ -19,13 +21,17 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flightDatabase", "root", "Domain@21");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Method to add a flights from a text file
+	 * @param fileName
+	 */
 	public void addFlights(String fileName){
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
@@ -48,6 +54,25 @@ public class DatabaseConnector
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Method to add a flights from a text file
+	 * @param Flight catalog that has all the flight on the database
+	 */
+	public void addFlights(FlightCatalogue catalog){
+		
+		ArrayList<Flight> flights = catalog.getFlights();
+		
+		for(int i=0; i<flights.size(); i++){
+			String query = flights.get(i).getNum() + ", '" + flights.get(i).getSrc() + "', '" + flights.get(i).getDest()+ "', '"
+							+ flights.get(i).getDate() + "', '" + flights.get(i).getTime() + "', '" + flights.get(i).getDur() +
+							"', " + flights.get(i).getTotalSeats() + ", " + flights.get(i).getAvailSeats() + ", " + 
+							flights.get(i).getPrice();
+			
+			insert("flights" , query);
+		}
+	}
+	
 	
 	public void insert(String table, String values){
 		try {
@@ -107,5 +132,62 @@ public class DatabaseConnector
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	/**
+	 * Deletes the specified tuple that meets the provided condition from the table. Designed for tables flight and Ticket
+	 * @param table table to delete from
+	 * @param condition condition to delete the tuples based on
+	 */
+	public void delete(String table, int id ){
+		try {
+			statement = connection.createStatement();
+			statement.executeUpdate("DELETE FROM " + table + " WHERE id=" + id );
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Deletes the specified tuple that meets the provided condition from the table. Designed for tables clients
+	 * @param condition condition to delete the tuples based on
+	 */
+	public void delete(String Email){
+		try {
+			statement = connection.createStatement();
+			statement.executeUpdate("DELETE FROM clients" + " WHERE Email=" + Email );
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Method to decrement the available seats of a flight when a ticket is sold
+	 * @param id of the flight
+	 */
+	public void decrementFlightSeats(int id){
+		try {
+			statement = connection.createStatement();
+			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE id = " + id;
+			statement.executeUpdate(stmnt);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Method to increment the available seats of a flight when a ticket is canceled
+	 * @param id of the flight
+	 */
+	public void icrementFlightSeats(int id){
+		try {
+			statement = connection.createStatement();
+			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats+1 WHERE id = " + id;
+			statement.executeUpdate(stmnt);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
