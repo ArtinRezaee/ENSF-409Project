@@ -117,11 +117,11 @@ public class DatabaseConnector
 			if(table.equals("flights"))
 				statement.executeUpdate("DELETE FROM " + table + " WHERE FlightNumber = " + id);
 			else if(table.equals("tickets")){
-				ResultSet set = this.search(table, "TicketID = " + id);
+				ResultSet set = statement.executeQuery("SELECT FlightNumber FROM tickets WHERE TicketID = " + id);
+				set.next();
 				int fn = set.getInt("FlightNumber");
 				this.incrementFlightSeats(fn);
-				Statement stmtx = connection.createStatement();
-				stmtx.executeUpdate("DELETE FROM " + table + " WHERE TicketID = " + id);
+				statement.executeUpdate("DELETE FROM " + table + " WHERE TicketID = " + id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,9 +147,9 @@ public class DatabaseConnector
 	 */
 	public void decrementFlightSeats(int id){
 		try {
-			Statement stmtx = connection.createStatement();
+			statement = connection.createStatement();
 			String query = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE FlightNumber = " + id;
-			stmtx.executeUpdate(query);
+			statement.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -162,9 +162,9 @@ public class DatabaseConnector
 	 */
 	public void incrementFlightSeats(int id){
 		try {
-			Statement stmtx = connection.createStatement();
+			statement = connection.createStatement();
 			String query = "UPDATE flights SET AvailableSeats = AvailableSeats+1 WHERE FlightNumber = " + id;
-			stmtx.executeUpdate(query);
+			statement.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

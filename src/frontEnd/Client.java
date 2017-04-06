@@ -329,11 +329,9 @@ public class Client
                     String source = "";
                     String dest = "";
                     String error = "";
-                    if(dateField.getText().trim().length() != 0)
-                    {
+                    if(dateField.getText().trim().length() != 0) {
                         date = dateField.getText().trim();
-                        for(int i = 0; i < date.length(); i++)
-                        {
+                        for(int i = 0; i < date.length(); i++) {
                             char a = date.charAt(i);
                             if(i == 4 || i == 7) {
                                 if(a != '-')
@@ -345,7 +343,6 @@ public class Client
                             }
                             if(i > 10)
                                 error = "The date has to be in this format: YYYY-MM-DD\n";
-
                         }
                         if(!error.equals(""))
                             date = "";
@@ -372,21 +369,19 @@ public class Client
                         else if(!dest.equals("")) {
                             query = "Destination = '" + dest + "'";
                         }
-                        if(!query.equals("")) {
-                            refreshQuery = query;
-                            stringOut.println("searchflights");
-                            stringOut.println(query);
-                            try{
-                                String line = stringIn.readLine();
-                                FlightCatalogue catalogue = null;
-                                if(line.equals("catalogincoming"))
-                                    catalogue = (FlightCatalogue) objectIn.readObject();
-                                flights = catalogue.getFlights();
-                                for(int i = 0; i < flights.size(); i++)
-                                    listModel.addElement(flights.get(i).toString());
-                            }catch(Exception errx)
-                            {   errx.printStackTrace(); }
-                        }
+                        refreshQuery = query;
+                        stringOut.println("searchflights");
+                        stringOut.println(query);
+                        try{
+                            String line = stringIn.readLine();
+                            FlightCatalogue catalogue = null;
+                            if(line.equals("catalogincoming"))
+                                catalogue = (FlightCatalogue) objectIn.readObject();
+                            flights = catalogue.getFlights();
+                            for(int i = 0; i < flights.size(); i++)
+                                listModel.addElement(flights.get(i).toString());
+                        }catch(Exception errx)
+                        {   errx.printStackTrace(); }
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
@@ -433,7 +428,7 @@ public class Client
                 else if(action.getSource() == refresh)
                 {
                     refresh.setEnabled(false);
-                    if(!refreshQuery.equals("")) {
+                    if(refreshQuery != null) {
                         flightNum.setText("");
                         source.setText("");
                         destination.setText("");
@@ -452,8 +447,12 @@ public class Client
                             if(line.equals("catalogincoming"))
                                 catalogue = (FlightCatalogue) objectIn.readObject();
                             flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.get(i).toString());
+                            if(flights.size() != 0) {
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModel.addElement(flights.get(i).toString());
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, "No Flights Found");
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }

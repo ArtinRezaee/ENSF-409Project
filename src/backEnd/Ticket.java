@@ -1,9 +1,7 @@
 package backEnd;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -61,11 +59,12 @@ public class Ticket implements Serializable
     /** methods to print the ticket **/
     public void print(){
     	try {
-			PrintWriter writer = new PrintWriter("Ticket"+TICKETS+"_"+fName+"_"+lName+".txt", "UTF-8");
+    		PrintWriter writer = new PrintWriter("Ticket_" + TICKETS + "_" + fName + ".txt", "UTF-8");
 			String[] options = {"Ticket ID: ", "Flight Number: ", "First Name: ", "Last Name: ", "Source: ", "Destination: ", "Date of Departure: ",
 								"Time of Departure: ","Flight Duration: ", "Price including 7% tax: $"};
 			int j = 0;
 	    	Iterator i = allFields.iterator();
+	    	writer.println();
 	    	writer.println("TICKET INFO");
 	    	while(i.hasNext()){
 	    		writer.print(options[j]);
