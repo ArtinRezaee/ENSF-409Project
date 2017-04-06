@@ -311,6 +311,7 @@ public class Client
             {
                 if(action.getSource() == search)
                 {
+                    search.setEnabled(false);
                     flightNum.setText("");
                     source.setText("");
                     destination.setText("");
@@ -386,13 +387,15 @@ public class Client
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
+                    search.setEnabled(true);
                 }
                 else if(action.getSource() == book)
                 {
+                    book.setEnabled(false);
                 	JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
                 	boolean isEmpty = false;
 
-                	for(int i=0; i<allFields.length; i++){
+                	for(int i=0; i < allFields.length; i++){
                 		if(allFields[i].getText().trim().equals(""))
                 			isEmpty = true;
                 	}
@@ -422,9 +425,11 @@ public class Client
                 	}
                 	else
                 		JOptionPane.showMessageDialog(null, "Please select a flight to book", "Input Error", JOptionPane.PLAIN_MESSAGE);
+                    book.setEnabled(true);
                 }
                 else if(action.getSource() == refresh)
                 {
+                    refresh.setEnabled(false);
                     if(!refreshQuery.equals("")) {
                         flightNum.setText("");
                         source.setText("");
@@ -449,6 +454,7 @@ public class Client
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
+                    refresh.setEnabled(true);
                 }
             }
         }
@@ -529,7 +535,7 @@ public class Client
         JTextField destField = new JTextField(15);
 
         //add Flights fields
-        JButton addF = new JButton("Add one Flight");
+        JButton addF = new JButton("Add One Flight");
         JButton addFlights = new JButton("Add Flights");
         JTextField fileName = new JTextField(10);
 
@@ -574,7 +580,6 @@ public class Client
         //col 1 - flights
         JPanel col1 = new JPanel();
         col1.setLayout(new GridLayout(2, 1));
-        col1.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
         JPanel oneTop = new JPanel();
         oneTop.setLayout(new BorderLayout());
         JPanel oneTopN = new JPanel();
@@ -659,7 +664,6 @@ public class Client
         //col3 - tickets
         JPanel col3 = new JPanel();
         col3.setLayout(new GridLayout(2, 1));
-        //col3.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
         JPanel threeTop = new JPanel();
         threeTop.setLayout(new BorderLayout());
         JPanel threeTopN = new JPanel();
@@ -688,7 +692,6 @@ public class Client
         //col4 - users
         JPanel col4 = new JPanel();
         col4.setLayout(new GridLayout(2, 1));
-        //col4.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 0));
         JPanel fourTop = new JPanel();
         fourTop.setLayout(new BorderLayout());
         JPanel fourTopN = new JPanel();
@@ -727,6 +730,7 @@ public class Client
             {
                 if(action.getSource() == searchF)
                 {
+                    searchF.setEnabled(false);
                     flightNum.setText("");
                     source.setText("");
                     destination.setText("");
@@ -802,13 +806,15 @@ public class Client
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
+                    searchF.setEnabled(true);
                 }
                 else if(action.getSource() == bookF)
                 {
+                    bookF.setEnabled(false);
                     JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
                     boolean isEmpty = false;
 
-                    for(int i=0; i<allFields.length; i++){
+                    for(int i=0; i < allFields.length; i++){
                         if(allFields[i].getText().equals(""))
                             isEmpty = true;
                     }
@@ -820,12 +826,10 @@ public class Client
                             objectOut.writeObject(booking);
                             String line = stringIn.readLine();
                             if(line.equals("Booking successful")){
-
                                 Ticket ticket = (Ticket)objectIn.readObject();
-                                int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking info",
+                                int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking Info",
                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new
                                                 String[]{"Print Ticket","Cancel"}, "default");
-
                                 if(res == 0){
                                     ticket.print();
                                 }
@@ -839,9 +843,11 @@ public class Client
                     }
                     else
                         JOptionPane.showMessageDialog(null, "Please select a flight to book", "Input Error", JOptionPane.PLAIN_MESSAGE);
+                    bookF.setEnabled(true);
                 }
                 else if(action.getSource() == refreshF)
                 {
+                    refreshF.setEnabled(false);
                     if(!refreshQuery.equals("")) {
                         flightNum.setText("");
                         source.setText("");
@@ -866,9 +872,11 @@ public class Client
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
+                    refreshF.setEnabled(true);
                 }
                 else if(action.getSource() == addFlights)
                 {
+                    addFlights.setEnabled(false);
                     String file = "";
                     String error = "";
                     String[] arr;
@@ -917,6 +925,11 @@ public class Client
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+                    addFlights.setEnabled(true);
+                }
+                else if(action.getSource() == addF)
+                {
+                    makeFlightGUI();
                 }
                 else if(action.getSource() == deleteF){
                 	if(!flightNum.getText().equals("")){
@@ -1097,7 +1110,6 @@ public class Client
                 }
             }
         });
-        //adminFrame.pack();
         return adminFrame;
     }
 
@@ -1241,6 +1253,157 @@ public class Client
                 }
             }
         });
+    }
+
+    private void makeFlightGUI()
+    {
+        JFrame flightFrame = new JFrame();
+        flightFrame.setTitle("Flight");
+        flightFrame.setLayout(new GridLayout(10, 1));
+
+        JButton confirmFlight = new JButton("Confirm");
+        JTextField num = new JTextField(10);
+        JTextField src = new JTextField(10);
+        JTextField dst = new JTextField(10);
+        JTextField date = new JTextField(10);
+        JTextField time = new JTextField(10);
+        JTextField dur = new JTextField(10);
+        JTextField tseats = new JTextField(10);
+        JTextField aseats = new JTextField(10);
+        JTextField price = new JTextField(10);
+
+        JPanel p1 = new JPanel(new FlowLayout());
+        JPanel p2 = new JPanel(new FlowLayout());
+        JPanel p3 = new JPanel(new FlowLayout());
+        JPanel p4 = new JPanel(new FlowLayout());
+        JPanel p5 = new JPanel(new FlowLayout());
+        JPanel p6 = new JPanel(new FlowLayout());
+        JPanel p7 = new JPanel(new FlowLayout());
+        JPanel p8 = new JPanel(new FlowLayout());
+        JPanel p9 = new JPanel(new FlowLayout());
+        JPanel p10 = new JPanel(new FlowLayout());
+
+        p1.add(new JLabel("Flight Number   "));
+        p1.add(num);
+        p2.add(new JLabel("Source                "));
+        p2.add(src);
+        p3.add(new JLabel("Destination        "));
+        p3.add(dst);
+        p4.add(new JLabel("Date                    "));
+        p4.add(date);
+        p5.add(new JLabel("Time                    "));
+        p5.add(time);
+        p6.add(new JLabel("Duration             "));
+        p6.add(dur);
+        p7.add(new JLabel("Total Seats        "));
+        p7.add(tseats);
+        p8.add(new JLabel("Available Seats"));
+        p8.add(aseats);
+        p9.add(new JLabel("Price                   "));
+        p9.add(price);
+        p10.add(confirmFlight);
+
+        flightFrame.add(p1);
+        flightFrame.add(p2);
+        flightFrame.add(p3);
+        flightFrame.add(p4);
+        flightFrame.add(p5);
+        flightFrame.add(p6);
+        flightFrame.add(p7);
+        flightFrame.add(p8);
+        flightFrame.add(p9);
+        flightFrame.add(p10);
+
+        class flightListener implements ActionListener
+        {
+            @Override
+            public void actionPerformed(ActionEvent action)
+            {
+                if(action.getSource() == confirmFlight)
+                {
+                    confirmFlight.setEnabled(false);
+                    String error = "";
+                    String one = num.getText().trim();
+                    String two = src.getText().trim();
+                    String three = dst.getText().trim();
+                    String four = date.getText().trim();
+                    String five = time.getText().trim();
+                    String six = dur.getText().trim();
+                    String seven = tseats.getText().trim();
+                    String eight = aseats.getText().trim();
+                    String nine = price.getText().trim();
+
+                    try {
+                        if(Integer.parseInt(one) <= 0)
+                            error += "Flight Number has to be a positive integer.\n";
+                        if(two.length() > 40 || two.length() < 1)
+                            error += "Source cannot be empty and less than 40 characters.\n";
+                        if(three.length() > 40 || three.length() < 1)
+                            error += "Destination cannot be empty and less than 40 characters.\n";
+                        if(four.length() != 0) {
+                            for(int i = 0; i < four.length(); i++) {
+                                char a = four.charAt(i);
+                                if(i == 4 || i == 7) {
+                                    if(a != '-') {
+                                        error += "The date has to be in this format: YYYY-MM-DD\n";
+                                        break;
+                                    }
+                                }
+                                else {
+                                    if(a < 48 || a > 57) {
+                                        error += "The date has to be in this format: YYYY-MM-DD\n";
+                                        break;
+                                    }
+                                }
+                                if(i > 10) {
+                                    error += "The date has to be in this format: YYYY-MM-DD\n";
+                                    break;
+                                }
+                            }
+                        }
+                        if(four.length() == 0)
+                            error += "Date cannot be empty.\n";
+                        if(five.length() != 5 || five.charAt(2) != ':')
+                            error += "Time has to be in this format: HH:MM\n";
+                        if(six.length() != 5 || six.charAt(2) != ':')
+                            error += "Duration has to be in this format: HH:MM\n";
+                        if(Integer.parseInt(seven) < 1)
+                            error += "Total seats has to be more than 0.\n";
+                        if(Integer.parseInt(eight) < 0)
+                            error += "Available seats has to 0 or more.\n";
+                        if(Double.parseDouble(nine) < 0)
+                            error += "Price seats has to 0 or more.\n";
+                    }catch(Exception errx)
+                    {   error += "Error in input format.\n";   }
+                    if(error.equals("")) {
+                        stringOut.println("addoneflight");
+                        String query = Integer.parseInt(one) + ", '" + two + "', '" + three + "', '" + four + "', '" + five + "', '" + six + "', "
+                                + Integer.parseInt(seven) + ", " + Integer.parseInt(eight) + ", " + Double.parseDouble(nine);
+                        stringOut.println(query);
+                        flightFrame.dispose();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+                    confirmFlight.setEnabled(true);
+                }
+            }
+        }
+
+        flightListener flightListener = new flightListener();
+        confirmFlight.addActionListener(flightListener);
+
+        flightFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        flightFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(WindowEvent e)
+            {
+                JFrame frame = (JFrame)e.getSource();
+                int result = JOptionPane.showConfirmDialog(frame, "Are you sure you don't want to add a flight?", "Exit Flight Adder", JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                    flightFrame.dispose();
+            }
+        });
+        flightFrame.pack();
+        flightFrame.setVisible(true);
     }
 
     public static void main(String[] args) { Client client = new Client("localhost", 8099);    }

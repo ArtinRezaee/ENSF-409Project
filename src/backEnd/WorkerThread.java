@@ -47,8 +47,7 @@ public class WorkerThread extends Thread
 				if(line.equals("adduser"))
 				{
 					UserInfo info = (UserInfo)objectIn.readObject();
-					System.out.println(info.getFirst());
-					db.insert("clients", "'"+info.getMail()+"', '"+ info.getFirst() +"', '" 
+					db.insert("clients", "'"+info.getMail()+"', '"+ info.getFirst() +"', '"
 							  + info.getLast() +"', '" +info.getPass() + "', '"+ info.getType() +"'");
 				}
 				else if(line.equals("checklogin"))
@@ -118,7 +117,7 @@ public class WorkerThread extends Thread
 							db.insert("tickets", "'" + flightID + "', '" + email +"', '" +ticketID +"'");
 	
 							Ticket ticket = new Ticket(passengerFirstName, passengerLastName, flightFrom, flightTo,
-															flightDate,flightTime ,flightDuration,flightCost, ticketID);
+															flightDate,flightTime ,flightDuration,flightCost, ticketID, flightID);
 							db.decrementFlightSeats(flightID);
 	
 							try {
@@ -209,6 +208,10 @@ public class WorkerThread extends Thread
 					String mail = (String)objectIn.readObject();
 					db.deleteClient(mail);
 					stringOut.println("delete successfull");
+				}
+				else if(line.equals("addoneflight")){
+					String query = stringIn.readLine();
+					db.insert("flights", query);
 				}
 			}catch(IOException e){	
 				e.printStackTrace();	

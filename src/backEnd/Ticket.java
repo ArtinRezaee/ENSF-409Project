@@ -10,6 +10,7 @@ import java.util.Iterator;
 public class Ticket implements Serializable
 {
    private String fName, lName, source , destination, time, date, duration;
+   private int flightNumber;
    private  double totalPrice;
    private int ticketId;
    private ArrayList<Object> allFields;
@@ -17,7 +18,8 @@ public class Ticket implements Serializable
 
 	static final long serialVersionUID = 1234689;
     /** constructor **/
-    public Ticket(String f,String l,String s,String d,String date,String t, String dur, double tPrice, int ticketId) {
+    public Ticket(String f,String l,String s,String d,String date,String t, String dur, double tPrice, int ticketId, int flightId)
+	{
 		allFields = new ArrayList<Object>();
 		fName = f;
 		lName = l;
@@ -28,6 +30,10 @@ public class Ticket implements Serializable
 		this.date = date;
 		totalPrice = tPrice;
 		this.ticketId = ticketId;
+		flightNumber = flightId;
+
+		allFields.add(this.ticketId);
+		allFields.add(flightNumber);
 		allFields.add(fName);
 		allFields.add(lName);
 		allFields.add(source);
@@ -36,19 +42,19 @@ public class Ticket implements Serializable
 		allFields.add(time);
 		allFields.add(duration);
 		allFields.add(totalPrice);
-		allFields.add(this.ticketId);
+
 		TICKETS++;
 	}
 
     /** methods to print the ticket **/
     public void print(){
-		System.out.println("gets to print");
     	try {
 			PrintWriter writer = new PrintWriter("Ticket"+TICKETS+"_"+fName+"_"+lName+".txt", "UTF-8");
-			String[] options = {"First Name: ", "Last Name:", "Source: ", "Destination: ", "Date of Departure: ",
-								"Time of Departure: ","Flight Duration: ", "Price including 7% tax: ", "Ticket ID: "};
+			String[] options = {"Ticket ID: ", "Flight Number: ", "First Name: ", "Last Name: ", "Source: ", "Destination: ", "Date of Departure: ",
+								"Time of Departure: ","Flight Duration: ", "Price including 7% tax: $"};
 			int j = 0;
 	    	Iterator i = allFields.iterator();
+	    	writer.println("TICKET INFO");
 	    	while(i.hasNext()){
 	    		writer.print(options[j]);
 	    		writer.println(i.next());
