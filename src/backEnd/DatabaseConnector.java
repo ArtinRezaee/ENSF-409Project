@@ -21,7 +21,7 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flightDatabase", "root", "Domain@21");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +168,7 @@ public class DatabaseConnector
 	public void decrementFlightSeats(int id){
 		try {
 			statement = connection.createStatement();
-			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE id = " + id;
+			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE FlightNumber = " + id;
 			statement.executeUpdate(stmnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -180,7 +180,7 @@ public class DatabaseConnector
 	 * Method to increment the available seats of a flight when a ticket is canceled
 	 * @param id of the flight
 	 */
-	public void icrementFlightSeats(int id){
+	public void incrementFlightSeats(int id){
 		try {
 			statement = connection.createStatement();
 			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats+1 WHERE id = " + id;
