@@ -128,8 +128,7 @@ public class WorkerThread extends Thread
 						}
 					}
 				}
-				else if(line.equals("addmultipleflights"))
-				{
+				else if(line.equals("addmultipleflights")) {
 					FlightCatalogue catalog = (FlightCatalogue) objectIn.readObject();
 					db.addFlights(catalog);
 				}
@@ -146,23 +145,23 @@ public class WorkerThread extends Thread
 									 set.getString("Password"), set.getString("type"));
 						users.add(u);
 					}
-					if(users.size()!=0){
+					if(users.size() != 0){
 						stringOut.println("Search Successfull");
 						objectOut.writeObject(users);
 					}
 					else 
 						stringOut.println("No results found");
 				}
-				else if(line.equals("Search emails")){
-					String in = (String)objectIn.readObject();
-					ResultSet set = db.search("clients", "Email = '" + in+"'");
+				else if(line.equals("Search lastname")){
+					String in = stringIn.readLine();
+					ResultSet set = db.search("clients", "LastName = '" + in + "'");
 					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 					while(set.next()){
 						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
 									 set.getString("Password"), set.getString("type"));
 						users.add(u);
 					}
-					if(users.size()!=0){
+					if(users.size() != 0){
 						stringOut.println("Search Successfull");
 						objectOut.writeObject(users);
 					}
@@ -170,15 +169,15 @@ public class WorkerThread extends Thread
 						stringOut.println("No results found");
 				}
 				else if(line.equals("Search types")){
-					String in = (String)objectIn.readObject();
-					ResultSet set = db.search("clients", "Type = '" + in+"'");
+					String in = stringIn.readLine();
+					ResultSet set = db.search("clients", "Type = '" + in + "'");
 					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 					while(set.next()){
 						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
 									 set.getString("Password"), set.getString("type"));
 						users.add(u);
 					}
-					if(users.size()!=0){
+					if(users.size() != 0){
 						stringOut.println("Search Successfull");
 						objectOut.writeObject(users);
 					}
@@ -186,10 +185,9 @@ public class WorkerThread extends Thread
 						stringOut.println("No results found");
 				}
 				else if(line.equals("Search condition")){
-					String in = (String)objectIn.readObject();
+					String in = stringIn.readLine();
 					String [] ins = in.split(" AND ");
-					ResultSet set = db.search("clients", "Email = '" + ins[0] + "' AND Type = '" + ins[1] +"'");
-					System.out.println("found something");
+					ResultSet set = db.search("clients", "LastName = '" + ins[0] + "' AND Type = '" + ins[1] +"'");
 					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 					while(set.next()){
 						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
@@ -197,7 +195,7 @@ public class WorkerThread extends Thread
 						System.out.println(u.toString());
 						users.add(u);
 					}
-					if(users.size()!=0){
+					if(users.size() != 0){
 						stringOut.println("Search Successfull");
 						objectOut.writeObject(users);
 					}
@@ -212,6 +210,81 @@ public class WorkerThread extends Thread
 				else if(line.equals("addoneflight")){
 					String query = stringIn.readLine();
 					db.insert("flights", query);
+				}
+
+
+
+				else if(line.equals("Search all tickets"))
+				{
+					ResultSet set = db.search("tickets", "");
+					ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+					while(set.next()){
+						Ticket t = new Ticket(set.getString("ClientEmail"), set.getInt("FlightNumber"), set.getInt("TicketID"));
+						tickets.add(t);
+					}
+					if(tickets.size() != 0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(tickets);
+					}
+					else
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search fnum-tickets"))
+				{
+					String in = stringIn.readLine();
+					ResultSet set = db.search("tickets", in);
+					ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+					while(set.next()){
+						Ticket t = new Ticket(set.getString("ClientEmail"), set.getInt("FlightNumber"), set.getInt("TicketID"));
+						tickets.add(t);
+					}
+					if(tickets.size() != 0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(tickets);
+					}
+					else
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search email-tickets"))
+				{
+					String in = stringIn.readLine();
+					ResultSet set = db.search("tickets", in);
+					ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+					while(set.next()){
+						Ticket t = new Ticket(set.getString("ClientEmail"), set.getInt("FlightNumber"), set.getInt("TicketID"));
+						tickets.add(t);
+					}
+					if(tickets.size() != 0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(tickets);
+					}
+					else
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search condition-tickets"))
+				{
+					String in = stringIn.readLine();
+					ResultSet set = db.search("tickets", in);
+					ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+					while(set.next()){
+						Ticket t = new Ticket(set.getString("ClientEmail"), set.getInt("FlightNumber"), set.getInt("TicketID"));
+						tickets.add(t);
+					}
+					if(tickets.size() != 0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(tickets);
+					}
+					else
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Delete ticket")){
+					String tid = stringIn.readLine();
+					db.delete("tickets", Integer.parseInt(tid));
+					stringOut.println("delete successfull");
+				}
+				else
+				{
+					System.out.println(line);
 				}
 			}catch(IOException e){	
 				e.printStackTrace();	

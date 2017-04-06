@@ -25,7 +25,8 @@ public class Client
 
     private String clientId;
     private String clientType;
-    private String mail = "";
+    private String mail;
+    private String tid;
     
     private JFrame loginGUI;
     private JFrame clientGUI;
@@ -40,7 +41,9 @@ public class Client
             flights = null;
             loginGUI = null;
             clientGUI = null;
-            refreshQuery = "";
+            refreshQuery = null;
+            mail = "";
+            tid = "";
 
             socket = new Socket(server, port);
             stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -677,7 +680,7 @@ public class Client
         JPanel three3 = new JPanel(new FlowLayout());
         three1.add(new JLabel("Flight Number"));
         three1.add(fnumField);
-        three2.add(new JLabel("Email ID          "));
+        three2.add(new JLabel("Email ID           "));
         three2.add(emailField);
         three3.add(searchT);
         three3.add(deleteT);
@@ -703,9 +706,9 @@ public class Client
         JPanel four1 = new JPanel(new FlowLayout());
         JPanel four2 = new JPanel(new FlowLayout());
         JPanel four3 = new JPanel(new FlowLayout());
-        four1.add(new JLabel("Email"));
+        four1.add(new JLabel("Last Name "));
         four1.add(lastNameField);
-        four2.add(new JLabel("User Type "));
+        four2.add(new JLabel("User Type  "));
         four2.add(typeField);
         four3.add(searchU);
         four3.add(deleteU);
@@ -745,11 +748,9 @@ public class Client
                     String source = "";
                     String dest = "";
                     String error = "";
-                    if(dateField.getText().trim().length() != 0)
-                    {
+                    if(dateField.getText().trim().length() != 0) {
                         date = dateField.getText().trim();
-                        for(int i = 0; i < date.length(); i++)
-                        {
+                        for(int i = 0; i < date.length(); i++) {
                             char a = date.charAt(i);
                             if(i == 4 || i == 7) {
                                 if(a != '-')
@@ -761,7 +762,6 @@ public class Client
                             }
                             if(i > 10)
                                 error = "The date has to be in this format: YYYY-MM-DD\n";
-
                         }
                         if(!error.equals(""))
                             date = "";
@@ -788,21 +788,19 @@ public class Client
                         else if(!dest.equals("")) {
                             query = "Destination = '" + dest + "'";
                         }
-                        if(!query.equals("")) {
-                            refreshQuery = query;
-                            stringOut.println("searchflights");
-                            stringOut.println(query);
-                            try{
-                                String line = stringIn.readLine();
-                                FlightCatalogue catalogue = null;
-                                if(line.equals("catalogincoming"))
-                                    catalogue = (FlightCatalogue) objectIn.readObject();
-                                flights = catalogue.getFlights();
-                                for(int i = 0; i < flights.size(); i++)
-                                    listModelFlights.addElement(flights.get(i).toString());
-                            }catch(Exception errx)
-                            {   errx.printStackTrace(); }
-                        }
+                        refreshQuery = query;
+                        stringOut.println("searchflights");
+                        stringOut.println(query);
+                        try{
+                            String line = stringIn.readLine();
+                            FlightCatalogue catalogue = null;
+                            if(line.equals("catalogincoming"))
+                                catalogue = (FlightCatalogue) objectIn.readObject();
+                            flights = catalogue.getFlights();
+                            for(int i = 0; i < flights.size(); i++)
+                                listModelFlights.addElement(flights.get(i).toString());
+                        }catch(Exception errx)
+                        {   errx.printStackTrace(); }
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Error", JOptionPane.PLAIN_MESSAGE);
@@ -814,7 +812,7 @@ public class Client
                     JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
                     boolean isEmpty = false;
 
-                    for(int i=0; i < allFields.length; i++){
+                    for(int i = 0; i < allFields.length; i++){
                         if(allFields[i].getText().equals(""))
                             isEmpty = true;
                     }
@@ -848,7 +846,7 @@ public class Client
                 else if(action.getSource() == refreshF)
                 {
                     refreshF.setEnabled(false);
-                    if(!refreshQuery.equals("")) {
+                    if(refreshQuery != null) {
                         flightNum.setText("");
                         source.setText("");
                         destination.setText("");
@@ -867,8 +865,12 @@ public class Client
                             if(line.equals("catalogincoming"))
                                 catalogue = (FlightCatalogue) objectIn.readObject();
                             flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModelFlights.addElement(flights.get(i).toString());
+                            if(flights.size() != 0) {
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModelFlights.addElement(flights.get(i).toString());
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, "No Flights Found");
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -912,7 +914,6 @@ public class Client
                         }catch (IOException errx)
                         {error += "File input error\n";}
                     }
-
                     if(error.equals("")) {
                         FlightCatalogue catalog = new FlightCatalogue(flights);
                         try {
@@ -928,77 +929,79 @@ public class Client
                     addFlights.setEnabled(true);
                 }
                 else if(action.getSource() == addF)
-                {
                     makeFlightGUI();
-                }
-                else if(action.getSource() == deleteF){
-                	if(!flightNum.getText().equals("")){
+                else if(action.getSource() == deleteF)
+                {
+                    deleteF.setEnabled(false);
+                	if(!flightNum.getText().trim().equals("")){
                 		stringOut.println("Delete Flight");
                 		try {
 							objectOut.writeObject(flightNum.getText());
 							if(stringIn.readLine().equals("Flight Deleted"))
-								JOptionPane.showMessageDialog(null, "Flight Deleted");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+                            {
+                                JOptionPane.showMessageDialog(null, "Flight Deleted");
+                                flightNum.setText("");
+                                source.setText("");
+                                destination.setText("");
+                                date.setText("");
+                                time.setText("");
+                                duration.setText("");
+                                availSeats.setText("");
+                                price.setText("");
+                                listModelFlights.removeAllElements();
+                            }
+						} catch (IOException e)
+                        {   e.printStackTrace();    }
                 	}
+                    deleteF.setEnabled(true);
                 }
-                else if(action.getSource() == searchU){
-                	listModelUsers.clear();
+                else if(action.getSource() == searchU)
+                {
+                    searchU.setEnabled(false);
+                	listModelUsers.removeAllElements();
                 	if(lastNameField.getText().equals("") && typeField.getText().equals(""))
                 		stringOut.println("Search all users");
-                	
-                	else if(!lastNameField.getText().equals("") && typeField.getText().equals("")){
-                		stringOut.println("Search emails");
-                		try {
-							objectOut.writeObject(lastNameField.getText());
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+                	else if(!lastNameField.getText().trim().equals("") && typeField.getText().trim().equals("")){
+                		stringOut.println("Search lastname");
+                        stringOut.println(lastNameField.getText().trim());
                 	}
-                	else if(lastNameField.getText().equals("") && !typeField.getText().equals("")){
+                	else if(lastNameField.getText().trim().equals("") && !typeField.getText().trim().equals("")){
                 		stringOut.println("Search types");
-                		try {
-							objectOut.writeObject(typeField.getText());
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+                        stringOut.println(typeField.getText().trim());
                 	}
                 	else{
                 		stringOut.println("Search condition");
-                		try {
-							objectOut.writeObject(lastNameField.getText()+ " AND " + typeField.getText());
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+                        stringOut.println(lastNameField.getText().trim() + " AND " + typeField.getText().trim());
                 	}
                 	
                 	try {
 						if((stringIn.readLine()).equals("Search Successfull")){
 							ArrayList<UserInfo> results = (ArrayList<UserInfo>)objectIn.readObject();
-							for(int i=0; i<results.size(); i++){
-								String show = results.get(i).getMail()+"  "+results.get(i).getFirst()+ "  " + 
-								results.get(i).getLast() + "  " + results.get(i).getType();
+							for(int i = 0; i < results.size(); i++){
+								String show = results.get(i).getMail() + " - " + results.get(i).getFirst()+ " " +
+								results.get(i).getLast() + " - " + results.get(i).getType();
 								listModelUsers.addElement(show);
 							}
 						}
 						else
-							JOptionPane.showMessageDialog(null, "No Results Found");
+							JOptionPane.showMessageDialog(null, "No Users Found");
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					}
+                    searchU.setEnabled(true);
                 }
-                else if(action.getSource() == deleteU){
-                	System.out.println(mail);
+                else if(action.getSource() == deleteU)
+                {
+                    deleteU.setEnabled(false);
                 	if(!mail.equals("")){
                 		stringOut.println("Delete user");
                 		try {
 							objectOut.writeObject(mail);
 							if(stringIn.readLine().equals("delete successfull")){
 								JOptionPane.showMessageDialog(null, "User Deleted");
-								listModelUsers.clear();
+								listModelUsers.removeAllElements();
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -1006,6 +1009,61 @@ public class Client
                 	}
                 	else
                 		JOptionPane.showMessageDialog(null, "User must be selected");
+                    deleteU.setEnabled(true);
+                }
+                else if(action.getSource() == searchT)
+                {
+                    searchT.setEnabled(false);
+                    tid = "";
+                    listModelTickets.removeAllElements();
+                    if(fnumField.getText().equals("") && emailField.getText().equals(""))
+                        stringOut.println("Search all tickets");
+                    else if(!fnumField.getText().trim().equals("") && emailField.getText().trim().equals("")){
+                        stringOut.println("Search fnum-tickets");
+                        stringOut.println("FlightNumber = " + fnumField.getText().trim());
+                    }
+                    else if(lastNameField.getText().trim().equals("") && !emailField.getText().trim().equals("")){
+                        stringOut.println("Search email-tickets");
+                        stringOut.println("ClientEmail = '" + emailField.getText().trim() + "'");
+                    }
+                    else{
+                        stringOut.println("Search condition-tickets");
+                        stringOut.println("FlightNumber = " + fnumField.getText().trim() + " AND ClientEmail = '" + emailField.getText().trim() + "'");
+                    }
+                    try {
+                        if((stringIn.readLine()).equals("Search Successfull")){
+                            ArrayList<Ticket> results = (ArrayList<Ticket>)objectIn.readObject();
+                            for(int i = 0; i < results.size(); i++){
+                                String show = results.get(i).toString();
+                                listModelTickets.addElement(show);
+                            }
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "No Tickets Found");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    searchT.setEnabled(true);
+                }
+                else if(action.getSource() == deleteT)
+                {
+                    deleteT.setEnabled(false);
+                    if(!tid.equals("")){
+                        stringOut.println("Delete ticket");
+                        try {
+                            stringOut.println(tid);
+                            if(stringIn.readLine().equals("delete successfull")){
+                                JOptionPane.showMessageDialog(null, "Ticket Deleted");
+                                listModelTickets.removeAllElements();
+                            }
+                        } catch (IOException e)
+                        {  e.printStackTrace(); }
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Ticket must be selected");
+                    deleteT.setEnabled(true);
                 }
             }
         }
@@ -1036,16 +1094,10 @@ public class Client
             public void valueChanged(ListSelectionEvent e)
             {
                 int index = listAreaTickets.getSelectedIndex();
-                if (index >= 0)
-                {
-                    flightNum.setText(String.valueOf(flights.get(index).getNum()));
-                    source.setText(flights.get(index).getSrc());
-                    destination.setText(flights.get(index).getDest());
-                    date.setText(flights.get(index).getDate());
-                    time.setText(flights.get(index).getTime());
-                    duration.setText(flights.get(index).getDur());
-                    availSeats.setText(String.valueOf(flights.get(index).getAvailSeats()));
-                    price.setText(String.valueOf(flights.get(index).getPrice()));
+                if (index >= 0) {
+                    String line = new String(listModelTickets.get(index).toCharArray());
+                    String [] arr = line.split(" - ");
+                        tid = arr[2];
                 }
             }
         }
@@ -1054,16 +1106,12 @@ public class Client
         {
             @Override
             public void valueChanged(ListSelectionEvent e)
-            {  System.out.println("Hello");
+            {
             	int index = listAreaUsers.getSelectedIndex();
-            	System.out.println(index);
-                if (index >= 0)
-                {
+                if (index >= 0) {
                 	String line = new String(listModelUsers.get(index).toCharArray());
-                	String [] arr = line.split("\\s+");
+                	String [] arr = line.split(" - ");
                 	mail = arr[0];
-                	System.out.println(arr[0]);
-                	System.out.println(mail);
                 }
             }
         }
@@ -1258,8 +1306,9 @@ public class Client
     private void makeFlightGUI()
     {
         JFrame flightFrame = new JFrame();
-        flightFrame.setTitle("Flight");
+        flightFrame.setTitle("Add Flight");
         flightFrame.setLayout(new GridLayout(10, 1));
+        flightFrame.setSize(375, 400);
 
         JButton confirmFlight = new JButton("Confirm");
         JTextField num = new JTextField(10);
@@ -1297,7 +1346,7 @@ public class Client
         p6.add(dur);
         p7.add(new JLabel("Total Seats        "));
         p7.add(tseats);
-        p8.add(new JLabel("Available Seats"));
+        p8.add(new JLabel("Available Seats "));
         p8.add(aseats);
         p9.add(new JLabel("Price                   "));
         p9.add(price);
@@ -1402,7 +1451,7 @@ public class Client
                     flightFrame.dispose();
             }
         });
-        flightFrame.pack();
+        //flightFrame.pack();
         flightFrame.setVisible(true);
     }
 

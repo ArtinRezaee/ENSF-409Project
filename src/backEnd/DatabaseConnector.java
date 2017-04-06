@@ -15,7 +15,6 @@ public class DatabaseConnector
 	
 	//SQL statements to be executed
 	private Statement statement;
-	private PreparedStatement pStat;
 	private ResultSet result;
 	
 	//Constructor that creates a database and populates it
@@ -118,8 +117,11 @@ public class DatabaseConnector
 			if(table.equals("flights"))
 				statement.executeUpdate("DELETE FROM " + table + " WHERE FlightNumber = " + id);
 			else if(table.equals("tickets")){
-				statement.executeUpdate("DELETE FROM " + table + " WHERE TicketID = " + id);
-				this.incrementFlightSeats(id);
+				ResultSet set = this.search(table, "TicketID = " + id);
+				int fn = set.getInt("FlightNumber");
+				this.incrementFlightSeats(fn);
+				Statement stmtx = connection.createStatement();
+				stmtx.executeUpdate("DELETE FROM " + table + " WHERE TicketID = " + id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -145,9 +147,9 @@ public class DatabaseConnector
 	 */
 	public void decrementFlightSeats(int id){
 		try {
-			statement = connection.createStatement();
-			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE FlightNumber = " + id;
-			statement.executeUpdate(stmnt);
+			Statement stmtx = connection.createStatement();
+			String query = "UPDATE flights SET AvailableSeats = AvailableSeats-1 WHERE FlightNumber = " + id;
+			stmtx.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -160,9 +162,9 @@ public class DatabaseConnector
 	 */
 	public void incrementFlightSeats(int id){
 		try {
-			statement = connection.createStatement();
-			String stmnt = "UPDATE flights SET AvailableSeats = AvailableSeats+1 WHERE FlightNumber = " + id;
-			statement.executeUpdate(stmnt);
+			Statement stmtx = connection.createStatement();
+			String query = "UPDATE flights SET AvailableSeats = AvailableSeats+1 WHERE FlightNumber = " + id;
+			stmtx.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

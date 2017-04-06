@@ -10,13 +10,17 @@ import java.util.Iterator;
 public class Ticket implements Serializable
 {
    private String fName, lName, source , destination, time, date, duration;
-   private int flightNumber;
-   private  double totalPrice;
-   private int ticketId;
-   private ArrayList<Object> allFields;
-   private static int TICKETS = 1;
+	private double totalPrice;
 
-	static final long serialVersionUID = 1234689;
+   private int flightNumber;
+   private String email;
+   private int ticketId;
+
+   private ArrayList<Object> allFields;
+
+   private static int TICKETS = 1;
+   static final long serialVersionUID = 1234689;
+
     /** constructor **/
     public Ticket(String f,String l,String s,String d,String date,String t, String dur, double tPrice, int ticketId, int flightId)
 	{
@@ -46,6 +50,14 @@ public class Ticket implements Serializable
 		TICKETS++;
 	}
 
+	/** constructor **/
+	public Ticket(String e, int fn, int tid)
+	{
+		flightNumber = fn;
+		ticketId = tid;
+		email = e;
+	}
+
     /** methods to print the ticket **/
     public void print(){
     	try {
@@ -67,4 +79,9 @@ public class Ticket implements Serializable
 			e.printStackTrace();
 		}
     }
+
+    public String toString()
+	{
+		return (flightNumber + " - " + email + " - " + ticketId);
+	}
 }
