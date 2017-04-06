@@ -47,13 +47,13 @@ public class RandomGenerator
         ArrayList<Integer> fList = new ArrayList<>();
         PrintWriter write = null;
         try{
-            write = new PrintWriter("flightCatalog.txt");
+            write = new PrintWriter("flightCatalog1.txt");
         }catch(FileNotFoundException e)
         {e.printStackTrace();}
 
-        for(int i = 0; i < 400; i++)
+        for(int i = 0; i < 5; i++)
         {
-            int fnum = randomInt(100000, 999999);
+            int fnum = randomInt(1000000, 9999999);
             int srcI = randomInt(0, 24);
             int destI = randomInt(0, 24);
             int dateI = randomInt(0, 9);

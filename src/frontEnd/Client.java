@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.net.Socket;
 import java.io.*;
+import java.util.Scanner;
 
 public class Client
 {
@@ -864,6 +865,57 @@ public class Client
                         {   errx.printStackTrace(); }
                     }
                 }
+                else if(action.getSource() == addFlights)
+                {
+                    String file = "";
+                    String error = "";
+                    String[] arr;
+                    ArrayList<Flight> flights = new ArrayList<>();
+
+                    if(fileName.getText().trim().length() != 0)
+                        file = fileName.getText().trim();
+                    if(file.equals(""))
+                        error += "File name cannot be empty!\n";
+                    else {
+                        try {
+                            Scanner scan = new Scanner(new File(file));
+                            String line = "";
+                            while(scan.hasNextLine())
+                            {
+                                line = scan.nextLine();
+                                arr = line.split(";", line.length());
+                                if(arr.length == 9)
+                                {
+                                    int nm = Integer.parseInt(arr[0]);
+                                    String src = arr[1];
+                                    String dst = arr[2];
+                                    String dt = arr[3];
+                                    String tm = arr[4];
+                                    String dur = arr[5];
+                                    int ts = Integer.parseInt(arr[6]);
+                                    int as = Integer.parseInt(arr[7]);
+                                    double pr = Double.parseDouble(arr[8]);
+                                    Flight x = new Flight(nm, src, dst, dt, tm, dur, ts, as, pr);
+                                    flights.add(x);
+                                }
+                            }
+                        }catch (IOException errx)
+                        {error += "File input error\n";}
+                    }
+
+                    if(error.equals("")) {
+                        FlightCatalogue catalog = new FlightCatalogue(flights);
+                        try {
+                            stringOut.println("addmultipleflights");
+                            objectOut.writeObject(catalog);
+                        }catch(IOException errx) {
+                            error += "Error uploading flights to server\n";
+                            errx.printStackTrace();
+                        }
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+                }
             }
         }
 
@@ -932,6 +984,8 @@ public class Client
         refreshF.addActionListener(adminButtonListener);
         bookF.addActionListener(adminButtonListener);
         deleteF.addActionListener(adminButtonListener);
+        addF.addActionListener(adminButtonListener);
+        addFlights.addActionListener(adminButtonListener);
         searchT.addActionListener(adminButtonListener);
         deleteT.addActionListener(adminButtonListener);
         searchU.addActionListener(adminButtonListener);

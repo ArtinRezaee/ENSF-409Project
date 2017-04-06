@@ -127,6 +127,11 @@ public class WorkerThread extends Thread
 						{   err3.printStackTrace(); }
 					}
 				}
+				else if(line.equals("addmultipleflights"))
+				{
+					FlightCatalogue catalog = (FlightCatalogue) objectIn.readObject();
+					db.addFlights(catalog);
+				}
 			}catch(IOException e){	
 				e.printStackTrace();	
 			} catch (SQLException e) {
