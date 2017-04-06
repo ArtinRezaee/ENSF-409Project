@@ -16,7 +16,6 @@ public class Ticket implements Serializable
 
    private ArrayList<Object> allFields;
 
-   private static int TICKETS = 1;
    static final long serialVersionUID = 1234689;
 
     /** constructor **/
@@ -44,8 +43,6 @@ public class Ticket implements Serializable
 		allFields.add(time);
 		allFields.add(duration);
 		allFields.add(totalPrice);
-
-		TICKETS++;
 	}
 
 	/** constructor **/
@@ -59,12 +56,11 @@ public class Ticket implements Serializable
     /** methods to print the ticket **/
     public void print(){
     	try {
-    		PrintWriter writer = new PrintWriter("Ticket_" + TICKETS + "_" + fName + ".txt", "UTF-8");
+    		PrintWriter writer = new PrintWriter("Ticket" + ticketId + "_" + fName + "_" + lName + ".txt", "UTF-8");
 			String[] options = {"Ticket ID: ", "Flight Number: ", "First Name: ", "Last Name: ", "Source: ", "Destination: ", "Date of Departure: ",
 								"Time of Departure: ","Flight Duration: ", "Price including 7% tax: $"};
 			int j = 0;
 	    	Iterator i = allFields.iterator();
-	    	writer.println();
 	    	writer.println("TICKET INFO");
 	    	while(i.hasNext()){
 	    		writer.print(options[j]);
