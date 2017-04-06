@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.net.Socket;
 import java.io.*;
 import java.util.Scanner;
@@ -24,7 +25,8 @@ public class Client
 
     private String clientId;
     private String clientType;
-
+    private String mail = "";
+    
     private JFrame loginGUI;
     private JFrame clientGUI;
 
@@ -698,7 +700,7 @@ public class Client
         JPanel four1 = new JPanel(new FlowLayout());
         JPanel four2 = new JPanel(new FlowLayout());
         JPanel four3 = new JPanel(new FlowLayout());
-        four1.add(new JLabel("Last Name"));
+        four1.add(new JLabel("Email"));
         four1.add(lastNameField);
         four2.add(new JLabel("User Type "));
         four2.add(typeField);
@@ -916,6 +918,82 @@ public class Client
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
                 }
+                else if(action.getSource() == deleteF){
+                	if(!flightNum.getText().equals("")){
+                		stringOut.println("Delete Flight");
+                		try {
+							objectOut.writeObject(flightNum.getText());
+							if(stringIn.readLine().equals("Flight Deleted"))
+								JOptionPane.showMessageDialog(null, "Flight Deleted");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                }
+                else if(action.getSource() == searchU){
+                	listModelUsers.clear();
+                	if(lastNameField.getText().equals("") && typeField.getText().equals(""))
+                		stringOut.println("Search all users");
+                	
+                	else if(!lastNameField.getText().equals("") && typeField.getText().equals("")){
+                		stringOut.println("Search emails");
+                		try {
+							objectOut.writeObject(lastNameField.getText());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	else if(lastNameField.getText().equals("") && !typeField.getText().equals("")){
+                		stringOut.println("Search types");
+                		try {
+							objectOut.writeObject(typeField.getText());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	else{
+                		stringOut.println("Search condition");
+                		try {
+							objectOut.writeObject(lastNameField.getText()+ " AND " + typeField.getText());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	
+                	try {
+						if((stringIn.readLine()).equals("Search Successfull")){
+							ArrayList<UserInfo> results = (ArrayList<UserInfo>)objectIn.readObject();
+							for(int i=0; i<results.size(); i++){
+								String show = results.get(i).getMail()+"  "+results.get(i).getFirst()+ "  " + 
+								results.get(i).getLast() + "  " + results.get(i).getType();
+								listModelUsers.addElement(show);
+							}
+						}
+						else
+							JOptionPane.showMessageDialog(null, "No Results Found");
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+                }
+                else if(action.getSource() == deleteU){
+                	System.out.println(mail);
+                	if(!mail.equals("")){
+                		stringOut.println("Delete user");
+                		try {
+							objectOut.writeObject(mail);
+							if(stringIn.readLine().equals("delete successfull")){
+								JOptionPane.showMessageDialog(null, "User Deleted");
+								listModelUsers.clear();
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	else
+                		JOptionPane.showMessageDialog(null, "User must be selected");
+                }
             }
         }
 
@@ -963,18 +1041,16 @@ public class Client
         {
             @Override
             public void valueChanged(ListSelectionEvent e)
-            {
-                int index = listAreaUsers.getSelectedIndex();
+            {  System.out.println("Hello");
+            	int index = listAreaUsers.getSelectedIndex();
+            	System.out.println(index);
                 if (index >= 0)
                 {
-                    flightNum.setText(String.valueOf(flights.get(index).getNum()));
-                    source.setText(flights.get(index).getSrc());
-                    destination.setText(flights.get(index).getDest());
-                    date.setText(flights.get(index).getDate());
-                    time.setText(flights.get(index).getTime());
-                    duration.setText(flights.get(index).getDur());
-                    availSeats.setText(String.valueOf(flights.get(index).getAvailSeats()));
-                    price.setText(String.valueOf(flights.get(index).getPrice()));
+                	String line = new String(listModelUsers.get(index).toCharArray());
+                	String [] arr = line.split("\\s+");
+                	mail = arr[0];
+                	System.out.println(arr[0]);
+                	System.out.println(mail);
                 }
             }
         }

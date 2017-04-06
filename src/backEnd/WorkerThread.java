@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -132,6 +133,82 @@ public class WorkerThread extends Thread
 				{
 					FlightCatalogue catalog = (FlightCatalogue) objectIn.readObject();
 					db.addFlights(catalog);
+				}
+				else if(line.equals("Delete Flight")){
+					int id = Integer.parseInt((String)objectIn.readObject());
+					db.delete("flights", id);
+					stringOut.println("Flight Deleted");
+				}
+				else if(line.equals("Search all users")){
+					ResultSet set = db.search("clients", "");
+					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+					while(set.next()){
+						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
+									 set.getString("Password"), set.getString("type"));
+						users.add(u);
+					}
+					if(users.size()!=0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(users);
+					}
+					else 
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search emails")){
+					String in = (String)objectIn.readObject();
+					ResultSet set = db.search("clients", "Email = '" + in+"'");
+					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+					while(set.next()){
+						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
+									 set.getString("Password"), set.getString("type"));
+						users.add(u);
+					}
+					if(users.size()!=0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(users);
+					}
+					else 
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search types")){
+					String in = (String)objectIn.readObject();
+					ResultSet set = db.search("clients", "Type = '" + in+"'");
+					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+					while(set.next()){
+						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
+									 set.getString("Password"), set.getString("type"));
+						users.add(u);
+					}
+					if(users.size()!=0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(users);
+					}
+					else 
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Search condition")){
+					String in = (String)objectIn.readObject();
+					String [] ins = in.split(" AND ");
+					ResultSet set = db.search("clients", "Email = '" + ins[0] + "' AND Type = '" + ins[1] +"'");
+					System.out.println("found something");
+					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+					while(set.next()){
+						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
+									 set.getString("Password"), set.getString("type"));
+						System.out.println(u.toString());
+						users.add(u);
+					}
+					if(users.size()!=0){
+						stringOut.println("Search Successfull");
+						objectOut.writeObject(users);
+					}
+					else 
+						stringOut.println("No results found");
+				}
+				else if(line.equals("Delete user")){
+					String mail = (String)objectIn.readObject();
+					db.deleteClient(mail);
+					stringOut.println("delete successfull");
 				}
 			}catch(IOException e){	
 				e.printStackTrace();	
