@@ -558,7 +558,7 @@ public class Client
         JScrollPane scrollUsers = new JScrollPane(listAreaUsers);
         JButton searchU = new JButton("Search Users");
         JButton deleteU = new JButton("Delete User");
-        JTextField lastNameField = new JTextField(10);
+        JTextField eField = new JTextField(10);
         JTextField typeField = new JTextField(10);
 
         //Flight Info
@@ -705,8 +705,8 @@ public class Client
         JPanel four1 = new JPanel(new FlowLayout());
         JPanel four2 = new JPanel(new FlowLayout());
         JPanel four3 = new JPanel(new FlowLayout());
-        four1.add(new JLabel("Last Name "));
-        four1.add(lastNameField);
+        four1.add(new JLabel("Email ID     "));
+        four1.add(eField);
         four2.add(new JLabel("User Type  "));
         four2.add(typeField);
         four3.add(searchU);
@@ -958,21 +958,20 @@ public class Client
                 {
                     searchU.setEnabled(false);
                 	listModelUsers.removeAllElements();
-                	if(lastNameField.getText().equals("") && typeField.getText().equals(""))
+                	if(eField.getText().equals("") && typeField.getText().equals(""))
                 		stringOut.println("Search all users");
-                	else if(!lastNameField.getText().trim().equals("") && typeField.getText().trim().equals("")){
-                		stringOut.println("Search lastname");
-                        stringOut.println(lastNameField.getText().trim());
+                	else if(!eField.getText().trim().equals("") && typeField.getText().trim().equals("")){
+                		stringOut.println("Search email");
+                        stringOut.println(eField.getText().trim());
                 	}
-                	else if(lastNameField.getText().trim().equals("") && !typeField.getText().trim().equals("")){
+                	else if(eField.getText().trim().equals("") && !typeField.getText().trim().equals("")){
                 		stringOut.println("Search types");
                         stringOut.println(typeField.getText().trim());
                 	}
                 	else{
                 		stringOut.println("Search condition");
-                        stringOut.println(lastNameField.getText().trim() + " AND " + typeField.getText().trim());
+                        stringOut.println(eField.getText().trim() + " AND " + typeField.getText().trim());
                 	}
-                	
                 	try {
 						if((stringIn.readLine()).equals("Search Successfull")){
 							ArrayList<UserInfo> results = (ArrayList<UserInfo>)objectIn.readObject();
@@ -1021,7 +1020,7 @@ public class Client
                         stringOut.println("Search fnum-tickets");
                         stringOut.println("FlightNumber = " + fnumField.getText().trim());
                     }
-                    else if(lastNameField.getText().trim().equals("") && !emailField.getText().trim().equals("")){
+                    else if(fnumField.getText().trim().equals("") && !emailField.getText().trim().equals("")){
                         stringOut.println("Search email-tickets");
                         stringOut.println("ClientEmail = '" + emailField.getText().trim() + "'");
                     }

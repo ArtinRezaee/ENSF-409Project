@@ -152,9 +152,9 @@ public class WorkerThread extends Thread
 					else 
 						stringOut.println("No results found");
 				}
-				else if(line.equals("Search lastname")){
+				else if(line.equals("Search email")){
 					String in = stringIn.readLine();
-					ResultSet set = db.search("clients", "LastName = '" + in + "'");
+					ResultSet set = db.search("clients", "Email = '" + in + "'");
 					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 					while(set.next()){
 						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
@@ -187,7 +187,7 @@ public class WorkerThread extends Thread
 				else if(line.equals("Search condition")){
 					String in = stringIn.readLine();
 					String [] ins = in.split(" AND ");
-					ResultSet set = db.search("clients", "LastName = '" + ins[0] + "' AND Type = '" + ins[1] +"'");
+					ResultSet set = db.search("clients", "Email = '" + ins[0] + "' AND Type = '" + ins[1] +"'");
 					ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 					while(set.next()){
 						UserInfo u = new UserInfo(set.getString("FirstName"),set.getString("LastName"),set.getString("Email"),
@@ -211,9 +211,6 @@ public class WorkerThread extends Thread
 					String query = stringIn.readLine();
 					db.insert("flights", query);
 				}
-
-
-
 				else if(line.equals("Search all tickets"))
 				{
 					ResultSet set = db.search("tickets", "");
