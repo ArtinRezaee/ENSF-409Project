@@ -1,18 +1,20 @@
 package frontEnd;
 
+import backEnd.Flight;
 import backEnd.FlightCatalogue;
 import backEnd.Ticket;
-import backEnd.Flight;
 import backEnd.UserInfo;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.net.Socket;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client
@@ -1459,5 +1461,5 @@ public class Client
         flightFrame.setVisible(true);
     }
 
-    public static void main(String[] args) { Client client = new Client("localhost", 8099);    }
+    public static void main(String[] args) { Client client = new Client("192.168.1.66", 8099);    }
 }
