@@ -39,6 +39,14 @@ public class FlightCatalogue implements Serializable
 		flights = f;
 	}
 
+	public Boolean checkFlights()
+	{
+		if(flights.size() > 0 && flights != null)
+			return true;
+		else
+			return false;
+	}
+
     public ArrayList<Flight> getFlights()
 	{
 		return flights;

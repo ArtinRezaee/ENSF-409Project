@@ -355,7 +355,6 @@ public class Client
                         source = sourceField.getText().trim();
                     if(destField.getText().trim().length() != 0)
                         dest = destField.getText().trim();
-
                     String query = "";
                     if(error.equals("")) {
                         if(!date.equals("")) {
@@ -378,12 +377,14 @@ public class Client
                         stringOut.println(query);
                         try{
                             String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModel.addElement(flights.get(i).toString());
+                            if(line.equals("catalogincoming")) {
+                                FlightCatalogue catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModel.addElement(flights.get(i).toString());
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, line);
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -416,7 +417,7 @@ public class Client
 								if(res == 0){   ticket.print(); }
 							}
 							else {
-                                JOptionPane.showMessageDialog(null, "Flight is full", "Error", JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Flight is full or does not exist", "Error", JOptionPane.PLAIN_MESSAGE);
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -446,16 +447,14 @@ public class Client
                         stringOut.println(refreshQuery);
                         try{
                             String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            if(flights.size() != 0) {
+                            if(line.equals("catalogincoming")) {
+                                FlightCatalogue catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
                                 for(int i = 0; i < flights.size(); i++)
                                     listModel.addElement(flights.get(i).toString());
                             }
                             else
-                                JOptionPane.showMessageDialog(null, "No Flights Found");
+                                JOptionPane.showMessageDialog(null, line);
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -772,7 +771,6 @@ public class Client
                         source = sourceField.getText().trim();
                     if(destField.getText().trim().length() != 0)
                         dest = destField.getText().trim();
-
                     String query = "";
                     if(error.equals("")) {
                         if(!date.equals("")) {
@@ -795,12 +793,14 @@ public class Client
                         stringOut.println(query);
                         try{
                             String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            for(int i = 0; i < flights.size(); i++)
-                                listModelFlights.addElement(flights.get(i).toString());
+                            if(line.equals("catalogincoming")) {
+                                FlightCatalogue catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
+                                for(int i = 0; i < flights.size(); i++)
+                                    listModelFlights.addElement(flights.get(i).toString());
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, line, "Null", JOptionPane.PLAIN_MESSAGE);
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -833,7 +833,7 @@ public class Client
                                 if(res == 0){   ticket.print(); }
                             }
                             else {
-                                JOptionPane.showMessageDialog(null, "Could not book ticket.", "Error", JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Flight is full or does not exist", "Error", JOptionPane.PLAIN_MESSAGE);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -863,16 +863,14 @@ public class Client
                         stringOut.println(refreshQuery);
                         try{
                             String line = stringIn.readLine();
-                            FlightCatalogue catalogue = null;
-                            if(line.equals("catalogincoming"))
-                                catalogue = (FlightCatalogue) objectIn.readObject();
-                            flights = catalogue.getFlights();
-                            if(flights.size() != 0) {
+                            if(line.equals("catalogincoming")) {
+                                FlightCatalogue catalogue = (FlightCatalogue) objectIn.readObject();
+                                flights = catalogue.getFlights();
                                 for(int i = 0; i < flights.size(); i++)
                                     listModelFlights.addElement(flights.get(i).toString());
                             }
                             else
-                                JOptionPane.showMessageDialog(null, "No Flights Found");
+                                JOptionPane.showMessageDialog(null, line);
                         }catch(Exception errx)
                         {   errx.printStackTrace(); }
                     }
@@ -1466,5 +1464,9 @@ public class Client
         flightFrame.setVisible(true);
     }
 
-    public static void main(String[] args) { Client client = new Client("192.168.1.66", 8099);    }
+    public static void main(String[] args)
+    {
+        //Client client = new Client("10.13.125.145", 8099);
+        Client client = new Client("localhost", 8099);
+    }
 }

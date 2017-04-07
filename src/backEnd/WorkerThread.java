@@ -70,11 +70,16 @@ public class WorkerThread extends Thread
 					String query = stringIn.readLine();
 					ResultSet set = db.search("flights", query);
 					FlightCatalogue catalogue = new FlightCatalogue(set);
-					try {
-						stringOut.println("catalogincoming");
-						objectOut.writeObject(catalogue);
-					}catch(IOException err3)
-					{   err3.printStackTrace(); }
+					if(catalogue.checkFlights() == true) {
+						try {
+							stringOut.println("catalogincoming");
+							objectOut.writeObject(catalogue);
+						}catch(IOException err3)
+						{   err3.printStackTrace(); }
+					}
+					else
+						stringOut.println("No Flights Found");
+
 				}
 				else if(line.equals("Booking"))
 				{
@@ -258,10 +263,6 @@ public class WorkerThread extends Thread
 						stringOut.println("Ticket deleted");
 					else
 						stringOut.println("Could not delete ticket");
-				}
-				else
-				{
-					System.out.println(line);
 				}
 			}catch(IOException e){	
 				e.printStackTrace();	

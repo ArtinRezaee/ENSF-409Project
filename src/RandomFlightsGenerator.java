@@ -9,7 +9,7 @@ public class RandomFlightsGenerator
             "Hong Kong, China", "Calgary, Canada", "Vancouver, Canada", "Athens, Greece", "Johannesburg, South Africa", "Los Angeles, USA", "Florence, Italy", "Sydney, Australia",
             "Amsterdam, Netherlands", "New Delhi, India", "Cancun, Mexico", "Rio De Janeiro, Brazil", "Ottawa, Canada", "Reykjavik, Iceland", "New York, USA", "Dubai, UAE",
             "Barcelona, Spain", "Bangkok, Thailand"};
-	static String[] dates = {"2017-04-01", "2017-04-02", "2017-04-03", "2017-04-04", "2017-04-05", "2017-04-06", "2017-04-07", "2017-04-08", "2017-04-09", "2017-04-10"};
+	static String[] dates = {"2017-04-06", "2017-04-07", "2017-04-08", "2017-04-09", "2017-04-10", "2017-04-11", "2017-04-12", "2017-04-13", "2017-04-14", "2017-04-15"};
 	static String[] times = {"00:00", "02:15", "04:30", "06:45", "09:00", "11:15", "13:30", "15:45", "18:00", "20:15", "22:30", "23:45"};
 	static String[] duration = {"01:30", "03:10", "04:20", "06:50", "07:15", "09:10", "12:00", "14:15", "02:15", "07:40", "05:40", "11:30"};
 
@@ -47,11 +47,11 @@ public class RandomFlightsGenerator
         ArrayList<Integer> fList = new ArrayList<>();
         PrintWriter write = null;
         try{
-            write = new PrintWriter("catalog2.txt");
+            write = new PrintWriter("catalog.txt");
         }catch(FileNotFoundException e)
         {e.printStackTrace();}
 
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 50; i++)
         {
             int fnum = randomInt(1000000, 9999999);
             int srcI = randomInt(0, 24);

@@ -51,7 +51,7 @@ public class FlightTest {
 
     @Test
     public void getPrice() throws Exception {
-        Assert.assertEquals(200.59, flightTest.getPrice());
+        Assert.assertEquals(200.59, flightTest.getPrice(),0.001);
     }
 
 }
