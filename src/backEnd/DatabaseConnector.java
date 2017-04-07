@@ -9,7 +9,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import frontEnd.Booking;
 import java.util.Random;
-import java.util.Iterator;
 
 public class DatabaseConnector
 {
@@ -18,12 +17,11 @@ public class DatabaseConnector
 	
 	//SQL statements to be executed
 	private Statement statement;
-	private ResultSet result;
 	
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,15 +95,38 @@ public class DatabaseConnector
 		ResultSet result = null;
 		try {
 			statement = connection.createStatement();
-			String query;
-			if(!condition.equals(""))
-				query = "SELECT * FROM " + table + " WHERE " + condition;
-			else
-				query = "SELECT * FROM " + table;
+			String query = null;
+			
+			if(!condition.equals("")){
+				if(table.equals("flights")){
+					query = "SELECT * FROM " + table + " WHERE str_to_date(Date, '%Y-%m-%d') > curdate() AND AvailableSeats > 0 AND " + condition;
+					System.out.println(query);
+				}
+				else if(table.equals("tickets")){
+					query = "SELECT * FROM " + table + " as t, flights as f  "
+							+ "WHERE t.FlightNUmber = f.FlightNumber AND str_to_date(f.Date, '%Y-%m-%d') > curdate() AND "+ condition;
+				}
+				else
+					query = "SELECT * FROM " + table + " WHERE " + condition;
+			
+			}
+			else{
+				if(table.equals("flights")){
+					query = "SELECT * FROM " + table + " WHERE str_to_date(Date, '%Y-%m-%d') > curdate()";
+				}
+				else if(table.equals("tickets")){
+					query = "SELECT * FROM " + table + " as t, flights as f  "
+							+ "WHERE t.FlightNUmber = f.FlightNumber AND str_to_date(f.Date, '%Y-%m-%d') > curdate()";
+				}
+				else
+					query = "SELECT * FROM " + table;
+			}
+			
 			result = statement.executeQuery(query);
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 		return result;
 	}
 	

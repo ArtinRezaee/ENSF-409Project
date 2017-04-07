@@ -1024,15 +1024,15 @@ public class Client
                         stringOut.println("Search all tickets");
                     else if(!fnumField.getText().trim().equals("") && emailField.getText().trim().equals("")){
                         stringOut.println("Search fnum-tickets");
-                        stringOut.println("FlightNumber = " + fnumField.getText().trim());
+                        stringOut.println("f.FlightNumber = " + fnumField.getText().trim());
                     }
                     else if(fnumField.getText().trim().equals("") && !emailField.getText().trim().equals("")){
                         stringOut.println("Search email-tickets");
-                        stringOut.println("ClientEmail = '" + emailField.getText().trim() + "'");
+                        stringOut.println("t.ClientEmail = '" + emailField.getText().trim() + "'");
                     }
                     else{
                         stringOut.println("Search condition-tickets");
-                        stringOut.println("FlightNumber = " + fnumField.getText().trim() + " AND ClientEmail = '" + emailField.getText().trim() + "'");
+                        stringOut.println("t.FlightNumber = " + fnumField.getText().trim() + " AND t.ClientEmail = '" + emailField.getText().trim() + "'");
                     }
                     try {
                         if((stringIn.readLine()).equals("Search Successfull")){
