@@ -413,9 +413,7 @@ public class Client
 										  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new 
 										  String[]{"Print Ticket","Cancel"}, "default");
 								
-								if(res == 0){
-									ticket.print();
-								}
+								if(res == 0){   ticket.print(); }
 							}
 							else {
                                 JOptionPane.showMessageDialog(null, "Flight is full", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -832,12 +830,10 @@ public class Client
                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new
                                                 String[]{"Print Ticket","Cancel"}, "default");
 
-                                if(res == 0){
-                                    ticket.print();
-                                }
+                                if(res == 0){   ticket.print(); }
                             }
                             else {
-                                JOptionPane.showMessageDialog(null, "Flight is full", "Error", JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Could not book ticket.", "Error", JOptionPane.PLAIN_MESSAGE);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -918,20 +914,21 @@ public class Client
                                 }
                             }
                         }catch (IOException errx)
-                        {error += "File input error\n";}
+                        {error = "Input data format error\n";}
                     }
                     if(error.equals("")) {
                         FlightCatalogue catalog = new FlightCatalogue(flights);
                         try {
                             stringOut.println("addmultipleflights");
                             objectOut.writeObject(catalog);
+                            String line = stringIn.readLine();
+                            JOptionPane.showMessageDialog(null, line, "Multiple Flights", JOptionPane.PLAIN_MESSAGE);
                         }catch(IOException errx) {
-                            error += "Error uploading flights to server\n";
-                            errx.printStackTrace();
+                            JOptionPane.showMessageDialog(null, "Error communicating with server", "Multiple Flights", JOptionPane.PLAIN_MESSAGE);
                         }
                     }
                     else
-                        JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, error, "Multiple Flights", JOptionPane.PLAIN_MESSAGE);
                     addFlights.setEnabled(true);
                 }
                 else if(action.getSource() == addF)
@@ -1004,7 +1001,7 @@ public class Client
                             try {
                                 objectOut.writeObject(mail);
                                 String line = stringIn.readLine();
-                                JOptionPane.showMessageDialog(null, "User Deleted");
+                                JOptionPane.showMessageDialog(null, line);
                                 listModelUsers.removeAllElements();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -1264,6 +1261,7 @@ public class Client
                         try {
                             stringOut.println("adduser");
                             objectOut.writeObject(info);
+
                             signUpFrame.dispose();
                         }catch(IOException err3)
                         {   err3.printStackTrace(); }
@@ -1435,7 +1433,14 @@ public class Client
                         String query = Integer.parseInt(one) + ", '" + two + "', '" + three + "', '" + four + "', '" + five + "', '" + six + "', "
                                 + Integer.parseInt(seven) + ", " + Integer.parseInt(eight) + ", " + Double.parseDouble(nine);
                         stringOut.println(query);
-                        flightFrame.dispose();
+                        try
+                        {
+                            String line = stringIn.readLine();
+                            JOptionPane.showMessageDialog(null, line, "Single Flight", JOptionPane.PLAIN_MESSAGE);
+                            if(line.equals("Added the flight"))
+                                flightFrame.dispose();
+                        }catch(IOException errx)
+                        { errx.printStackTrace();  }
                     }
                     else
                         JOptionPane.showMessageDialog(null, error, "Input Data Error", JOptionPane.PLAIN_MESSAGE);

@@ -21,68 +21,45 @@ public class DatabaseConnector
 	//Constructor that creates a database and populates it
 	public DatabaseConnector(){
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "rootroot");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/409database", "root", "1234");
 			statement = connection.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Method to add a flights from a text file
-	 * @param fileName
+	 * Method to add flights from a text file
+	 * @param catalog that has all the flights
 	 */
-	public void addFlights(String fileName){
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-			String line;
-			
-			while((line = br.readLine()) != null){
-				String[] result = line.split(";", line.length());
-				String values = "";
-				
-				for(int i = 0; i < result.length-1; i++){
-					values += "'" + result[i] + "',";
-				}
-				values += "'" + result[result.length-1] + "'";
-				insert("flights", values);
-				
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Method to add a flights from a text file
-	 * @param catalog that has all the flight on the database
-	 */
-	public void addFlights(FlightCatalogue catalog){
-		
+	public Boolean addFlights(FlightCatalogue catalog){
+
+		Boolean check = true;
 		ArrayList<Flight> flights = catalog.getFlights();
-		
-		for(int i=0; i<flights.size(); i++){
+
+		for(int i = 0; i<flights.size(); i++){
 			String query = flights.get(i).getNum() + ", '" + flights.get(i).getSrc() + "', '" + flights.get(i).getDest()+ "', '"
 							+ flights.get(i).getDate() + "', '" + flights.get(i).getTime() + "', '" + flights.get(i).getDur() +
 							"', " + flights.get(i).getTotalSeats() + ", " + flights.get(i).getAvailSeats() + ", " + 
 							flights.get(i).getPrice();
 			
-			insert("flights" , query);
+			check = this.insert("flights" , query);
+			if(check == false)
+				break;
 		}
+		return check;
 	}
 	
-	
-	public void insert(String table, String values){
+	public Boolean insert(String table, String values){
 		try {
-			
 			statement = connection.createStatement();
 			String stmnt = "INSERT INTO " + table + " VALUES(" + values + ")";
 			statement.executeUpdate(stmnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 		
 	/**
@@ -100,7 +77,6 @@ public class DatabaseConnector
 			if(!condition.equals("")){
 				if(table.equals("flights")){
 					query = "SELECT * FROM " + table + " WHERE str_to_date(Date, '%Y-%m-%d') > curdate() AND AvailableSeats > 0 AND " + condition;
-					System.out.println(query);
 				}
 				else if(table.equals("tickets")){
 					query = "SELECT * FROM " + table + " as t, flights as f  "
@@ -108,7 +84,6 @@ public class DatabaseConnector
 				}
 				else
 					query = "SELECT * FROM " + table + " WHERE " + condition;
-			
 			}
 			else{
 				if(table.equals("flights")){

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.text.DecimalFormat;
 
-public class RandomGenerator
+public class RandomFlightsGenerator
 {
     static String[] cities = {"London, England", "Tokyo, Japan", "Paris, France", "Berlin, Germany", "Seoul, South Korea", "Moscow, Russia", "Madrid, Spain",
             "Hong Kong, China", "Calgary, Canada", "Vancouver, Canada", "Athens, Greece", "Johannesburg, South Africa", "Los Angeles, USA", "Florence, Italy", "Sydney, Australia",
@@ -47,7 +47,7 @@ public class RandomGenerator
         ArrayList<Integer> fList = new ArrayList<>();
         PrintWriter write = null;
         try{
-            write = new PrintWriter("flightCatalog1.txt");
+            write = new PrintWriter("catalog2.txt");
         }catch(FileNotFoundException e)
         {e.printStackTrace();}
 
@@ -59,7 +59,7 @@ public class RandomGenerator
             int dateI = randomInt(0, 9);
             int timeI = randomInt(0, 11);
             int durI = randomInt(0, 11);
-            int seats = randomInt(1, 2);
+            int seats = randomInt(1, 5);
             double price = randomDouble(200, 2001);
             price = Double.parseDouble(df.format(price));
 

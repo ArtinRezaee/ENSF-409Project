@@ -93,7 +93,11 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("addmultipleflights")) {
 					FlightCatalogue catalog = (FlightCatalogue) objectIn.readObject();
-					db.addFlights(catalog);
+					Boolean check = db.addFlights(catalog);
+					if(check == true)
+						stringOut.println("All flights added to database.");
+					else
+						stringOut.println("Error adding flights to database");
 				}
 				else if(line.equals("Delete Flight")){
 					int id = Integer.parseInt((String)objectIn.readObject());
@@ -178,7 +182,11 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("addoneflight")){
 					String query = stringIn.readLine();
-					db.insert("flights", query);
+					Boolean check = db.insert("flights", query);
+					if(check == true)
+						stringOut.println("Added the flight");
+					else
+						stringOut.println("Could not add the flight");
 				}
 				else if(line.equals("Search all tickets"))
 				{
@@ -274,12 +282,4 @@ public class WorkerThread extends Thread
 		}catch(IOException e)
 		{	e.printStackTrace();	}
 	}
-
-	private synchronized void delete()
-	{
-
-	}
-
-
-
 }
