@@ -1,4 +1,5 @@
- package backEnd;
+package backEnd;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.ArrayList;
+import frontEnd.Booking;
+import java.util.Random;
 import java.util.Iterator;
 
 public class DatabaseConnector
@@ -111,7 +114,7 @@ public class DatabaseConnector
 	 * @param table the table that we want to delete
 	 * @param id the primary key related to that table
 	 */
-	public void delete(String table, int id ){
+	public synchronized Boolean delete(String table, int id ){
 		try {
 			statement = connection.createStatement();
 			if(table.equals("flights"))
@@ -125,20 +128,24 @@ public class DatabaseConnector
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 	
 	/**
 	 * Deletes the specified tuple that meets the provided condition from the table. Designed for tables clients
 	 * @param Email condition to delete the tuples based on
 	 */
-	public void deleteClient(String Email){
+	public synchronized Boolean deleteClient(String Email){
 		try {
 			statement = connection.createStatement();
 			statement.executeUpdate("DELETE FROM clients" + " WHERE Email = '" + Email + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 	
 	/**
@@ -169,5 +176,54 @@ public class DatabaseConnector
 			e.printStackTrace();
 		}
 		
+	}
+
+	public synchronized Ticket bookIt(Booking book)
+	{
+		Ticket ticket = null;
+		try{
+			int flightID = book.getFlightNumber();
+			String email = book.getMail();
+			Random randomNum = new Random();
+			int ticketID =randomNum.nextInt(1000000);
+
+			ResultSet set1 = this.search("clients","Email = '" + email + "'");
+			String passengerFirstName = "";
+			String passengerLastName = "";
+			if(set1.next()) {
+				passengerFirstName = set1.getString("FirstName");
+				passengerLastName = set1.getString("LastName");
+			}
+			ResultSet set2 = this.search("flights","FlightNumber = " + flightID);
+			String flightFrom="";
+			String flightTo="";
+			String flightDate="";
+			String flightTime="";
+			String flightDuration="";
+			double flightCost = 0;
+			int seats = 0;
+			if(set2.next())
+			{
+				flightFrom = set2.getString("Source");
+				flightTo = set2.getString("Destination");
+				flightDate = set2.getString("Date");
+				flightTime = set2.getString("Time");
+				flightDuration = set2.getString("Duration");
+				flightCost = set2.getDouble("Price")*1.07;
+				seats = set2.getInt("AvailableSeats");
+			}
+			if(seats != 0)
+			{
+				this.insert("tickets", "'" + flightID + "', '" + email +"', '" +ticketID +"'");
+
+				ticket = new Ticket(passengerFirstName, passengerLastName, flightFrom, flightTo,
+						flightDate,flightTime ,flightDuration,flightCost, ticketID, flightID);
+				this.decrementFlightSeats(flightID);
+			}
+		}
+		catch(SQLException e)
+		{	e.printStackTrace();	}
+
+		return ticket;
 	}
 }

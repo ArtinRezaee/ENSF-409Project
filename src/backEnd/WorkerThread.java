@@ -1,14 +1,11 @@
 package backEnd;
 
 import frontEnd.Booking;
-
 import java.io.*;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
-
 
 public class WorkerThread extends Thread
 {
@@ -22,7 +19,7 @@ public class WorkerThread extends Thread
 	private String pass;
 	private String type;
 	
-	public WorkerThread(Socket s){
+	public WorkerThread(Socket s, DatabaseConnector d){
 		try {
 			id = "";
 			pass = "";
@@ -32,12 +29,13 @@ public class WorkerThread extends Thread
 			stringOut = new PrintWriter(socket.getOutputStream(),true);
 			objectIn = new ObjectInputStream(socket.getInputStream());
 			objectOut = new ObjectOutputStream(socket.getOutputStream());
-			db =  new DatabaseConnector();
+			db =  d;
 		} catch (IOException e)
 		{	e.printStackTrace();	}
 	}
 	
-	public void run(){
+	public void run()
+	{
 		String line = "";
 		while(!line.equals("over"))
 		{
@@ -80,53 +78,18 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("Booking"))
 				{
-					synchronized(this){
-						Booking book = (Booking)objectIn.readObject();
-	
-						int flightID = book.getFlightNumber();
-						String email = book.getMail();
-						Random randomNum = new Random();
-						int ticketID =randomNum.nextInt(1000000);
-	
-						ResultSet set1 = db.search("clients","Email = '" + email + "'");
-						String passengerFirstName = "";
-						String passengerLastName = "";
-						if(set1.next()) {
-							passengerFirstName = set1.getString("FirstName");
-							passengerLastName = set1.getString("LastName");
-						}
-						ResultSet set2 = db.search("flights","FlightNumber = " + flightID);
-						String flightFrom="";
-						String flightTo="";
-						String flightDate="";
-						String flightTime="";
-						String flightDuration="";
-						double flightCost = 0;
-						int seats = 0;
-						if(set2.next())
-						{
-							flightFrom = set2.getString("Source");
-							flightTo = set2.getString("Destination");
-							flightDate = set2.getString("Date");
-							flightTime = set2.getString("Time");
-							flightDuration = set2.getString("Duration");
-							flightCost = set2.getDouble("Price")*1.07;
-							seats = set2.getInt("AvailableSeats");
-						}
-						if(seats != 0) {
-							db.insert("tickets", "'" + flightID + "', '" + email +"', '" +ticketID +"'");
-	
-							Ticket ticket = new Ticket(passengerFirstName, passengerLastName, flightFrom, flightTo,
-															flightDate,flightTime ,flightDuration,flightCost, ticketID, flightID);
-							db.decrementFlightSeats(flightID);
-	
-							try {
-								stringOut.println("Booking successful");
-								objectOut.writeObject(ticket);
-							}catch(IOException err3)
-							{   err3.printStackTrace(); }
-						}
+					Booking book = (Booking)objectIn.readObject();
+					Ticket ticket = db.bookIt(book);
+					if(ticket != null)
+					{
+						try {
+							stringOut.println("Booking successful");
+							objectOut.writeObject(ticket);
+						}catch(IOException err3)
+						{   err3.printStackTrace(); }
 					}
+					else
+						stringOut.println("no Book");
 				}
 				else if(line.equals("addmultipleflights")) {
 					FlightCatalogue catalog = (FlightCatalogue) objectIn.readObject();
@@ -134,8 +97,11 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("Delete Flight")){
 					int id = Integer.parseInt((String)objectIn.readObject());
-					db.delete("flights", id);
-					stringOut.println("Flight Deleted");
+					Boolean check = db.delete("flights", id);
+					if(check == true)
+						stringOut.println("Flight deleted");
+					else
+						stringOut.println("Could not delete flight");
 				}
 				else if(line.equals("Search all users")){
 					ResultSet set = db.search("clients", "");
@@ -204,8 +170,11 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("Delete user")){
 					String mail = (String)objectIn.readObject();
-					db.deleteClient(mail);
-					stringOut.println("delete successfull");
+					Boolean check = db.deleteClient(mail);
+					if(check == true)
+						stringOut.println("User deleted");
+					else
+						stringOut.println("Could not delete user");
 				}
 				else if(line.equals("addoneflight")){
 					String query = stringIn.readLine();
@@ -276,8 +245,11 @@ public class WorkerThread extends Thread
 				}
 				else if(line.equals("Delete ticket")){
 					String tid = stringIn.readLine();
-					db.delete("tickets", Integer.parseInt(tid));
-					stringOut.println("delete successfull");
+					Boolean check = db.delete("tickets", Integer.parseInt(tid));
+					if(check == true)
+						stringOut.println("Ticket deleted");
+					else
+						stringOut.println("Could not delete ticket");
 				}
 				else
 				{
@@ -302,4 +274,12 @@ public class WorkerThread extends Thread
 		}catch(IOException e)
 		{	e.printStackTrace();	}
 	}
+
+	private synchronized void delete()
+	{
+
+	}
+
+
+
 }

@@ -59,7 +59,7 @@ public class RandomGenerator
             int dateI = randomInt(0, 9);
             int timeI = randomInt(0, 11);
             int durI = randomInt(0, 11);
-            int seats = randomInt(50, 500);
+            int seats = randomInt(1, 2);
             double price = randomDouble(200, 2001);
             price = Double.parseDouble(df.format(price));
 

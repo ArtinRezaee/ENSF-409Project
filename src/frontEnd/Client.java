@@ -27,6 +27,7 @@ public class Client
     private String clientType;
     private String mail;
     private String tid;
+    private String ty;
     
     private JFrame loginGUI;
     private JFrame clientGUI;
@@ -44,6 +45,7 @@ public class Client
             refreshQuery = null;
             mail = "";
             tid = "";
+            ty = "";
 
             socket = new Socket(server, port);
             stringIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -393,7 +395,7 @@ public class Client
                 	JTextField[] allFields = {flightNum, source, destination, date, time, duration, availSeats, price};
                 	boolean isEmpty = false;
 
-                	for(int i=0; i < allFields.length; i++){
+                	for(int i = 0; i < allFields.length; i++){
                 		if(allFields[i].getText().trim().equals(""))
                 			isEmpty = true;
                 	}
@@ -404,7 +406,6 @@ public class Client
 							objectOut.writeObject(booking);
 							String line = stringIn.readLine();
 							if(line.equals("Booking successful")){
-								
 								Ticket ticket = (Ticket)objectIn.readObject();
 								int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking info", 
 										  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new 
@@ -413,7 +414,9 @@ public class Client
 								if(res == 0){
 									ticket.print();
 								}
-								else{}
+							}
+							else {
+                                JOptionPane.showMessageDialog(null, "Flight is full", "Error", JOptionPane.PLAIN_MESSAGE);
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -815,7 +818,6 @@ public class Client
                         if(allFields[i].getText().equals(""))
                             isEmpty = true;
                     }
-
                     if(!isEmpty){
                         Booking booking = new Booking(clientId,Integer.parseInt(flightNum.getText()));
                         stringOut.println("Booking");
@@ -824,13 +826,16 @@ public class Client
                             String line = stringIn.readLine();
                             if(line.equals("Booking successful")){
                                 Ticket ticket = (Ticket)objectIn.readObject();
-                                int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking Info",
+                                int res = JOptionPane.showOptionDialog(null, "Booking Successful.\n", "Booking info",
                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new
                                                 String[]{"Print Ticket","Cancel"}, "default");
+
                                 if(res == 0){
                                     ticket.print();
                                 }
-                                else{}
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null, "Flight is full", "Error", JOptionPane.PLAIN_MESSAGE);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -936,19 +941,17 @@ public class Client
                 		stringOut.println("Delete Flight");
                 		try {
 							objectOut.writeObject(flightNum.getText());
-							if(stringIn.readLine().equals("Flight Deleted"))
-                            {
-                                JOptionPane.showMessageDialog(null, "Flight Deleted");
-                                flightNum.setText("");
-                                source.setText("");
-                                destination.setText("");
-                                date.setText("");
-                                time.setText("");
-                                duration.setText("");
-                                availSeats.setText("");
-                                price.setText("");
-                                listModelFlights.removeAllElements();
-                            }
+							String line = stringIn.readLine();
+                            JOptionPane.showMessageDialog(null, line);
+                            flightNum.setText("");
+                            source.setText("");
+                            destination.setText("");
+                            date.setText("");
+                            time.setText("");
+                            duration.setText("");
+                            availSeats.setText("");
+                            price.setText("");
+                            listModelFlights.removeAllElements();
 						} catch (IOException e)
                         {   e.printStackTrace();    }
                 	}
@@ -993,17 +996,20 @@ public class Client
                 else if(action.getSource() == deleteU)
                 {
                     deleteU.setEnabled(false);
-                	if(!mail.equals("")){
-                		stringOut.println("Delete user");
-                		try {
-							objectOut.writeObject(mail);
-							if(stringIn.readLine().equals("delete successfull")){
-								JOptionPane.showMessageDialog(null, "User Deleted");
-								listModelUsers.removeAllElements();
-							}
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+                	if(!mail.equals("") && !ty.equals("")) {
+                	    if(ty.equals("Passenger")) {
+                            stringOut.println("Delete user");
+                            try {
+                                objectOut.writeObject(mail);
+                                String line = stringIn.readLine();
+                                JOptionPane.showMessageDialog(null, "User Deleted");
+                                listModelUsers.removeAllElements();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "Cannot delete an Admin");
                 	}
                 	else
                 		JOptionPane.showMessageDialog(null, "User must be selected");
@@ -1052,10 +1058,9 @@ public class Client
                         stringOut.println("Delete ticket");
                         try {
                             stringOut.println(tid);
-                            if(stringIn.readLine().equals("delete successfull")){
-                                JOptionPane.showMessageDialog(null, "Ticket Deleted");
-                                listModelTickets.removeAllElements();
-                            }
+                            String line = stringIn.readLine();
+                            JOptionPane.showMessageDialog(null, line);
+                            listModelTickets.removeAllElements();
                         } catch (IOException e)
                         {  e.printStackTrace(); }
                     }
@@ -1110,6 +1115,7 @@ public class Client
                 	String line = new String(listModelUsers.get(index).toCharArray());
                 	String [] arr = line.split(" - ");
                 	mail = arr[0];
+                	ty = arr[2];
                 }
             }
         }
