@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class WorkerThread extends Thread
 {
+    // Required Variables
 	private Socket socket;
 	private BufferedReader stringIn;
 	private PrintWriter stringOut;
@@ -19,6 +20,11 @@ public class WorkerThread extends Thread
 	private String pass;
 	private String type;
 	
+    /**
+     * Worker thread constructor
+     * @param s, gets a socket to read and write to in order to communicate with the client and server
+     * @param d, an instance of DatabaseConnector to fetch data from and wrtie tothe databse
+     */
 	public WorkerThread(Socket s, DatabaseConnector d){
 		try {
 			id = "";
@@ -34,6 +40,9 @@ public class WorkerThread extends Thread
 		{	e.printStackTrace();	}
 	}
 	
+	/**
+	 * Method to run the thread and start communication with the client. Backend logic and decision process of the program is implemented here
+	 */
 	public void run()
 	{
 		String line = "";

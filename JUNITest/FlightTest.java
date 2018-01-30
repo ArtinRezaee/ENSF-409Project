@@ -3,7 +3,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Created by crist on 2017-04-06.
+ * Created by Chris on 2017-04-06.
  */
 public class FlightTest {
     private Flight flightTest = new Flight(109230,"Calgary","Edmonton","2017-04-07",
